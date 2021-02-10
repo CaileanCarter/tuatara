@@ -1,0 +1,283 @@
+# This file was made with the tuatara package and should not be
+# directly added to a ScrumPy model. Use the tools provided by
+# tuatara to add to interact with model. 
+
+
+# Egg ID: GL9
+
+########################### REACTIONS WITH CONFLICTS ###########################
+
+# Conflict found for reaction: 3.4.21.83-RXN
+# Conflict 1
+ "3.4.21.83-RXN":
+     "OLIGOPEPTIDES" +  "WATER" ->2 "Peptides-holder"
+    ~
+# Conflict 2
+ "3.4.21.83-RXN":
+     "OLIGOPEPTIDES" +  "WATER" -> "Peptides-holder"
+    ~
+
+# Conflict found for reaction: RXN-15298
+# Conflict 1
+ "RXN-15298":
+     "CPD-16502" <> "CPD-16503" +  "DIHYDROXY-ACETONE-PHOSPHATE"
+    ~
+# Conflict 2
+ "RXN-15298":
+     "CPD-16502" <> "CPD-18717" +  "DIHYDROXY-ACETONE-PHOSPHATE"
+    ~
+
+
+
+###################### REACTIONS NOT FOUND IN MODEL FILES ######################
+"rm_PGPPHOSPHA-RXN":
+     "L-1-PHOSPHATIDYL-GLYCEROL-P" +  "WATER" -> "L-1-PHOSPHATIDYL-GLYCEROL" +  "Pi"
+    ~
+
+"rm_RXN0-4461":
+     "DIACYLGLYCEROL-PYROPHOSPHATE" +  "WATER" <> "L-PHOSPHATIDATE" +  "Pi" +  "PROTON"
+    ~
+
+"rm_RXN-11277":
+     "DIACYLGLYCEROL-PYROPHOSPHATE" +  "WATER" -> "L-PHOSPHATIDATE" +  "Pi" +  "PROTON"
+    ~
+
+"rm_3.1.22.4-RXN":
+     "DNA-Combined-With-Exogenous-DNA" +  "WATER" -> "Resolution-of-Recombinational-Junction"
+    ~
+
+"rm_1.8.4.13-RXN":
+     "MET" +  "Ox-Thioredoxin" +  "WATER" <> "CPD-8989" +  "Red-Thioredoxin"
+    ~
+
+"rm_ACYLCOADEHYDROG-RXN":
+     "Saturated-Fatty-Acyl-CoA" +  "ETF-Oxidized" +  "PROTON" -> "TRANS-D2-ENOYL-COA" +  "ETF-Reduced"
+    ~
+
+"rm_RXN-17775":
+     "OLEOYL-COA" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19172" +  "ETF-Reduced"
+    ~
+
+"rm_RXN-17779":
+     "CPD-19144" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19170" +  "ETF-Reduced"
+    ~
+
+"rm_RXN-17783":
+     "CPD-15436" +  "ETF-Oxidized" +  "PROTON" -> "CPD0-1162" +  "ETF-Reduced"
+    ~
+
+"rm_RXN-17784":
+     "CPD-18346" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19163" +  "ETF-Reduced"
+    ~
+
+"rm_RXN-17788":
+     "CPD-10269" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19162" +  "ETF-Reduced"
+    ~
+
+"rm_RXN-17792":
+     "CPD-19147" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19161" +  "ETF-Reduced"
+    ~
+
+"rm_RXN-17796":
+     "CPD-19148" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19150" +  "ETF-Reduced"
+    ~
+
+"rm_2.7.13.3-RXN":
+     "Protein-Histidines" +  "ATP" -> "Protein-phospho-L-histidines" +  "ADP" +  "PROTON"
+    ~
+
+"rm_LYXISOM-RXN":
+     "L-LYXOSE" <> "L-XYLULOSE"
+    ~
+
+"rm_RXN-13853":
+     "Nitroaromatic-Ox-Compounds" +  "NADH-P-OR-NOP" <> "Nitroaromatic-Red-Compounds" +  "NAD-P-OR-NOP"
+    ~
+
+"rm_1.5.1.34-RXN":
+     "5678-TETRAHYDROPTERIDINE" +  "NAD-P-OR-NOP" <> "67-DIHYDROPTERIDINE" +  "NADH-P-OR-NOP" +  "PROTON"
+    ~
+
+"rm_2.1.1.72-RXN":
+     "S-ADENOSYLMETHIONINE" +  "DNA-Adenines" -> "ADENOSYL-HOMO-CYS" +  "DNA-6-Methyl-Amino-Purines" +  "PROTON"
+    ~
+
+"rm_ORNCARBAMTRANSFER-RXN":
+     "L-ORNITHINE" +  "CARBAMOYL-P" <> "PROTON" +  "L-CITRULLINE" +  "Pi"
+    ~
+
+"rm_ACYLNEURAMINATE-CYTIDYLYLTRANSFERASE-RXN":
+     "CPD-1119" +  "PROTON" +  "CTP" <> "CPD-189" +  "PPI"
+    ~
+
+
+########################### REACTIONS WITH ZERO FLUX ###########################
+"rm_RXN-13313":
+     "CPDQT-520" +  "WATER" -> "CPD-2183" +  "Pi"
+    ~
+
+"rm_UNDECAPRENYL-DIPHOSPHATASE-RXN":
+     "UNDECAPRENYL-DIPHOSPHATE" +  "WATER" <> "PROTON" +  "CPD-9646" +  "Pi"
+    ~
+
+"rm_RXN0-2441":
+     "S-ADENOSYLMETHIONINE" +  "CPD-225" -> "MONOMETHYL-ESTER-OF-TRANS-ACONITATE" +  "ADENOSYL-HOMO-CYS"
+    ~
+
+"rm_RXN0-6277":
+     "CPD-722" +  "Red-Thioredoxin" <> "BIOTIN" +  "Ox-Thioredoxin" +  "WATER"
+    ~
+
+"rm_RXN0-5264":
+     "TRIMENTHLAMINE-N-O" +  "PROTON" +  "Menaquinols" <> "WATER" +  "TRIMETHYLAMINE" +  "Menaquinones"
+    ~
+
+"rm_TMAOREDUCT-RXN":
+     "TRIMENTHLAMINE-N-O" +  "NADH" + 2 "PROTON" <> "WATER" +  "TRIMETHYLAMINE" +  "NAD"
+    ~
+
+"rm_RXN0-3601":
+     "GAMMA-BUTYROBETAINYL-COA" +  "CARNITINE" <> "GAMMA-BUTYROBETAINE" +  "L-CARNITINYL-COA"
+    ~
+
+"rm_R344-RXN":
+     "CPD-694" +  "ATP" <> "CPD-690" +  "P3I"
+    ~
+
+"rm_COBALADENOSYLTRANS-RXN":
+     "ATP" +  "COB-I-ALAMIN" <> "ADENOSYLCOBALAMIN" +  "P3I"
+    ~
+
+"rm_BTUR2-RXN":
+     "COBINAMIDE" +  "ATP" <> "ADENOSYLCOBINAMIDE" +  "P3I"
+    ~
+
+"rm_RHAMNISOM-RXN":
+     "CPD0-1112" <> "CPD-16566"
+    ~
+
+"rm_RXN-13482":
+     "L-ORNITHINE" +  "CARBAMOYL-P" <> "PROTON" +  "L-CITRULLINE" +  "Pi"
+    ~
+
+"rm_DTDPGLUCDEHYDRAT-RXN":
+     "DTDP-D-GLUCOSE" <> "WATER" +  "DTDP-DEOH-DEOXY-GLUCOSE"
+    ~
+
+"rm_ADENYLATECYC-RXN":
+     "ATP" <> "CAMP" +  "PPI"
+    ~
+
+"rm_NITRATE-REDUCTASE-NADH-RXN":
+     "NITRITE" +  "WATER" +  "NAD" <> "PROTON" +  "NITRATE" +  "NADH"
+    ~
+
+"rm_FESO3OXI-RXN":
+     "SO3" + 2 "FE+3" +  "WATER" <>2 "PROTON" +  "SULFATE" + 2 "FE+2"
+    ~
+
+"rm_SULFITE-OXIDASE-RXN":
+     "SO3" +  "OXYGEN-MOLECULE" +  "WATER" -> "HYDROGEN-PEROXIDE" +  "SULFATE"
+    ~
+
+"rm_SULFITE-DEHYDROGENASE-RXN":
+     "SO3" + 2 "Cytochromes-C-Oxidized" +  "WATER" <> "SULFATE" + 2 "Cytochromes-C-Reduced"
+    ~
+
+"rm_RXN-9990":
+     "CPD0-1123" +  "CTP" <> "CMP-N-ACETYL-NEURAMINATE" +  "PPI"
+    ~
+
+"rm_DTDPDEHYDRHAMEPIM-RXN":
+     "DTDP-DEOH-DEOXY-GLUCOSE" <> "DTDP-DEOH-DEOXY-MANNOSE"
+    ~
+
+
+########################### REACTIONS ADDED TO MODEL ###########################
+"RXN0-6528":
+     "YHAV-DEGRADATION-SUBSTRATE-MRNA" +  "WATER" ->2 "mRNA-Fragments"
+    ~
+
+"RXN7E-21":
+     "TREHALOSE" +  "PHOSPHO-ENOL-PYRUVATE" <> "TREHALOSE-6P" +  "PYRUVATE"
+    ~
+
+"TRANS-RXNBJ-2875":
+     "TREHALOSE" +  "PHOSPHO-ENOL-PYRUVATE" <> "TREHALOSE-6P" +  "PYRUVATE"
+    ~
+
+"3.1.21.7-RXN":
+     "DNA-N" +  "WATER" -> "3-Hydroxy-Terminated-DNAs" +  "5-Phospho-terminated-DNAs"
+    ~
+
+"RXN0-361":
+     "CYTIDINE" +  "WATER" -> "D-Ribofuranose" +  "CYTOSINE"
+    ~
+
+"ADENOSINE-NUCLEOSIDASE-RXN":
+     "WATER" +  "ADENOSINE" -> "D-Ribofuranose" +  "ADENINE"
+    ~
+
+"INOSINE-NUCLEOSIDASE-RXN":
+     "INOSINE" +  "WATER" -> "D-Ribofuranose" +  "HYPOXANTHINE"
+    ~
+
+"RXN0-363":
+     "XANTHOSINE" +  "WATER" -> "D-Ribofuranose" +  "XANTHINE"
+    ~
+
+"URIDINE-NUCLEOSIDASE-RXN":
+     "URIDINE" +  "WATER" -> "D-Ribofuranose" +  "URACIL"
+    ~
+
+"ALDOSE1EPIM-RXN":
+     "GALACTOSE" <> "ALPHA-D-GALACTOSE"
+    ~
+
+"ALDOSE-1-EPIMERASE-RXN":
+     "ALPHA-GLUCOSE" <> "GLC"
+    ~
+
+"RXN-17701":
+     "CPD-19111" +  "WATER" -> "CPD-21685" +  "GLYCEROL"
+    ~
+
+"RXN-17700":
+     "SULFOQUINOVOSYLDIACYLGLYCEROL" +  "WATER" -> "CPD-21685" +  "1-2-Diglycerides"
+    ~
+
+"RXN-15299":
+     "2-3-dihydroxypropane-1-sulfonate" +  "NAD" <> "CPD-16503" +  "NADH" +  "PROTON"
+    ~
+
+"4-HYDROXYBUTYRATE-DEHYDROGENASE-RXN":
+     "NAD" +  "4-HYDROXY-BUTYRATE" <> "PROTON" +  "NADH" +  "SUCC-S-ALD"
+    ~
+
+"ARYLSULFAT-RXN":
+     "Aryl-Sulfate" +  "WATER" -> "Aryl-Alcohol" +  "SULFATE" +  "PROTON"
+    ~
+
+"RXN-15296":
+     "CPD-10247" <> "CPD-16501"
+    ~
+
+"MANNOSE-ISOMERASE-RXN":
+     "CPD-15373" <> "CPD-15382"
+    ~
+
+"RXN-15297":
+     "CPD-16501" +  "ATP" <> "CPD-16502" +  "ADP" +  "PROTON"
+    ~
+
+"ORNCARBAMTRANSFER-RXN":
+     "L-ORNITHINE" +  "CARBAMOYL-P" <> "PROTON" +  "L-CITRULLINE" +  "Pi"
+    ~
+
+"XYLONATE-DEHYDRATASE-RXN":
+     "D-XYLONATE" <> "WATER" +  "2-DH-3-DO-D-ARABINONATE"
+    ~
+
+"4.1.2.28-RXN":
+     "2-DH-3-DO-D-ARABINONATE" <> "GLYCOLALDEHYDE" +  "PYRUVATE"
+    ~

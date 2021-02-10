@@ -1,0 +1,26 @@
+
+info:
+  count : 1
+  using version : 0.1-dev
+
+hash:
+  egg1 : UID1
+
+eggs:
+
+  UID1:
+    name : egg1
+    active : True
+    renamed : False
+    file : egg1.spy
+    date created : 27/01/2021 16:04
+    date deleted : null
+    checked : False
+
+    contents :
+      last checked : 29/01/2021 14:06
+      conflicts : 0
+      absentia : 0
+      added : 10
+      removed : 6
+
