@@ -5,6 +5,7 @@ from os import path
 import numpy as np
 from ScrumPy.Bioinf import PyoCyc
 from . import Editor
+from .utils import SetUtils
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
@@ -140,59 +141,6 @@ def check_biomass_production(model, reactions=None, flux=-1, **kwargs):
 
 #--------------------------------------------
 # in development
-
-
-class SetUtils:
-
-    @staticmethod
-    def complement(a, b): return [el for el in a if el not in b]
- 
-    @staticmethod
-    def intersects(setlist): 
-        """ pre: setl is a list of sets, len(setl) > 1
-        post: the intersection of all sets in setl """
-        rv = setlist[0]
-        for s in setlist[1:]:
-            rv = SetUtils.intersect(rv,s)
-        return rv
-
-    @staticmethod
-    def intersect(a, b): return [el for el in a if el in b]
- 
-    @staticmethod
-    def union(a, b): return [el for el in b if el not in a]
-
-    @staticmethod
-    def does_intersect(a, b): return any([el in b for el in a])
-
-    @staticmethod
-    def merge(SetList, __first=True):
-        """ Pre: SetList is a list of sets, __first is private
-        Post: Merge(SetList) == list of of sets, such that intersection in SetList are mereged,
-                e.g. Merge([[1,2],[2,3],[4,5]]) => [[1,2,3],[4,5]]
-        """
-
-        if __first:
-            SetList = SetList[:]
-            __first = False
-
-        Seen = 0   # not a set, so won't be in SetList from User
-        lensets = len(SetList)
-        rv = []
-        for idx1 in range(lensets):
-            if SetList[idx1] != Seen:
-                newset = SetList[idx1]
-                SetList[idx1] = Seen
-                for idx2 in range(idx1+1, lensets):
-                    s2 = SetList[idx2]
-                    if s2 != Seen and SetUtils.does_intersect(newset, s2):
-                        newset = SetUtils.union(newset,s2)
-                        SetList[idx2] = Seen
-                rv.append(newset)
-        if len(rv) < lensets:
-            return SetUtils.merge(rv, __first)
-        else:
-            return rv
 
 
 class Model:
