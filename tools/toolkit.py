@@ -4,8 +4,8 @@ from os import path
 
 import numpy as np
 from ScrumPy.Bioinf import PyoCyc
-from . import Editor
-from .utils import SetUtils
+from ..core.GUI import Editor
+from .utils import SetUtils, HidePrints
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
@@ -318,7 +318,7 @@ class Model:
 
 
 
-def NoGene(db): return [reaction for reaction in db.Reaction.keys() if not db[reaction].GetGenes()]
+def NoGene(db): return [reaction for reaction in db.dbs["REACTION"].keys() if not db[reaction].GetGenes()]
 # list of reactions with no genes
 
 
@@ -330,8 +330,23 @@ def gene_associated_reactions(db): return SetUtils.complement(db.dbs["REACTION"]
 class DataBases:
 
     def __init__(self):
-        raise TypeError("Object cannot be initialised.")
+        raise TypeError("DataBases object cannot be initialised.")
 
+
+    @staticmethod
+    def open_many(*args, common=None, dirs=None, data='data', **kwargs) -> tuple:
+        # TODO: write me
+
+        if common:
+            args = [f"{common}/{directory}" for directory in dirs]
+        
+        log.info("Opening databases, this may take a while...")
+        with HidePrints():
+            databases = (PyoCyc.Organism(data=data, Path=pathdir, **kwargs) for pathdir in args)
+
+        return databases
+
+        
     @staticmethod
     def compare_databases(*args, names=None, GeneAsso=True, commons=True, uniques=True, summary=False, **kwargs):
 
@@ -369,25 +384,25 @@ class DataBases:
     @staticmethod
     def GetExtraFromDB(database_a, database_b):
         '''Pre: True
-        Post: get information on extra reactions, gene etc from db1'''
+        Post: get information on extra reactions, gene etc from database_b'''
 
         Extras = namedtuple("Extras", ["reactions", "compounds", "pathways", "enzymes", "proteins", "genes"])
 
-        extra_reac = SetUtils.complement(database_b.Reaction.keys(), database_a.Reaction.keys())
+        extra_reac = SetUtils.complement(database_b.dbs['REACTION'].keys(), database_a.dbs['REACTION'].keys())
         extra_enzrn = []
         for r in extra_reac:
             if 'ENZYMATIC-REACTION' in database_b[r].Attributes:
                 for enzr in database_b[r].Attributes['ENZYMATIC-REACTION']:
                     extra_enzrn.append(enzr)
 
-        extra_comp = SetUtils.complement(database_b.Compound.keys(), database_a.Compound.keys())
+        extra_comp = SetUtils.complement(database_b.dbs['COMPOUND'].keys(), database_a.dbs['COMPOUND'].keys())
         extra_enz = []
         for enzr in extra_enzrn:
             if 'ENZYME' in database_b[enzr].Attributes:
                 for enz in database_b[enzr].Attributes['ENZYME']:
                     extra_enz.append(enz)
 
-        extra_path = SetUtils.complement(database_b.Pathway.keys(), database_a.Pathway.keys())
+        extra_path = SetUtils.complement(database_b.dbs["Pathway"].keys(), database_a.dbs["Pathway"].keys())
         extra_gene = []
         for enz in extra_enz:
             if 'GENE' in database_b[enz].Attributes:
@@ -398,9 +413,9 @@ class DataBases:
                     extra_reac,
                     extra_comp,
                     extra_path,
-                    SetUtils.complement(extra_enzrn, database_a.Enzrxn.keys()),
-                    SetUtils.complement(extra_enz,   database_a.Protein.keys()),
-                    SetUtils.complement(extra_gene,  database_a.Gene.keys())
+                    SetUtils.complement(extra_enzrn, database_a.dbs["ENZYMATIC-REACTION"].keys()),
+                    SetUtils.complement(extra_enz,   database_a.dbs["PROTEIN"].keys()),
+                    SetUtils.complement(extra_gene,  database_a.dbs["GENE"].keys())
                     )
 
 
@@ -429,7 +444,6 @@ class DataBases:
 
     @staticmethod
     def updateDB(db, path=".", ExtraCompounds='ExtraCompounds.dat'):
-        # FIXME: unknown arguments
         
         '''
         Update database with extra compounds
@@ -451,7 +465,7 @@ class DataBases:
 def ReacToGene(db, reactions=None):
 	rv = {}
 	if not reactions:
-		reactions = db.Reaction.keys()
+		reactions = db.dbs['REACTION'].keys()
 	for r in reactions:
 		gen = []
 		genes = db[r].GetGenes()

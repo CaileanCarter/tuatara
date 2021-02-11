@@ -18,7 +18,7 @@ from os import path, remove
 from flashtext import KeywordProcessor
 
 from ..core.GUI import Editor, Scanner, _ask_spy_file
-from ..nest import get_path
+from ..nest.keeper import get_path
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())

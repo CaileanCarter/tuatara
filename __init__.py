@@ -13,14 +13,14 @@ from .tools import (
                     Model, 
                     DataBases, 
                     ReacToGene, 
-                    ATP,
-                    pick
+                    ATP
                         )
 from .core import (
                 BuildNest,
                 Inputs, 
                 read_yaml, 
                 read_json,
+                pick
                     )
 from .nest import (
                 get_path, 
@@ -34,8 +34,9 @@ from .nest import (
 # TODO: Reports for eggs?
 # TODO: impliment snakemake feature?
 # TODO: CLI via __main__.py
-# TODO: sort subdirectory __init__.py imports
 # TODO: Add extra functionality to scanner gui
+# TODO: write API reference
+# TODO: sort out register (is it necessary?)
 
 
 logging.basicConfig(level=logging.INFO, format="tuatara - %(levelname)s - %(message)s")

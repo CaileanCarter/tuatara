@@ -14,7 +14,8 @@ import re
 from collections import namedtuple
 from itertools import zip_longest
 
-from ..tools import dequote, remove_prefix, _ask_spy_file
+from ..tools.utils import dequote, remove_prefix
+from ..core.GUI import _ask_spy_file
 from .keeper import get_path
 
 

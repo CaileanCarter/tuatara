@@ -22,7 +22,7 @@ from os import devnull, getcwd, listdir, path
 import numpy as np
 import pandas as pd
 from ScrumPy.Bioinf import PyoCyc
-from ..tools import (    
+from ..tools.utils import (    
                     remove_suffix,
                     split_reaction, 
                     list_identical, 
