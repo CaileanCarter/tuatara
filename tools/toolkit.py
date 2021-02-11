@@ -3,6 +3,9 @@ from collections import namedtuple
 from os import path
 
 import numpy as np
+import networkx as nx
+from operator import itemgetter
+import matplotlib.pyplot as plt
 from ScrumPy.Bioinf import PyoCyc
 from ..core.GUI import Editor
 from .utils import SetUtils, HidePrints
@@ -10,143 +13,119 @@ from .utils import SetUtils, HidePrints
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
 
-# ATPase = "ADENOSINETRIPHOSPHATASE-RXN"
 
 # TODO: fix core functions
-
-def buildLP(model, 
-            fluxdict=None, 
-            reaction=None, 
-            flux=1, 
-            block_uptake=False, 
-            suffix="_tx",  
-            obj=None,
-            check=None,
-            solve=True):
-    """
-    Build linear programme from model.
-    
-        Parameters:
-            model (obj) : model
-            fluxdict (dict) : flux dictionary
-            reaction (str) : name of reaction
-            flux (int) : flux value for reaction
-            block_uptake (bool) : block transporters
-            suffix (str) : block transporters with given suffix ('_tx' for all transporters; '_mm_tx' for media transporters)
-            obj (str) : linear programme objective
-            check (str) : perform check on given reaction (depracted)
-            solve (bool) : solve LP
-
-        Returns:
-            lp (obj) : linear programme of model
-    """
-    
-    lp = model.GetLP()
-    if block_uptake or check:
-        lp = lp.SetFixedFlux({tx : 0 for tx in filter(lambda x: x.endswith(suffix), model.sm.cnames)})
-    
-    if reaction:
-        lp.SetFixedFlux({reaction : flux})
-    if fluxdict:
-        lp.SetFixedFlux(fluxdict)
-
-    if obj == "min":
-        lp.SetObjective(model.sm.cnames)   # minimise total flux
-
-    if solve:
-        lp.Solve()
-    if check:
-        lp.ClearFluxConstraint(check)
-    if solve:
-        lp = lp.GetPrimSol()
-    return lp
+# TODO: make a standalone gist file out of this module
 
 
-def printLP(model, lp):
-    for key, value in lp.items():
-        print(value, model.smx.ReacToStr(key))
+class LP:
+
+    @staticmethod
+    def build(model, 
+                fluxdict=None, 
+                reaction=None, 
+                flux=1, 
+                block_uptake=False, 
+                suffix="_tx",  
+                obj=None,
+                solve=True):
+        """
+        Build linear programme from model.
+        
+            Parameters:
+                model (obj) : model
+                fluxdict (dict) : flux dictionary
+                reaction (str) : name of reaction
+                flux (int) : flux value for reaction
+                block_uptake (bool) : block transporters
+                suffix (str) : block transporters with given suffix ('_tx' for all transporters; '_mm_tx' for media transporters)
+                obj (str) : linear programme objective
+                solve (bool) : solve LP
+
+            Returns:
+                lp (obj) : linear programme of model
+        """
+        
+        lp = model.GetLP()
+        if block_uptake:
+            lp = lp.SetFixedFlux({tx : 0 for tx in filter(lambda x: x.endswith(suffix), model.sm.cnames)})
+        
+        if reaction:
+            lp.SetFixedFlux({reaction : flux})
+        if fluxdict:
+            lp.SetFixedFlux(fluxdict)
+
+        if obj == "min":
+            lp.SetObjective(model.sm.cnames)   # minimise total flux
+
+        if solve:
+            lp.Solve()
+            lp = lp.GetPrimSol()
+
+        return lp
 
 
-def scan_lp(lp, transporters="_tx", **kwargs):
-    # FIXME: should work but not tidy.
-    transporters_list = []
-    for transporter in filter(lambda x : x.endswith(transporters), lp.keys()):
-        transporters_list.append(transporter)
-
-    return transporters_list
-
-
-def showLP(model, lp):
-    DIR = path.dirname(path.realpath(__file__))
-    PATH = path.join(DIR, "LP.tua")
-
-    with open(PATH, 'w') as LPfile:
+    @staticmethod
+    def prints(model, lp):
         for key, value in lp.items():
-            LPfile.write(f"{value} {model.smx.ReacToStr(key)}\n")
-
-    Editor(filename=PATH)
+            print(value, model.smx.ReacToStr(key))
 
 
-def check_imbals(m, db, reacs=None):
-    """
-    Check for imbalances in reactions.
-
-        Parameters:
-            m (obj) : model
-            db (obj) : database
-            reacs (list) : list of reactions
-
-        Returns:
-            rv (dict) : reaction imbalances
-    """
-
-    rv = {}
-    if not reacs:
-        reacs = filter(lambda x: not x.endswith("_tx"), m.smx.cnames)
-    for reac in reacs:
-        stod = m.smx.InvolvedWith(reac)
-        imbal = db.dbs['Compound'].AtomImbal(stod)
-        if imbal:
-            rv[reac] = imbal
-    return rv  
+    @staticmethod
+    def scan(lp, suffix="_tx", **kwargs): return list(filter(lambda x : x.endswith(suffix), lp.keys()))
+        # FIXME: should work but not tidy.
 
 
-def check_biomass_production(model, reactions=None, flux=-1, **kwargs):
-    """
-    Check model's biomass production.
+    @staticmethod
+    def show(model, lp):
+        DIR = path.dirname(path.realpath(__file__))
+        PATH = path.join(DIR, "LP.tua")
 
-        Parameters:
-            model (obj) : model
-            reactions (list) : dictionary of reaction flux
-            flux (int) : reaction flux
-            **kwargs : keyword arguments for buildLP
-        Returns:
-            rv (dict) : dictionary of biomass solutions
+        with open(PATH, 'w') as LPfile:
+            for key, value in lp.items():
+                LPfile.write(f"{value} {model.smx.ReacToStr(key)}\n")
 
-    pre: True
-    post: the lp solution for production of each biomass components
-    """
-    rv = {}
+        Editor(filename=PATH)
 
-    bm = reactions if reactions else filter(lambda x : x.endswith('_bm_tx'), model.sm.cnames) 
-    
-    for reac in bm:
-        sol = buildLP(model, reaction=reac, flux=flux, **kwargs)
-        if sol:
-            rv[reac] = sol
-        else:
-            log.info(reac)
-    return rv
-	
+    @staticmethod
+    def plot(model, lp):
 
-#--------------------------------------------
-# in development
+        G = nx.Graph()
+        G.add_nodes_from([reac for reac in lp.keys()])
+
+        reactions = {reac : {
+                                "reactants" : model.smx.Reactants(reac),
+                                "products" : model.smx.Products(reac)
+                                } for reac in lp.keys()
+                                }
+
+        for reaction, values in reactions.items():
+
+            products = values["products"]
+
+            for r, v in reactions.items():
+
+                reactants = v["reactants"]
+
+                if SetUtils.does_intersect(products, reactants):
+
+                    G.add_edge(reaction, r)
+        
+        hub = sorted(G.degree(), key=itemgetter(1))[-1][0]
+
+        ego_plot = nx.ego_graph(G, hub)
+
+        
+        nx.draw(ego_plot, with_labels=True, pos=nx.spring_layout(G), edge_color='c')
+        plt.show()
+
 
 
 class Model:
     #TODO: move to nest scripts
 
     def __init__(self): raise TypeError("Object cannot be initialised.")
+        
         
     @staticmethod
     def merge_models(model_a, model_b):
@@ -157,6 +136,61 @@ class Model:
                 model_a.md.xMetabolites.append(x)
         model_a.md.QuoteMap.update(model_b.md.QuoteMap)
         model_a.__init__(model_a.md)
+
+
+    @staticmethod
+    def check_imbals(m, db, reacs=None):
+        """
+        Check for imbalances in reactions.
+
+            Parameters:
+                m (obj) : model
+                db (obj) : database
+                reacs (list) : list of reactions
+
+            Returns:
+                rv (dict) : reaction imbalances
+        """
+
+        rv = {}
+        if not reacs:
+            reacs = filter(lambda x: not x.endswith("_tx"), m.smx.cnames)
+        for reac in reacs:
+            stod = m.smx.InvolvedWith(reac)
+            imbal = db.dbs['Compound'].AtomImbal(stod)
+            if imbal:
+                rv[reac] = imbal
+        return rv  
+
+
+    @staticmethod
+    def check_biomass_production(model, reactions=None, flux=-1, **kwargs):
+        """
+        Check model's biomass production.
+
+            Parameters:
+                model (obj) : model
+                reactions (list) : dictionary of reaction flux
+                flux (int) : reaction flux
+                **kwargs : keyword arguments for build
+            Returns:
+                rv (dict) : dictionary of biomass solutions
+
+        pre: True
+        post: the lp solution for production of each biomass components
+        """
+        rv = {}
+
+        bm = reactions if reactions else filter(lambda x : x.endswith('_bm_tx'), model.sm.cnames) 
+        
+        for reac in bm:
+            sol = LP.build(model, reaction=reac, flux=flux, **kwargs)
+            if sol:
+                rv[reac] = sol
+            else:
+                log.info(reac)
+        return rv
+	
 
     @staticmethod
     def transporters(m):
@@ -225,7 +259,8 @@ class Model:
         print ("\t-> fermentation products:  ", len(transp['ftx']))
         print ("\t-> heterlogous products:  ", len(transp['hptx']))
         print ("\tNote - both substrates and products", transp['sftx'])
-            
+
+
     #get metabolites from list of reactions
     @staticmethod
     def get_mets(m, reacs):
@@ -240,6 +275,7 @@ class Model:
                     rv.append(met)
         return rv
 
+
     @staticmethod
     def connects(m):
         connected ={}
@@ -247,6 +283,7 @@ class Model:
             connected[met] = m.sm.Connectedness(met)
         rv = sorted(connected.items(), key=lambda c:c[1], reverse=True)
         return rv
+
 
     @staticmethod
     def ESubsets(m, returnMore=False):
@@ -283,12 +320,14 @@ class Model:
             
             return subsetDic
 
+
     @staticmethod
     def ShortSummary(m):
 
         print ("reactions: ", len(filter(lambda x: "_tx" not in x, m.sm.cnames)))
         print ("metabolites: ", len(m.sm.rnames))
         print ("transporters:", len(filter(lambda x: "_tx" in x, m.sm.cnames)))
+
 
     @staticmethod
     def LongSummary(m):
@@ -317,16 +356,6 @@ class Model:
         print ("\n*top 15 connected mets: ", connecMets[:15])
 
 
-
-def NoGene(db): return [reaction for reaction in db.dbs["REACTION"].keys() if not db[reaction].GetGenes()]
-# list of reactions with no genes
-
-
-def gene_associated_reactions(db): return SetUtils.complement(db.dbs["REACTION"].keys(), NoGene(db))
-	# '''pre:True
-	# post: return list of reaction with gene association'''
-	
-
 class DataBases:
 
     def __init__(self):
@@ -335,24 +364,29 @@ class DataBases:
 
     @staticmethod
     def open_many(*args, common=None, dirs=None, data='data', **kwargs) -> tuple:
-        # TODO: write me
+
+        """
+        Given the file path for a database, open that database through ScrumPy.
+        Ensure to unpack the returned list (same order as input) before moving on to
+        other methods.
+        """
 
         if common:
             args = [f"{common}/{directory}" for directory in dirs]
         
         log.info("Opening databases, this may take a while...")
         with HidePrints():
-            databases = (PyoCyc.Organism(data=data, Path=pathdir, **kwargs) for pathdir in args)
+            databases = [PyoCyc.Organism(data=data, Path=pathdir, **kwargs) for pathdir in args]
 
         return databases
 
         
     @staticmethod
-    def compare_databases(*args, names=None, GeneAsso=True, commons=True, uniques=True, summary=False, **kwargs):
+    def compare(*args, names=None, GeneAsso=True, commons=True, uniques=True, summary=False, **kwargs):
 
         master = {}
 
-        database_reactions = [gene_associated_reactions(database) if GeneAsso 
+        database_reactions = [DataBases.gene_associated_reactions(database) if GeneAsso 
                                 else database.dbs["REACTION"].keys() 
                                 for database in args]
         
@@ -382,7 +416,7 @@ class DataBases:
 
 
     @staticmethod
-    def GetExtraFromDB(database_a, database_b):
+    def find_extras(database_a, database_b):
         '''Pre: True
         Post: get information on extra reactions, gene etc from database_b'''
 
@@ -391,22 +425,22 @@ class DataBases:
         extra_reac = SetUtils.complement(database_b.dbs['REACTION'].keys(), database_a.dbs['REACTION'].keys())
         extra_enzrn = []
         for r in extra_reac:
-            if 'ENZYMATIC-REACTION' in database_b[r].Attributes:
-                for enzr in database_b[r].Attributes['ENZYMATIC-REACTION']:
+            if 'ENZYMATIC-REACTION' in database_b[r]:
+                for enzr in database_b[r]['ENZYMATIC-REACTION']:
                     extra_enzrn.append(enzr)
 
-        extra_comp = SetUtils.complement(database_b.dbs['COMPOUND'].keys(), database_a.dbs['COMPOUND'].keys())
+        extra_comp = SetUtils.complement(database_b.dbs['Compound'].keys(), database_a.dbs['Compound'].keys())
         extra_enz = []
         for enzr in extra_enzrn:
-            if 'ENZYME' in database_b[enzr].Attributes:
-                for enz in database_b[enzr].Attributes['ENZYME']:
+            if 'ENZYME' in database_b[enzr]:
+                for enz in database_b[enzr]['ENZYME']:
                     extra_enz.append(enz)
 
         extra_path = SetUtils.complement(database_b.dbs["Pathway"].keys(), database_a.dbs["Pathway"].keys())
         extra_gene = []
         for enz in extra_enz:
-            if 'GENE' in database_b[enz].Attributes:
-                for g in database_b[enz].Attributes['GENE']:
+            if 'GENE' in database_b[enz]:
+                for g in database_b[enz]['GENE']:
                     extra_gene.append(g)
 
         return Extras(
@@ -425,25 +459,31 @@ class DataBases:
         Post: Wites data from db to a file'''
 
         with open(filename, 'w') as f:
-            f.write("//\n".join([str(db[info]) for info in data]))
+            f.write("\n//\n".join([str(db[info]) for info in data]))
             f.write("//\n")
 
 
     @staticmethod
-    def CreateExtraDBFiles(database_a, database_b):
-        '''Pre:
-        Post: Wites extra data from db1 to  files'''
-        extras = DataBases.GetExtraFromDB(database_a, database_b)
-        DataBases.dump(database_b, "ExtraReaction.dat",   extras.reactions)
-        DataBases.dump(database_b, "ExtraCompound.dat",   extras.compounds)
-        DataBases.dump(database_b, "ExtraPath.dat",       extras.pathways)
-        DataBases.dump(database_b, "ExtraEnzrn.dat",      extras.enzymes)
-        DataBases.dump(database_b, "ExtraProtein.dat",    extras.proteins)
-        DataBases.dump(database_b, "ExtraGene.dat",       extras.genes)
+    def complement(database_a, database_b, fp=None):
+        """
+        Write Extra[Item].dat files for complementary items in a second database.
+        
+        """
+
+        DIR = path.join(
+            path.dirname(path.realpath(__file__)),
+            "extras")
+        extras = DataBases.find_extras(database_a, database_b)
+        DataBases.dump(database_b, f"{DIR}/ExtraReaction.dat",   extras.reactions)
+        DataBases.dump(database_b, f"{DIR}/ExtraCompound.dat",   extras.compounds)
+        DataBases.dump(database_b, f"{DIR}/ExtraPath.dat",       extras.pathways)
+        DataBases.dump(database_b, f"{DIR}/ExtraEnzrn.dat",      extras.enzymes)
+        DataBases.dump(database_b, f"{DIR}/ExtraProtein.dat",    extras.proteins)
+        DataBases.dump(database_b, f"{DIR}/ExtraGene.dat",       extras.genes)
 
 
     @staticmethod
-    def updateDB(db, path=".", ExtraCompounds='ExtraCompounds.dat'):
+    def update(db, path=".", ExtraCompounds='ExtraCompounds.dat'):
         
         '''
         Update database with extra compounds
@@ -461,21 +501,31 @@ class DataBases:
             db.dbs['Compound'][met] = updatedDB[met]
         return db
 
+    @staticmethod
+    def NoGene(db): return [reaction for reaction in db.dbs["REACTION"].keys() if not db[reaction].GetGenes()]
+    # list of reactions with no genes
 
-def ReacToGene(db, reactions=None):
-	rv = {}
-	if not reactions:
-		reactions = db.dbs['REACTION'].keys()
-	for r in reactions:
-		gen = []
-		genes = db[r].GetGenes()
-		for g in genes:
-			if 'COMMON-NAME' in db[g.UID].Attributes.keys():
-				gen.append(db[g.UID].Attributes['COMMON-NAME'][0])
-			else:
-				gen.append(g.UID)
-		rv[r] = gen
-	return rv
+    @staticmethod
+    def gene_associated_reactions(db): return SetUtils.complement(db.dbs["REACTION"].keys(), DataBases.NoGene(db))
+        # '''pre:True
+        # post: return list of reaction with gene association'''
+        
+
+    @staticmethod
+    def ReacToGene(db, reactions=None):
+        rv = {}
+        if not reactions:
+            reactions = db.dbs['REACTION'].keys()
+        for r in reactions:
+            gen = []
+            genes = db[r].GetGenes()
+            for g in genes:
+                if 'COMMON-NAME' in db[g.UID].keys():
+                    gen.append(db[g.UID]['COMMON-NAME'][0])
+                else:
+                    gen.append(g.UID)
+            rv[r] = gen
+        return rv
 
 
 class ATP:
@@ -510,7 +560,7 @@ class ATP:
         Sols = []
         incr = (float(high)-low) / (n-1)             # scan na points between alo and ahi with incr step
         for flux in map(lambda x: low+x*incr, range(n)):
-            lp_a = buildLP(model, reaction=ATPase, flux=flux)
+            lp_a = LP.build(model, reaction=ATPase, flux=flux)
             Sols.append(lp_a)
 
         if O2:

@@ -5,15 +5,11 @@ import logging
 from .tools import (
                     WatchList, 
                     scan, 
-                    buildLP, 
-                    showLP,
-                    printLP,
-                    check_imbals, 
-                    check_biomass_production, 
+                    LP,
                     Model, 
-                    DataBases, 
-                    ReacToGene, 
-                    ATP
+                    DataBases,  
+                    ATP,
+                    HidePrints
                         )
 from .core import (
                 BuildNest,

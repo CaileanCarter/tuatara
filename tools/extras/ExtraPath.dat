@@ -1,0 +1,1557 @@
+UNIQUE-ID - PWY-6629
+TYPES - Super-Pathways
+TYPES - TRYPTOPHAN-BIOSYNTHESIS
+COMMON-NAME - superpathway of tryptophan biosynthesis
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - The aromatic amino acid |FRAME: TRP| is biosynthesized from the principal precursors |FRAME: ERYTHROSE-4P| and |FRAME: PHOSPHO-ENOL-PYRUVATE| via |FRAME: CHORISMATE|, a common precursor of many aromatic compounds including |FRAME: TYR|, |FRAME: PHE|, and several other essential compunds, as shown in the |FRAME: ALL-CHORISMATE-PWY|.
+COMMENT - /
+COMMENT - /For more information regarding tryptophan biosynthesis, see |FRAME: TRPSYN-PWY|.
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+PATHWAY-LINKS - (GLN GLNSYN-PWY)
+PATHWAY-LINKS - (PHOSPHO-ENOL-PYRUVATE GLYCOLYSIS)
+PATHWAY-LINKS - (SER SERSYN-PWY)
+PATHWAY-LINKS - (ERYTHROSE-4P NONOXIPENT-PWY)
+PREDECESSORS - (ANTHRANSYN-RXN CHORISMATE-SYNTHASE-RXN)
+PREDECESSORS - ARO-PWY
+PREDECESSORS - TRPSYN-PWY
+PRIMARIES - (DAHPSYN-RXN (ERYTHROSE-4P PHOSPHO-ENOL-PYRUVATE) NIL)
+PRIMARIES - (RXN0-2382 (INDOLE) (TRP))
+PRIMARIES - (RXN0-2381 NIL (INDOLE))
+REACTION-LAYOUT - (TRPSYN-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (ARO-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - TRPSYN-PWY
+REACTION-LIST - ARO-PWY
+SUB-PATHWAYS - TRPSYN-PWY
+SUB-PATHWAYS - ARO-PWY
+//
+UNIQUE-ID - P21-PWY
+TYPES - Pentose-Phosphate-Cycle
+COMMON-NAME - pentose phosphate pathway (partial)
+CITATIONS - :EV-COMP-AINF:3505146030:caspi
+CREDITS - O-18
+CREDITS - pellegrini-toole
+PATHWAY-LINKS - (GAP GLYCOLYSIS)
+PREDECESSORS - (1TRANSKETO-RXN 2TRANSKETO-RXN)
+PREDECESSORS - (1TRANSKETO-RXN RIBULP3EPIM-RXN)
+PRIMARIES - (1TRANSKETO-RXN (XYLULOSE-5-PHOSPHATE) (GAP))
+PRIMARIES - (2TRANSKETO-RXN (ERYTHROSE-4P) (GAP))
+REACTION-LAYOUT - (2TRANSKETO-RXN (:LEFT-PRIMARIES XYLULOSE-5-PHOSPHATE ERYTHROSE-4P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GAP))
+REACTION-LAYOUT - (1TRANSKETO-RXN (:LEFT-PRIMARIES GAP) (:DIRECTION :R2L) (:RIGHT-PRIMARIES XYLULOSE-5-PHOSPHATE))
+REACTION-LAYOUT - (RIBULP3EPIM-RXN (:LEFT-PRIMARIES RIBULOSE-5P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES XYLULOSE-5-PHOSPHATE))
+REACTION-LIST - 2TRANSKETO-RXN
+REACTION-LIST - 1TRANSKETO-RXN
+REACTION-LIST - RIBULP3EPIM-RXN
+SYNONYMS - pentose phosphate pathway, Mycoplasma pneumonia
+//
+UNIQUE-ID - GALACTITOLCAT-PWY
+TYPES - SUGAR-ALCOHOLS-DEG
+COMMON-NAME - galactitol degradation
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - Of the ten existing hexitols (|FRAME: CPD-15703|, |FRAME: CPD-12811|, |FRAME: CPD-15702|, |FRAME: SORBITOL|, |FRAME: CPD-12810|, |FRAME: MANNITOL|, |FRAME: CPD-15701|, |FRAME: CPD-357|, |FRAME: CPD-369| and |FRAME: GALACTITOL|) only three occur naturally - |FRAME: MANNITOL|, |FRAME: SORBITOL| (also known as D-glucitol), and |FRAME: GALACTITOL| (owing to symmetry, D- and L-galactitol are identical).
+COMMENT - /Each of these can be utilized by bacteria as a total source of carbon and energy.
+COMMENT - /
+COMMENT - /All three naturally-occurring hexitols can be utilized by bacteria as a total source of carbon and energy.
+COMMENT - /Each of these hexitols enters the cell via a specific phosphotransferase system, so the first intracellular species is the 6-phospho-derivative |CITS: [1100608]| (note that due to symmetry of |FRAME: MANNITOL| and |FRAME: GALACTITOL|, their phosphorylation at either end produces the same molecule. When these molecules are phosphorylated at the 6 position by the PTS system, the resulting molecules are named |FRAME: MANNITOL-1P| and |FRAME: GALACTITOL-1-PHOSPHATE|, respectively, by conventional nomenclature rules).
+COMMENT - /
+COMMENT - /In all three cases this sugar alcohol phosphate becomes the substrate for a dehydrogenase that oxidizes its 2-alcohol group to a keto group. In the cases of |FRAME: MANNITOL| and |FRAME: SORBITOL|, the resulting keto sugar phosphate is |FRAME: FRUCTOSE-6P|, an intermediate of glycolysis, and hence it flows through the pathways of central metabolism to satisfy the cell's need for precursor metabolites, reducing power, and metabolic energy.
+COMMENT - /
+COMMENT - /In the case of |FRAME: GALACTITOL-1-PHOSPHATE|, however, the product of the dehydrogenation is |FRAME: TAGATOSE-6-PHOSPHATE|, which becomes the substrate of a kinase and subsequently an aldolase (in a pair of reactions that parallel those of glycolysis) before it is converted into intermediates (|FRAME: GAP| and
+COMMENT - /|FRAME: DIHYDROXY-ACETONE-PHOSPHATE|) of glycolysis |CITS: [8955298]|.
+CREDITS - SRI
+CREDITS - fulcher
+CREDITS - O-18
+CREDITS - riley
+CREDITS - O0-3
+CREDITS - ingraham
+IN-PATHWAY - HEXITOLDEGSUPER-PWY
+PREDECESSORS - (GALACTITOLPDEHYD-RXN)
+PREDECESSORS - (TAGAKIN-RXN GALACTITOLPDEHYD-RXN)
+PREDECESSORS - (TAGAALDOL-RXN TAGAKIN-RXN)
+REACTION-LAYOUT - (GALACTITOLPDEHYD-RXN (:LEFT-PRIMARIES GALACTITOL-1-PHOSPHATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES TAGATOSE-6-PHOSPHATE))
+REACTION-LAYOUT - (TAGAALDOL-RXN (:LEFT-PRIMARIES TAGATOSE-1-6-DIPHOSPHATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GAP DIHYDROXY-ACETONE-PHOSPHATE))
+REACTION-LAYOUT - (TAGAKIN-RXN (:LEFT-PRIMARIES TAGATOSE-6-PHOSPHATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES TAGATOSE-1-6-DIPHOSPHATE))
+REACTION-LIST - GALACTITOLPDEHYD-RXN
+REACTION-LIST - TAGAALDOL-RXN
+REACTION-LIST - TAGAKIN-RXN
+SUPER-PATHWAYS - HEXITOLDEGSUPER-PWY
+SYNONYMS - galactitol catabolism
+//
+UNIQUE-ID - FOLSYN-PWY
+TYPES - Folate-Biosynthesis
+TYPES - Super-Pathways
+COMMON-NAME - superpathway of tetrahydrofolate biosynthesis and salvage
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /Tetrahydrofolate (vitamin B9) and its derivatives, commonly termed folates, are essential cofactors that facilitate
+COMMENT - /the transfer of one-carbon units from donor molecules into important biosynthetic pathways leading to methionine,
+COMMENT - /purine, and pyrimidine biosynthesis.
+COMMENT - /Folates also mediate the interconversion of serine and glycine, play a role in histidine catabolism
+COMMENT - /|CITS: [11001804]|, and in plants are also involved in photorespiration, amino acid metabolism and chloroplastic
+COMMENT - /protein biosynthesis |CITS: [11960743]| |CITS: [12644692]|.
+COMMENT - /
+COMMENT - /Folates are abundant in green leaves, and folic acid was initially isolated from a large amount (four tons)
+COMMENT - /of spinach leaves. The name folate is derived from the Latin <i>folium</i> (leaf) |CITS: [3067148]|.
+COMMENT - /
+COMMENT - /Folates are modified by the addition of glutamate moieties conjugated one to another via a series
+COMMENT - /of &gamma;-glutamyl links to form an oligo-&gamma;-glutamyl tail. The polyglutamylated forms are usually
+COMMENT - /preferred by the enzymes that use folates since the turnover rate of those compounds is markedly
+COMMENT - /increased |CITS: [9190084][SCOTT00][KIRK94]|. In addition, in eukaryotic cells the glutamylated forms of folate
+COMMENT - /facilitate the retention of the vitamin within the cell and its subcellular compartments |CITS: [1916088]|.
+COMMENT - /
+COMMENT - /The product of this pathway, |FRAME: THF| (tetrahydropteroylmonoglutamate, H<sub>4</sub>PteGlu<sub>1</sub>,
+COMMENT - /THF), is merely the parent structure of this large family of coenzymes. Members of the family differ in the oxidation state
+COMMENT - /of the pteridine ring, the character of the one-carbon substituent at the N5 and N10 positions (see
+COMMENT - /|FRAME: PWY-2201|), and the number of conjugated glutamate residues  (see |FRAME: PWY-2161|).
+COMMENT - /
+COMMENT - /<b>About This Pathway</b>
+COMMENT - /
+COMMENT - /This pathway for the <i>de novo</i> biosynthesis of folates is found in bacteria, fungi, and plants.
+COMMENT - /
+COMMENT - /Folates are tripartite molecules and are made up of a pterin, |FRAME: P-AMINO-BENZOATE| and |FRAME:GLT| moieties.
+COMMENT - /The first two are synthesized from |FRAME:GTP| and |FRAME:CHORISMATE|, respectively.
+COMMENT - /The first committed step catalyzed by |FRAME: FOLE-CPLX| converts GTP into |FRAME: DIHYDRONEOPTERIN-P3|.
+COMMENT - /The triphosphate motif is removed by a still unknown process, and the resulting
+COMMENT - /|FRAME: DIHYDRO-NEO-PTERIN| is converted to |FRAME: AMINO-OH-HYDROXYMETHYL-DIHYDROPTERIDINE|
+COMMENT - /by |FRAME: CPLX0-3936| (FolB).
+COMMENT - /The consecutive action of the FolK, FolP, FolC, and FolA enzymes finally produces the final product,
+COMMENT - /|FRAME: THF| |CITS: [12039964]|.
+COMMENT - /
+COMMENT - /In plants the pterin moiety is formed from GTP in the cytosol, which couples to pABA (synthesized
+COMMENT - /in plastids) in mitochondria followed by subsequent glutamylation and reduction steps which may take place in cytosol,
+COMMENT - /mitochondria and plastids |CITS: [11960743][11752472]|.
+COMMENT - /The recent discovery that folylpolyglutamate synthases are present in cytosol, mitochondria and plastids with each
+COMMENT - /of them encoded by a different gene in <i>Arabidopsis thaliana</i> |CITS: [11752472]| points to the fact that at least
+COMMENT - /parts of the pathway can be carried out independently in those compartments.
+COMMENT - /
+COMMENT - /
+COMMENT - /In addition to the <i>de novo</i> pathway, many organisms also possess a salvage pathway that is used
+COMMENT - /to re-synthesize tetrahydrofolate from breakdown products of folates in the cell, such as 5 or 10-formyl-tetrahydrofolate.
+COMMENT - /
+COMMENT - /<b>About Folates In Animals</b>
+COMMENT - /
+COMMENT - /While plants and many microorganisms can synthesize folate coenzymes by the <i>de novo</i>
+COMMENT - /synthesis pathway, vertebrates are absolutely dependent on nutritional sources, making folate a vitamin.
+COMMENT - /Food folates exist mainly as |FRAME: 5-METHYL-THF| (5-methyl-H<sub>4</sub>PteGlu<sub>n</sub>)
+COMMENT - /and |FRAME: 10-FORMYL-THF| (formyl-H<sub>4</sub>PteGlu<sub>n</sub>) |CITS: [405403]|.
+COMMENT - /
+COMMENT - /Polyglutamyl folates are hydrolyzed to folylmonoglutamates by |FRAME: HS06361-MONOMER|,
+COMMENT - /and metabolized within the enterocyte into 5-methyl-H<sub>4</sub>PteGlu<sub>1</sub>.
+COMMENT - /This monoglutamyl folate coenzyme is the plasma form of the vitamin |CITS: [13906633][2736319]|,
+COMMENT - /and is transported to peripheral tissues where it is demethylated by the vitamin B12-dependent
+COMMENT - /|FRAME:ENZRXN-5465| to monoglutamyl tetrahydrofolate (H<sub>4</sub>PteGlu<sub>1</sub>).
+COMMENT - /
+COMMENT - /Insufficient supply of the vitamin in vertebrates leads to anemia in adults, and has been shown to cause
+COMMENT - /neural tube malformation in human embryos |CITS: [11744531]|.
+COMMENT - /In addition, folate defficiency has been linked to a number of other birth defects, several types of cancer, dementia,
+COMMENT - /affective disorders, Down's syndrom, and serious conditions affecting pregnancy outcome (for a review, see
+COMMENT - /|CITS: [11001804]|).
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+CREDITS - O-18
+CREDITS - riley
+PATHWAY-LINKS - (CHORISMATE ARO-PWY)
+PREDECESSORS - PWY-6613
+PREDECESSORS - PWY-6612
+REACTION-LAYOUT - (PWY-6613 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (PWY-6612 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - PWY-6613
+REACTION-LIST - PWY-6612
+SUB-PATHWAYS - PWY-6613
+SUB-PATHWAYS - PWY-6612
+//
+UNIQUE-ID - PWY-6628
+TYPES - PHENYLALANINE-SYN
+TYPES - Super-Pathways
+COMMON-NAME - superpathway of phenylalanine biosynthesis
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - The aromatic amino acid |FRAME: PHE| is biosynthesized from the principal precursors |FRAME: ERYTHROSE-4P| and |FRAME: PHOSPHO-ENOL-PYRUVATE| via |FRAME: CHORISMATE|, a common precursor of many aromatic compounds including |FRAME: TYR|, |FRAME: TRP|, and several other essential compunds, as shown in the |FRAME: ALL-CHORISMATE-PWY|.
+COMMENT - /
+COMMENT - /For more information regarding |FRAME:PHE| biosynthesis see |FRAME: PHESYN|.
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+PATHWAY-LINKS - (PHOSPHO-ENOL-PYRUVATE GLYCOLYSIS)
+PATHWAY-LINKS - (ERYTHROSE-4P NONOXIPENT-PWY)
+PREDECESSORS - (CHORISMATEMUT-RXN CHORISMATE-SYNTHASE-RXN)
+PREDECESSORS - ARO-PWY
+PREDECESSORS - PHESYN
+PRIMARIES - (DAHPSYN-RXN (ERYTHROSE-4P PHOSPHO-ENOL-PYRUVATE) NIL)
+REACTION-LAYOUT - (PHESYN (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (ARO-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - PHESYN
+REACTION-LIST - ARO-PWY
+SUB-PATHWAYS - PHESYN
+SUB-PATHWAYS - ARO-PWY
+//
+UNIQUE-ID - PWY-5484
+TYPES - GLYCOLYSIS-VARIANTS
+COMMON-NAME - glycolysis II (from fructose-6P)
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /Glycolysis, which was first studied as a pathway for the utilization of glucose, is one of the components of central metabolism, the other two being the |FRAME:PENTOSE-P-PWY| and the |FRAME:TCA "TCA cycle"|. As such, its functioning is essential under all conditions of growth because it produces six (|FRAME:GLC-6-P|, |FRAME:FRUCTOSE-6P|, |FRAME:DIHYDROXY-ACETONE-PHOSPHATE|, |FRAME:G3P|, |FRAME:PHOSPHO-ENOL-PYRUVATE|, and |FRAME: PYRUVATE|) of the 13 precursor metabolites that are the starting materials for the biosynthesis of building blocks for macromolecules and other needed small molecules. Glycolysis can be found, if at least in part, in almost all organisms.
+COMMENT - /
+COMMENT - /Glycolysis has evolved to fulfill two essential functions:
+COMMENT - /
+COMMENT - /i) it oxidizes hexoses to generate |FRAME:ATP|, reductants and |FRAME:PYRUVATE|, and
+COMMENT - /
+COMMENT - /ii) being an amphibolic pathway (pathway that involves both catabolism and anabolism), it
+COMMENT - /can reversibly produce hexoses from various low-molecular weight molecules.
+COMMENT - /
+COMMENT - /Because various degradation pathways feed into glycolysis at many different points, glycolysis or portions of it run in the forward or reverse direction, depending on the carbon source being utilized, in order to satisfy the cell's need for precursor metabolites and energy.
+COMMENT - /This switching of direction is possible because all but two of the enzymatic reactions comprising glycolysis are reversible, and the conversions catalyzed by the two exceptions are rendered functionally reversible by other enzymes (|FRAME:F16B-CPLX "fructose-1,6-bisphosphatase"| and |FRAME:PEPSYNTH-CPLX|) that catalyze different irreversible reactions flowing in the opposite direction.
+COMMENT - /
+COMMENT - /<b>About This Pathway</b>
+COMMENT - /
+COMMENT - /The standard glycolysis pathway (|FRAME: GLYCOLYSIS|) depicts the sugar input into the pathway as
+COMMENT - /glucose. However, the glycolysis pathway is utilized for the degradation of many different types of sugars.
+COMMENT - /
+COMMENT - /This partial depiction of the glycolysis pathway is used with substrates other than glucose, such as |FRAME: ALLOSE|,
+COMMENT - /|FRAME: CPD-9569| , |FRAME: MANNITOL| , |FRAME: SORBITOL| , |FRAME: MANNOSE| and |FRAME: SUCROSE|,
+COMMENT - /which are processed into |FRAME: FRUCTOSE-6P|.
+COMMENT - /D-fructose-6-phosphate enters glycolysis and is processed to the end product pyruvate, which is often fermented
+COMMENT - /further into fermentation products such as |FRAME: ETOH|, |FRAME: Lactate| and |FRAME: ACET|.
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+IN-PATHWAY - HEXITOLDEGSUPER-PWY
+PATHWAY-LINKS - (PHOSPHO-ENOL-PYRUVATE FERMENTATION-PWY)
+PATHWAY-LINKS - (PYRUVATE PYRUVDEHYD-PWY TCA-GLYOX-BYPASS |Amino-Acid-Biosynthesis|)
+PREDECESSORS - (F16ALDOLASE-RXN 6PFRUCTPHOS-RXN)
+PREDECESSORS - (F16BDEPHOS-RXN 6PFRUCTPHOS-RXN)
+PREDECESSORS - (6PFRUCTPHOS-RXN F16BDEPHOS-RXN)
+PREDECESSORS - (PEPDEPHOS-RXN PEPSYNTH-RXN)
+PREDECESSORS - (PEPSYNTH-RXN PEPDEPHOS-RXN)
+PREDECESSORS - (TRIOSEPISOMERIZATION-RXN F16ALDOLASE-RXN)
+PREDECESSORS - (GAPOXNPHOSPHN-RXN TRIOSEPISOMERIZATION-RXN F16ALDOLASE-RXN)
+PREDECESSORS - (PHOSGLYPHOS-RXN GAPOXNPHOSPHN-RXN)
+PREDECESSORS - (3PGAREARR-RXN PHOSGLYPHOS-RXN)
+PREDECESSORS - (2PGADEHYDRAT-RXN 3PGAREARR-RXN)
+PREDECESSORS - (PEPDEPHOS-RXN 2PGADEHYDRAT-RXN)
+PRIMARIES - (6PFRUCTPHOS-RXN (FRUCTOSE-6P) NIL)
+PRIMARIES - (F16BDEPHOS-RXN (FRUCTOSE-16-DIPHOSPHATE) NIL)
+REACTION-LAYOUT - (F16BDEPHOS-RXN (:LEFT-PRIMARIES FRUCTOSE-16-DIPHOSPHATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES FRUCTOSE-6P))
+REACTION-LAYOUT - (PEPSYNTH-RXN (:LEFT-PRIMARIES PYRUVATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES PHOSPHO-ENOL-PYRUVATE))
+REACTION-LAYOUT - (6PFRUCTPHOS-RXN (:LEFT-PRIMARIES FRUCTOSE-6P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES FRUCTOSE-16-DIPHOSPHATE))
+REACTION-LAYOUT - (F16ALDOLASE-RXN (:LEFT-PRIMARIES FRUCTOSE-16-DIPHOSPHATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GAP DIHYDROXY-ACETONE-PHOSPHATE))
+REACTION-LAYOUT - (TRIOSEPISOMERIZATION-RXN (:LEFT-PRIMARIES GAP) (:DIRECTION :R2L) (:RIGHT-PRIMARIES DIHYDROXY-ACETONE-PHOSPHATE))
+REACTION-LAYOUT - (GAPOXNPHOSPHN-RXN (:LEFT-PRIMARIES GAP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES DPG))
+REACTION-LAYOUT - (PHOSGLYPHOS-RXN (:LEFT-PRIMARIES G3P) (:DIRECTION :R2L) (:RIGHT-PRIMARIES DPG))
+REACTION-LAYOUT - (3PGAREARR-RXN (:LEFT-PRIMARIES 2-PG) (:DIRECTION :R2L) (:RIGHT-PRIMARIES G3P))
+REACTION-LAYOUT - (2PGADEHYDRAT-RXN (:LEFT-PRIMARIES 2-PG) (:DIRECTION :L2R) (:RIGHT-PRIMARIES PHOSPHO-ENOL-PYRUVATE))
+REACTION-LAYOUT - (PEPDEPHOS-RXN (:LEFT-PRIMARIES PYRUVATE) (:DIRECTION :R2L) (:RIGHT-PRIMARIES PHOSPHO-ENOL-PYRUVATE))
+REACTION-LIST - F16BDEPHOS-RXN
+REACTION-LIST - PEPSYNTH-RXN
+REACTION-LIST - 6PFRUCTPHOS-RXN
+REACTION-LIST - F16ALDOLASE-RXN
+REACTION-LIST - TRIOSEPISOMERIZATION-RXN
+REACTION-LIST - GAPOXNPHOSPHN-RXN
+REACTION-LIST - PHOSGLYPHOS-RXN
+REACTION-LIST - 3PGAREARR-RXN
+REACTION-LIST - 2PGADEHYDRAT-RXN
+REACTION-LIST - PEPDEPHOS-RXN
+SUPER-PATHWAYS - HEXITOLDEGSUPER-PWY
+//
+UNIQUE-ID - PWY-5177
+TYPES - CARBOXYLATES-DEG
+COMMON-NAME - glutaryl-CoA degradation
+CITATIONS - :EV-COMP-AINF:3601229769:fulcher
+COMMENT - |FRAME: GLUTARYL-COA Glutaryl-CoA| is a common intermediate in the degradation of many different compounds,
+COMMENT - /such as |FRAME: BENZOATE| and |FRAME: BENZOYLCOA|, |FRAME: LYS|, |FRAME: TRP| and many more.
+COMMENT - /In this pathway |FRAME: GLUTARYL-COA| is degraded by &beta;-oxidation to 2 molecules of
+COMMENT - /|FRAME: ACETYL-COA| and one molecule of |FRAME:CARBON-DIOXIDE|.
+COMMENT - /
+COMMENT - /This pathway can operate under both anaerobic |CITS: [8436125]| and aerobic conditions
+COMMENT - /|CITS: [11705404]|, although the enzymes catalyzing it may be specialized for either aerobic
+COMMENT - /or anaerobic operation.
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+PREDECESSORS - (RXN-11667 GLUTACONYL-COA-DECARBOXYLASE-RXN)
+PREDECESSORS - (ACETYL-COA-ACETYLTRANSFER-RXN RXN-11662)
+PREDECESSORS - (RXN-11662 RXN-11667)
+PREDECESSORS - (GLUTACONYL-COA-DECARBOXYLASE-RXN GLUTARYL-COA-DEHYDROG-RXN)
+REACTION-LAYOUT - (RXN-11667 (:LEFT-PRIMARIES S-3-HYDROXYBUTANOYL-COA) (:DIRECTION :R2L) (:RIGHT-PRIMARIES CROTONYL-COA))
+REACTION-LAYOUT - (RXN-11662 (:LEFT-PRIMARIES S-3-HYDROXYBUTANOYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES ACETOACETYL-COA))
+REACTION-LAYOUT - (ACETYL-COA-ACETYLTRANSFER-RXN (:LEFT-PRIMARIES ACETYL-COA) (:DIRECTION :R2L) (:RIGHT-PRIMARIES ACETOACETYL-COA))
+REACTION-LAYOUT - (GLUTACONYL-COA-DECARBOXYLASE-RXN (:LEFT-PRIMARIES GLUTACONYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CROTONYL-COA))
+REACTION-LAYOUT - (GLUTARYL-COA-DEHYDROG-RXN (:LEFT-PRIMARIES GLUTARYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GLUTACONYL-COA))
+REACTION-LIST - RXN-11667
+REACTION-LIST - RXN-11662
+REACTION-LIST - ACETYL-COA-ACETYLTRANSFER-RXN
+REACTION-LIST - GLUTACONYL-COA-DECARBOXYLASE-RXN
+REACTION-LIST - GLUTARYL-COA-DEHYDROG-RXN
+//
+UNIQUE-ID - PWY-5973
+TYPES - Unsaturated-Fatty-Acids-Biosynthesis
+COMMON-NAME - <i>cis</i>-vaccenate biosynthesis
+CITATIONS - :EV-COMP-AINF:3430664918:fulcher
+CREDITS - SRI
+CREDITS - caspi
+PATHWAY-LINKS - (PWY-5142)
+PATHWAY-LINKS - (FASYN-ELONG-PWY)
+PREDECESSORS - (RXN-9555 RXN-9558)
+PREDECESSORS - (RXN-9558 RXN-9557)
+PREDECESSORS - (RXN-9557 RXN-9556)
+PREDECESSORS - (RXN-9556 2.3.1.179-RXN)
+PRIMARIES - (2.3.1.179-RXN (|Palmitoleoyl-ACPs|) NIL)
+PRIMARIES - (RXN-9555 (|Cis-vaccenoyl-ACPs|) (CPD-9247))
+REACTION-LAYOUT - (RXN-9558 (:LEFT-PRIMARIES cis-vaccen-2-enoyl-ACPs) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Cis-vaccenoyl-ACPs))
+REACTION-LAYOUT - (RXN-9557 (:LEFT-PRIMARIES R-3-hydroxy-cis-vaccenoyl-ACPs) (:DIRECTION :L2R) (:RIGHT-PRIMARIES cis-vaccen-2-enoyl-ACPs))
+REACTION-LAYOUT - (RXN-9556 (:LEFT-PRIMARIES R-3-hydroxy-cis-vaccenoyl-ACPs) (:DIRECTION :R2L) (:RIGHT-PRIMARIES 3-oxo-cis-vaccenoyl-ACPs))
+REACTION-LAYOUT - (2.3.1.179-RXN (:LEFT-PRIMARIES Palmitoleoyl-ACPs) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 3-oxo-cis-vaccenoyl-ACPs))
+REACTION-LAYOUT - (RXN-9555 (:LEFT-PRIMARIES Cis-vaccenoyl-ACPs) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9247))
+REACTION-LIST - RXN-9558
+REACTION-LIST - RXN-9557
+REACTION-LIST - RXN-9556
+REACTION-LIST - 2.3.1.179-RXN
+REACTION-LIST - RXN-9555
+SYNONYMS - <i>cis</i> vaccenic acid acid biosynthesis
+//
+UNIQUE-ID - PWY-7377
+TYPES - Cobyrinate-diamide-Biosynthesis
+COMMON-NAME - cob(II)yrinate <i>a,c</i>-diamide biosynthesis I (early cobalt insertion)
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /Vitamin B12 (also known as adenosylcobalamin or |FRAME: ADENOSYLCOBALAMIN|) was discovered in the 1920s after Minot and Murphy reported that they could cure the symptoms of pernicious anaemia by feeding patients with crude liver extract |CITS: [Minot26]| (they received the Nobel prize in 1934 for this discovery).
+COMMENT - /The unknown factor has been isolated and subsequently crystallized in 1948 |CITS:[Lester48][Rickes48]|, and was given the name vitamin B12 and, as it was shown to contain a cobalt ion, cobalamin |CITS: [12195810]|.
+COMMENT - /
+COMMENT - /Vitamin B<sub>12</sub> is one of the most structurally complex small molecules made in Nature. It contains a contracted porphinoid ring with a cobalt ion ligated at its center and further held in place by a lower axial base (a dimethylbenzimidazole) and an upper methyl or adenosyl group. Its biosynthesis is similarly complex, and requires more than thirty genes. It's biosynthesis is confined to only some bacteria and archaea |CITS: [11935176]|.
+COMMENT - /
+COMMENT - /Two main pathways are known for |FRAME:ADENOSYLCOBALAMIN| biosynthesis - an aerobic pathway (see |FRAME:P381-PWY|) and an anaerobic pathway (this pathway). The main differences between these pathways are the timing of the |FRAME: CO+2| ion insertion and the ring-contraction mechanism (for more about ring contraction, see |CITS: [16592942]|). |FRAME: CO+2| is inserted early on in the anaerobic pathway, and rather late in the aerobic pathway.
+COMMENT - /The two different routes then merge at |FRAME: CPD-689|, and the latter part of the pathway is identical, or at least very similar.
+COMMENT - /
+COMMENT - /<b>About This Pathway</b>
+COMMENT - /
+COMMENT - /The best characterized anaerobic pathway is the one from |FRAME: TAX-90371|, although much of the early work was performed with the bacterium |FRAME: TAX-1752| and much of the more recent work was done with the bacterium |FRAME: TAX-1404|.
+COMMENT - /
+COMMENT - /The biosynthesis of |FRAME:ADENOSYLCOBALAMIN| starts with the biosynthesis of the tetrapyrrole intermediate |FRAME:UROPORPHYRINOGEN-III|, a common intermediate in the biosynthesis of several important compounds such as |FRAME: Hemes heme| and |FRAME: Chlorophylls chlorophyl|. |FRAME:UROPORPHYRINOGEN-III "Uroporphyrinogen-III"| is converted to a corrin ring by a complex process that involves (among other things) the attachment of eight methyl groups, all derived from |FRAME:S-ADENOSYLMETHIONINE| (SAM).
+COMMENT - /During the process the ring contracts via bonding of carbons C-1 and C-19, eliminating carbon C-20 from the ring. This contraction process converts the ring from a porphyrin ring to a corrin ring. Both the C-20 carbon and the added C-20 methyl group are lost in the form of |FRAME: ACETALD|.
+COMMENT - /
+COMMENT - /The intermediates formed prior to the formation of the corrin ring are called precorrins. The precorrins are numbered corresponding to the number of methyl groups that have been already introduced. If two different intermediates have the same number of methyl groups, they are also labeled by A or B (as in |FRAME:CPD-675|). If there is still some uncertainty about an intermediate, it is given a temporary designation of X or Y.
+COMMENT - /
+COMMENT - /There is indeed some uncertainty about the path from |FRAME: DIHYDROSIROHYDROCHLORIN| to |FRAME: CPD-9040|. Early work, performed mostly with |FRAME: TAX-28901|, suggested that this transition may be catalyzed in two steps - the insertion of cobalt into |FRAME: DIHYDROSIROHYDROCHLORIN|, which is catalyzed by |FRAME: G-10021|, followed by methylation by |FRAME: G-10057|. However, information gathered from multiple studies, most recently with the aerobic bacterium |FRAME: TAX-1404| that posseses a complete anaerobic pathway, suggests that this conversion may proceed through the oxidized factor intermediates, which is favored for the ease of cobalt insertion. Thus, |FRAME: DIHYDROSIROHYDROCHLORIN| is first oxidized to |FRAME: SIROHYDROCHLORIN| by |FRAME: STM3477|. Cobalt in then inserted (either by |FRAME: G-10021| or |FRAME: G-11338|), followed by methylation to |FRAME: COBALT-FACTOR-III| and reduction to |FRAME: CPD-9040| |CITS: [12408752][17567575][16042604][12917443][12686546][23155054]|.
+COMMENT - /
+COMMENT - /The first intermediate with a corrin ring is |FRAME:CPD-9049|. However, this intermediate still needs to be modified extensively. Successive amidation reactions transfer amide groups from two |FRAME: GLN| molecules to the carboxy groups <i>a</i> and <i>c</i>, resulting in |FRAME:CPD-689| - the point where the early-insertion and late-insertion pathways combine.
+COMMENT - /
+COMMENT - /Additional steps in the pathway of cobalamin biosynthesis are described in |FRAME: PWY-5509| and |FRAME: PWY-5507|.
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+PATHWAY-LINKS - (CPD-689 PWY-5509)
+PATHWAY-LINKS - (UROPORPHYRINOGEN-III PWY-5188)
+PREDECESSORS - (RXN-8761 RXN-14315)
+PREDECESSORS - (RXN-14315 2.1.1.151-RXN)
+PREDECESSORS - (2.1.1.151-RXN 4.99.1.3-RXN)
+PREDECESSORS - (4.99.1.3-RXN DIMETHUROPORDEHYDROG-RXN)
+PREDECESSORS - (DIMETHUROPORDEHYDROG-RXN RXN-8675)
+PREDECESSORS - (R343-RXN RXN-8769)
+PREDECESSORS - PWY-5509
+PREDECESSORS - (RXN-8769 RXN-8768)
+PREDECESSORS - (RXN-8768 RXN-8767)
+PREDECESSORS - (RXN-8767 RXN-8766)
+PREDECESSORS - (RXN-8766 RXN-8765)
+PREDECESSORS - (RXN-8765 RXN-8764)
+PREDECESSORS - (RXN-8764 RXN-8763)
+PREDECESSORS - (RXN-8763 RXN-8762)
+PREDECESSORS - (RXN-8762 RXN-8761)
+PREDECESSORS - (RXN-8675 UROPORIIIMETHYLTRANSA-RXN)
+PREDECESSORS - (UROPORIIIMETHYLTRANSA-RXN)
+PRIMARIES - (2.1.1.151-RXN (COBALT-SIROHYDROCHLORIN) (COBALT-FACTOR-III))
+PRIMARIES - (4.99.1.3-RXN (SIROHYDROCHLORIN) (COBALT-SIROHYDROCHLORIN))
+REACTION-LAYOUT - (RXN-14315 (:LEFT-PRIMARIES COBALT-FACTOR-III) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9040))
+REACTION-LAYOUT - (2.1.1.151-RXN (:LEFT-PRIMARIES COBALT-SIROHYDROCHLORIN) (:DIRECTION :L2R) (:RIGHT-PRIMARIES COBALT-FACTOR-III))
+REACTION-LAYOUT - (4.99.1.3-RXN (:LEFT-PRIMARIES SIROHYDROCHLORIN) (:DIRECTION :L2R) (:RIGHT-PRIMARIES COBALT-SIROHYDROCHLORIN))
+REACTION-LAYOUT - (DIMETHUROPORDEHYDROG-RXN (:LEFT-PRIMARIES DIHYDROSIROHYDROCHLORIN) (:DIRECTION :L2R) (:RIGHT-PRIMARIES SIROHYDROCHLORIN))
+REACTION-LAYOUT - (RXN-8767 (:LEFT-PRIMARIES CPD-9048) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9045))
+REACTION-LAYOUT - (RXN-8766 (:LEFT-PRIMARIES CPD-9044) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9048))
+REACTION-LAYOUT - (RXN-8764 (:LEFT-PRIMARIES CPD-9047) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9043))
+REACTION-LAYOUT - (RXN-8762 (:LEFT-PRIMARIES CPD-9041) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9042))
+REACTION-LAYOUT - (RXN-8761 (:LEFT-PRIMARIES CPD-9040) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9041))
+REACTION-LAYOUT - (UROPORIIIMETHYLTRANSA-RXN (:LEFT-PRIMARIES UROPORPHYRINOGEN-III) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9038))
+REACTION-LAYOUT - (RXN-8675 (:LEFT-PRIMARIES CPD-9038) (:DIRECTION :L2R) (:RIGHT-PRIMARIES DIHYDROSIROHYDROCHLORIN))
+REACTION-LAYOUT - (RXN-8769 (:LEFT-PRIMARIES CPD-9049) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-689))
+REACTION-LAYOUT - (RXN-8768 (:LEFT-PRIMARIES CPD-9045) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9049))
+REACTION-LAYOUT - (RXN-8765 (:LEFT-PRIMARIES CPD-9044) (:DIRECTION :R2L) (:RIGHT-PRIMARIES CPD-9043))
+REACTION-LAYOUT - (RXN-8763 (:LEFT-PRIMARIES CPD-9042) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9047))
+REACTION-LIST - RXN-14315
+REACTION-LIST - 2.1.1.151-RXN
+REACTION-LIST - 4.99.1.3-RXN
+REACTION-LIST - DIMETHUROPORDEHYDROG-RXN
+REACTION-LIST - RXN-8767
+REACTION-LIST - RXN-8766
+REACTION-LIST - RXN-8764
+REACTION-LIST - RXN-8762
+REACTION-LIST - RXN-8761
+REACTION-LIST - UROPORIIIMETHYLTRANSA-RXN
+REACTION-LIST - RXN-8675
+REACTION-LIST - RXN-8769
+REACTION-LIST - RXN-8768
+REACTION-LIST - RXN-8765
+REACTION-LIST - RXN-8763
+//
+UNIQUE-ID - PWY2OL-4
+TYPES - Linalool-Biosynthesis
+TYPES - Super-Pathways
+COMMON-NAME - superpathway of linalool biosynthesis
+CITATIONS - :EV-COMP-AINF:3601229799:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /Linalool is an acyclic monoterpene alcohol with a pleasant fragrance associated with a diverse array of plant |CITS: [RAGUSO]|. It is a primary compound in floral scent research. Both |FRAME: CPD-8996| and |FRAME: CPD-8997| enantiomeric forms occur in nature.
+COMMENT - /
+COMMENT - /Linalool is involved as an attractant in plant interactions with pollinators, herbivores and parasitoids |CITS: [RAGUSO]|. It has also been shown to be induced by artificial wounding and by jasmonic acid |CITS: [17440821]|. The <i>de novo</i> synthesis of linalool has been demonstrated in floral tissues |CITS: [17440821]|, barks and roots |CITS: [RAGUSO]|. Fungi, junipers, dicots and monocots emit linalool along with other monoterpenoids |CITS: [RAGUSO]|.
+COMMENT - /
+COMMENT - /Even though fungi typically do not produce monoterpenes, the <i> de novo</i> synthesis of monoterpenes (linalool and citronellol) was demonstrate in the wine yeast strain, S. cerevisiae M522, in the absence of grape derived precursors |CITS: [15668008]|.
+COMMENT - /
+COMMENT - /
+COMMENT - /<b>About this Pathway</b>
+COMMENT - /
+COMMENT - /This superpathway describes the conversion |FRAME: GERANYL-PP| to |FRAME: CPD-8996| and |FRAME: CPD-8997|.
+COMMENT - /
+COMMENT - /Recently, it has been demonstrated that linalool is a potent precursor for an advanced biofuel. It can be chemically converted to 1-methyl-cyclopent-2-enol and isobutylene. Dehydration of the alcohol gives rise to methylcyclopentadiene dimers which can be converted into a high density fuel |CITS: [21488169]|.
+CREDITS - fulcher
+CREDITS - O-28
+CREDITS - SRI
+CREDITS - brito
+CREDITS - hartmut
+CREDITS - O-27
+CREDITS - pujar
+PATHWAY-LINKS - (FARNESYL-PP (NONMEVIPP-PWY . :INCOMING))
+PREDECESSORS - (4.2.3.26-RXN GPPSYN-RXN)
+PREDECESSORS - (4.2.3.25-RXN GPPSYN-RXN)
+PREDECESSORS - (GPPSYN-RXN)
+PRIMARIES - (GPPSYN-RXN (CPD-4211) (GERANYL-PP))
+REACTION-LAYOUT - (GPPSYN-RXN (:LEFT-PRIMARIES CPD-4211) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GERANYL-PP))
+REACTION-LAYOUT - (4.2.3.25-RXN (:LEFT-PRIMARIES GERANYL-PP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-8997))
+REACTION-LAYOUT - (4.2.3.26-RXN (:LEFT-PRIMARIES GERANYL-PP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-8996))
+REACTION-LIST - GPPSYN-RXN
+REACTION-LIST - 4.2.3.25-RXN
+REACTION-LIST - 4.2.3.26-RXN
+//
+UNIQUE-ID - RUMP-PWY
+TYPES - Energy-Metabolism
+TYPES - Formaldehyde-Oxidation
+COMMON-NAME - formaldehyde oxidation I
+CITATIONS - :EV-COMP-AINF:3505146030:caspi
+CREDITS - SRI
+CREDITS - caspi
+CREDITS - O-18
+CREDITS - pellegrini-toole
+PREDECESSORS - (R10-RXN RXN-3341)
+PREDECESSORS - (RXN-3341 6PGLUCONOLACT-RXN)
+PREDECESSORS - (GLU6PDEHYDROG-RXN)
+PREDECESSORS - (GLU6PDEHYDROG-RXN PGLUCISOM-RXN)
+PREDECESSORS - (PGLUCISOM-RXN R12-RXN)
+PREDECESSORS - (R12-RXN R10-RXN)
+PREDECESSORS - (6PGLUCONOLACT-RXN GLU6PDEHYDROG-RXN)
+REACTION-LAYOUT - (RXN-3341 (:LEFT-PRIMARIES CPD-2961) (:DIRECTION :L2R) (:RIGHT-PRIMARIES RIBULOSE-5P))
+REACTION-LAYOUT - (6PGLUCONOLACT-RXN (:LEFT-PRIMARIES D-6-P-GLUCONO-DELTA-LACTONE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-2961))
+REACTION-LAYOUT - (GLU6PDEHYDROG-RXN (:LEFT-PRIMARIES GLC-6-P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES D-6-P-GLUCONO-DELTA-LACTONE))
+REACTION-LAYOUT - (PGLUCISOM-RXN (:LEFT-PRIMARIES GLC-6-P) (:DIRECTION :R2L) (:RIGHT-PRIMARIES FRUCTOSE-6P))
+REACTION-LAYOUT - (R12-RXN (:LEFT-PRIMARIES CPD-26) (:DIRECTION :L2R) (:RIGHT-PRIMARIES FRUCTOSE-6P))
+REACTION-LAYOUT - (R10-RXN (:LEFT-PRIMARIES CPD-26) (:DIRECTION :R2L) (:RIGHT-PRIMARIES RIBULOSE-5P))
+REACTION-LIST - RXN-3341
+REACTION-LIST - 6PGLUCONOLACT-RXN
+REACTION-LIST - GLU6PDEHYDROG-RXN
+REACTION-LIST - PGLUCISOM-RXN
+REACTION-LIST - R12-RXN
+REACTION-LIST - R10-RXN
+//
+UNIQUE-ID - ALADEG-PWY
+TYPES - ALANINE-DEG
+COMMON-NAME - alanine degradation I
+CITATIONS - :EV-COMP-AINF:3319177684:caromk
+CREDITS - O-18
+CREDITS - riley
+PREDECESSORS - (ALARACECAT-RXN)
+PREDECESSORS - (DALADEHYDROG-RXN ALARACECAT-RXN)
+REACTION-LAYOUT - (DALADEHYDROG-RXN (:LEFT-PRIMARIES D-ALANINE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES PYRUVATE))
+REACTION-LAYOUT - (ALARACECAT-RXN (:LEFT-PRIMARIES L-ALPHA-ALANINE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES D-ALANINE))
+REACTION-LIST - DALADEHYDROG-RXN
+REACTION-LIST - ALARACECAT-RXN
+SYNONYMS - L-alanine degradation
+//
+UNIQUE-ID - PWY-5453
+TYPES - Methylglyoxal-Detoxification
+COMMON-NAME - methylglyoxal degradation III
+CITATIONS - :EV-COMP-AINF:3430664901:fulcher
+CREDITS - SRI
+CREDITS - caspi
+PATHWAY-LINKS - (PROPANE-1-2-DIOL "transport out of the cell")
+PREDECESSORS - (RXN0-4281)
+PREDECESSORS - (RXN-8632 RXN0-4281)
+REACTION-LAYOUT - (RXN-8632 (:LEFT-PRIMARIES PROPANE-1-2-DIOL) (:DIRECTION :R2L) (:RIGHT-PRIMARIES ACETOL))
+REACTION-LAYOUT - (RXN0-4281 (:LEFT-PRIMARIES ACETOL) (:DIRECTION :R2L) (:RIGHT-PRIMARIES METHYL-GLYOXAL))
+REACTION-LIST - RXN-8632
+REACTION-LIST - RXN0-4281
+//
+UNIQUE-ID - MET-SAM-PWY
+TYPES - Super-Pathways
+COMMON-NAME - superpathway of <i>S</i>-adenosyl-L-methionine biosynthesis
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+CREDITS - SRI
+CREDITS - fulcher
+PREDECESSORS - (S-ADENMETSYN-RXN HOMOCYSMETB12-RXN)
+PREDECESSORS - (S-ADENMETSYN-RXN HOMOCYSMET-RXN)
+PREDECESSORS - METSYN-PWY
+PREDECESSORS - SAM-PWY
+REACTION-LAYOUT - (SAM-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (METSYN-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - SAM-PWY
+REACTION-LIST - METSYN-PWY
+SUB-PATHWAYS - METSYN-PWY
+SUB-PATHWAYS - SAM-PWY
+//
+UNIQUE-ID - GLYOXDEG-PWY
+TYPES - Glycolate-Degradation
+COMMON-NAME - glycolate and glyoxylate degradation II
+CITATIONS - :EV-COMP-AINF:3430664938:fulcher
+CREDITS - O-18
+CREDITS - riley
+CREDITS - O0-3
+CREDITS - ingraham
+PREDECESSORS - (MALSYN-RXN GLYCOLATEDEHYDRO-RXN)
+REACTION-LAYOUT - (GLYCOLATEDEHYDRO-RXN (:LEFT-PRIMARIES GLYCOLLATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GLYOX))
+REACTION-LAYOUT - (MALSYN-RXN (:LEFT-PRIMARIES GLYOX) (:DIRECTION :L2R) (:RIGHT-PRIMARIES MAL))
+REACTION-LIST - GLYCOLATEDEHYDRO-RXN
+REACTION-LIST - MALSYN-RXN
+SYNONYMS - glyoxylate degradation
+//
+UNIQUE-ID - PWY-5512
+TYPES - UDP-Nac-Galactosamine-Biosynthesis
+COMMON-NAME - UDP-<i>N</i>-acetyl-D-galactosamine biosynthesis I
+CITATIONS - :EV-COMP-AINF:3430664968:fulcher
+CREDITS - SRI
+CREDITS - fulcher
+PREDECESSORS - (UDP-N-ACETYLGLUCOSAMINE-4-EPIMERASE-RXN)
+REACTION-LAYOUT - (UDP-N-ACETYLGLUCOSAMINE-4-EPIMERASE-RXN (:LEFT-PRIMARIES UDP-N-ACETYL-D-GLUCOSAMINE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-14795))
+REACTION-LIST - UDP-N-ACETYLGLUCOSAMINE-4-EPIMERASE-RXN
+//
+UNIQUE-ID - PWY-6519
+TYPES - 7-Keto-8-aminopelargonate-Biosynthesis
+COMMON-NAME - 8-amino-7-oxononanoate biosynthesis I
+CITATIONS - :EV-COMP-AINF:3505144164:caspi
+KEY-REACTIONS - RXN-11484
+KEY-REACTIONS - RXN-11475
+PATHWAY-LINKS - (MALONYL-COA PWY-4381)
+PREDECESSORS - (RXN-11484 RXN-11483)
+PREDECESSORS - (RXN-11483 RXN-11482)
+PREDECESSORS - (RXN-11482 RXN-11481)
+PREDECESSORS - (RXN-11481 RXN-11480)
+PREDECESSORS - (RXN-11480 RXN-11479)
+PREDECESSORS - (RXN-11479 RXN-11478)
+PREDECESSORS - (RXN-11478 RXN-11477)
+PREDECESSORS - (RXN-11477 RXN-11476)
+PREDECESSORS - (RXN-11476 RXN-11474)
+PREDECESSORS - (RXN-11474 RXN-11475)
+PRIMARIES - (RXN-11475 (MALONYL-ACP) (|Malonyl-acp-methyl-ester|))
+PRIMARIES - (RXN-11484 NIL (8-AMINO-7-OXONONANOATE))
+REACTION-LAYOUT - (RXN-11484 (:LEFT-PRIMARIES Pimeloyl-ACPs) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 8-AMINO-7-OXONONANOATE))
+REACTION-LAYOUT - (RXN-11474 (:LEFT-PRIMARIES MALONYL-ACP Malonyl-acp-methyl-ester) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 3-Ketoglutaryl-ACP-methyl-ester))
+REACTION-LAYOUT - (RXN-11475 (:LEFT-PRIMARIES MALONYL-ACP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Malonyl-acp-methyl-ester))
+REACTION-LAYOUT - (RXN-11476 (:LEFT-PRIMARIES 3-Hydroxyglutaryl-ACP-methyl-ester) (:DIRECTION :R2L) (:RIGHT-PRIMARIES 3-Ketoglutaryl-ACP-methyl-ester))
+REACTION-LAYOUT - (RXN-11477 (:LEFT-PRIMARIES 3-Hydroxyglutaryl-ACP-methyl-ester) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Enoylglutaryl-ACP-methyl-esters))
+REACTION-LAYOUT - (RXN-11478 (:LEFT-PRIMARIES Glutaryl-ACP-methyl-esters) (:DIRECTION :R2L) (:RIGHT-PRIMARIES Enoylglutaryl-ACP-methyl-esters))
+REACTION-LAYOUT - (RXN-11479 (:LEFT-PRIMARIES MALONYL-ACP Glutaryl-ACP-methyl-esters) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 3-Ketopimeloyl-ACP-methyl-esters))
+REACTION-LAYOUT - (RXN-11480 (:LEFT-PRIMARIES 3-hydroxypimeloyl-ACP-methyl-esters) (:DIRECTION :R2L) (:RIGHT-PRIMARIES 3-Ketopimeloyl-ACP-methyl-esters))
+REACTION-LAYOUT - (RXN-11481 (:LEFT-PRIMARIES 3-hydroxypimeloyl-ACP-methyl-esters) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Enoylpimeloyl-ACP-methyl-esters))
+REACTION-LAYOUT - (RXN-11482 (:LEFT-PRIMARIES Pimeloyl-ACP-methyl-esters) (:DIRECTION :R2L) (:RIGHT-PRIMARIES Enoylpimeloyl-ACP-methyl-esters))
+REACTION-LAYOUT - (RXN-11483 (:LEFT-PRIMARIES Pimeloyl-ACP-methyl-esters) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Pimeloyl-ACPs))
+REACTION-LIST - RXN-11484
+REACTION-LIST - RXN-11474
+REACTION-LIST - RXN-11475
+REACTION-LIST - RXN-11476
+REACTION-LIST - RXN-11477
+REACTION-LIST - RXN-11478
+REACTION-LIST - RXN-11479
+REACTION-LIST - RXN-11480
+REACTION-LIST - RXN-11481
+REACTION-LIST - RXN-11482
+REACTION-LIST - RXN-11483
+SYNONYMS - 7-keto-8-aminopelargonate biosynthesis I
+//
+UNIQUE-ID - PWY-5122
+TYPES - Polyprenyl-Biosynthesis
+COMMON-NAME - geranyl diphosphate biosynthesis
+CITATIONS - :EV-COMP-AINF:3601229799:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /
+COMMENT - /|FRAME: GERANYL-PP| (geranyl pyrophosphate, GPP) is the universal precursor of several classes of
+COMMENT - /compounds, including the monoterpenes, a diverse group of compounds crucial for numerous biological
+COMMENT - /roles. In plants monoterpenes are involved in defence against herbivores and pathogens,
+COMMENT - /allelopathic interactions and pollination.
+COMMENT - /
+COMMENT - /Monoterpenes are also amongst the most important constituents of flavorings and fragrances for human
+COMMENT - /consumption and can serve as therapeutic agents in human medicine (for review see |CITS:[11069698]|).
+COMMENT - /GPP is produced by geranyl pyrophosphate synthases which catalyze the condensation of
+COMMENT - /|FRAME: DELTA3-ISOPENTENYL-PP| (isopentenyl pyrophosphate, IPP) with |FRAME: CPD-4211|
+COMMENT - /(DMAPP) following a head-to-tail mechanism.
+COMMENT - /
+COMMENT - /In plants GPP is synthesized in plastids; IPP and DMAPP originate from the |FRAME:NONMEVIPP-PWY|.
+CREDITS - SRI
+CREDITS - fulcher
+PATHWAY-LINKS - (DELTA3-ISOPENTENYL-PP NONMEVIPP-PWY)
+PREDECESSORS - (GPPSYN-RXN)
+PRIMARIES - (GPPSYN-RXN (DELTA3-ISOPENTENYL-PP) (GERANYL-PP))
+REACTION-LAYOUT - (GPPSYN-RXN (:LEFT-PRIMARIES DELTA3-ISOPENTENYL-PP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GERANYL-PP))
+REACTION-LIST - GPPSYN-RXN
+SYNONYMS - GPP biosynthesis
+//
+UNIQUE-ID - PENTOSE-P-PWY
+TYPES - Pentose-Phosphate-Cycle
+TYPES - Super-Pathways
+COMMON-NAME - pentose phosphate pathway
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /The pentose phosphate pathway is an alternative way of oxidizing glucose, and in this pathway the oxidation is coupled to NADPH synthesis.  As a result, the pentose phosphate pathway is a major source of reducing equivalents for biosynthesis reactions. The pentose phosphate pathway is also important for the conversion of hexoses to pentoses  |CITS: [zubay1983]| .
+COMMENT - /
+COMMENT - /<b>About This Pathway</b>
+COMMENT - /
+COMMENT - /The pentose phosphate pathway is one of the three essential pathways of central metabolism.  It supplies three of |FRAME:TAX-562|'s 13 precursor metabolites (compounds needed for the biosyntheses): |FRAME: RIBOSE-5P|,
+COMMENT - /|FRAME: D-SEDOHEPTULOSE-7-P|, and |FRAME: ERYTHROSE-4P|.  Regardless of the carbon source upon which
+COMMENT - /|FRAME:TAX-562| is growing, some carbon must flow through the pentose phosphate pathway to meet the cell's requirements for these metabolites.
+COMMENT - /In addition this pathway is an important source of NADPH, which is also needed for biosyntheses.  The pathway begins with one intermediate of glycolysis, |FRAME: GLC-6-P|, and ends with the formation of two others, |FRAME: FRUCTOSE-6P| and |FRAME: GAP|.
+COMMENT - /
+COMMENT - /For convenience, the pentose phosphate pathway is commonly divided into its preliminary |FRAME: OXIDATIVEPENT-PWY "oxidative portion"|, in which |FRAME: GLC-6-P| is oxidized to |FRAME: RIBULOSE-5P|, and its subsequent |FRAME: NONOXIPENT-PWY "non-oxidative portion"| in which through a series of transaldolase and transketolase reactions, |FRAME: RIBULOSE-5P| is converted into |FRAME: FRUCTOSE-6P| and |FRAME: GAP|.
+CREDITS - SRI
+CREDITS - fulcher
+CREDITS - O0-3
+CREDITS - ingraham
+IN-PATHWAY - PWY-6901
+PREDECESSORS - (RIB5PISOM-RXN RXN-9952)
+PREDECESSORS - OXIDATIVEPENT-PWY
+PREDECESSORS - NONOXIPENT-PWY
+PREDECESSORS - (RIBULP3EPIM-RXN 6PGLUCONDEHYDROG-RXN)
+PREDECESSORS - (RIB5PISOM-RXN 6PGLUCONDEHYDROG-RXN)
+REACTION-LAYOUT - (OXIDATIVEPENT-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (NONOXIPENT-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - OXIDATIVEPENT-PWY
+REACTION-LIST - NONOXIPENT-PWY
+SUB-PATHWAYS - NONOXIPENT-PWY
+SUB-PATHWAYS - OXIDATIVEPENT-PWY
+SUPER-PATHWAYS - PWY-6901
+SYNONYMS - pentose shunt
+SYNONYMS - hexose monophosphate shunt
+SYNONYMS - phosphogluconate pathway
+SYNONYMS - superpathway of oxidative and non-oxidative branches of pentose phosphate pathway
+//
+UNIQUE-ID - ALL-CHORISMATE-PWY
+TYPES - Super-Pathways
+COMMON-NAME - superpathway of chorismate metabolism
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+CREDITS - SRI
+CREDITS - fulcher
+PREDECESSORS - (PABASYN-RXN CHORISMATE-SYNTHASE-RXN)
+PREDECESSORS - PWY-6612
+PREDECESSORS - (DMK-RXN RXN-9311)
+PREDECESSORS - (ADOMET-DMK-METHYLTRANSFER-RXN DMK-RXN)
+PREDECESSORS - MENAQUINONESYN-PWY
+PREDECESSORS - PWY-5852
+PREDECESSORS - PWY-5837
+PREDECESSORS - (ISOCHORSYN-RXN CHORISMATE-SYNTHASE-RXN)
+PREDECESSORS - ENTBACSYN-PWY
+PREDECESSORS - UBISYN-PWY
+PREDECESSORS - COMPLETE-ARO-PWY
+PREDECESSORS - (CHORPYRLY-RXN CHORISMATE-SYNTHASE-RXN)
+PRIMARIES - (DMK-RXN (DIHYDROXYNAPHTHOATE) (DEMETHYLMENAQUINONE))
+PRIMARIES - (RXN-9311 (CPD-9925) (DIHYDROXYNAPHTHOATE))
+REACTION-LAYOUT - (PWY-6612 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (MENAQUINONESYN-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (PWY-5852 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (PWY-5837 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (ENTBACSYN-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (COMPLETE-ARO-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (UBISYN-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - PWY-6612
+REACTION-LIST - MENAQUINONESYN-PWY
+REACTION-LIST - PWY-5852
+REACTION-LIST - PWY-5837
+REACTION-LIST - ENTBACSYN-PWY
+REACTION-LIST - COMPLETE-ARO-PWY
+REACTION-LIST - UBISYN-PWY
+SUB-PATHWAYS - PWY-6612
+SUB-PATHWAYS - PWY-5837
+SUB-PATHWAYS - PWY-5852
+SUB-PATHWAYS - MENAQUINONESYN-PWY
+SUB-PATHWAYS - ENTBACSYN-PWY
+SUB-PATHWAYS - UBISYN-PWY
+SUB-PATHWAYS - COMPLETE-ARO-PWY
+//
+UNIQUE-ID - OXIDATIVEPENT-PWY
+TYPES - Pentose-Phosphate-Cycle
+COMMON-NAME - pentose phosphate pathway (oxidative branch) I
+CITATIONS - :EV-COMP-AINF:3430664941:fulcher
+CREDITS - riley
+CREDITS - O-18
+CREDITS - O0-3
+CREDITS - ingraham
+IN-PATHWAY - PENTOSE-P-PWY
+PATHWAY-LINKS - (RIBULOSE-5P NONOXIPENT-PWY)
+PREDECESSORS - (RXN-9952 6PGLUCONOLACT-RXN)
+PREDECESSORS - (6PGLUCONDEHYDROG-RXN 6PGLUCONOLACT-RXN)
+PREDECESSORS - (6PGLUCONOLACT-RXN GLU6PDEHYDROG-RXN)
+PREDECESSORS - (GLU6PDEHYDROG-RXN)
+REACTION-LAYOUT - (RXN-9952 (:LEFT-PRIMARIES CPD-2961) (:DIRECTION :L2R) (:RIGHT-PRIMARIES RIBULOSE-5P))
+REACTION-LAYOUT - (GLU6PDEHYDROG-RXN (:LEFT-PRIMARIES GLC-6-P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES D-6-P-GLUCONO-DELTA-LACTONE))
+REACTION-LAYOUT - (6PGLUCONDEHYDROG-RXN (:LEFT-PRIMARIES CPD-2961) (:DIRECTION :L2R) (:RIGHT-PRIMARIES RIBULOSE-5P))
+REACTION-LAYOUT - (6PGLUCONOLACT-RXN (:LEFT-PRIMARIES D-6-P-GLUCONO-DELTA-LACTONE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-2961))
+REACTION-LIST - RXN-9952
+REACTION-LIST - GLU6PDEHYDROG-RXN
+REACTION-LIST - 6PGLUCONDEHYDROG-RXN
+REACTION-LIST - 6PGLUCONOLACT-RXN
+SUPER-PATHWAYS - PENTOSE-P-PWY
+//
+UNIQUE-ID - PWY-6772
+TYPES - Hydrogen-Production
+COMMON-NAME - hydrogen production V
+CITATIONS - :EV-COMP-AINF:3601229844:fulcher
+COMMENT - <b>Background</b>
+COMMENT - /
+COMMENT - /During fermentative growth, formate is produced via |FRAME: PYRUVFORMLY-CPLX "pyruvate formate lyase"| (PFL) from pyruvate. The physiological function of the FHL reaction is to prevent acidification of the cytoplasm by converting formate to |FRAME: CARBON-DIOXIDE| and |FRAME: HYDROGEN-MOLECULE| and the FHL complex can effectively function at a pH lower than 7.0. Recently, a potential second |FRAME: HYDROGEN-MOLECULE| evolving hydrogenase Hyd-4 encoded by the <i>hyf</i> operon was identified in |FRAME:TAX-562|. This system has been designated FHL-2 and is driven by the F0F1-ATPase and is composed of Hyd4 and FdhH. Hydrogen production via the Hyd-3 and Fdh-H-dependent pathway versus the Hyd-4, Fdh-H and F0F1-ATPase-dependent pathway has been shown to be pH dependent |CITS: [11959127]|.
+COMMENT - /
+COMMENT - /
+COMMENT - /
+COMMENT - / <b>About this Pathway</b>
+COMMENT - /
+COMMENT - /|FRAME: FORMATEDEHYDROGH-MONOMER "Formate dehydrogenase H"| (FDH) and |FRAME: HYDROG3-CPLX| together form the membrane |FRAME: FHLMULTI-CPLX| (FHL-1) of |FRAME: TAX-562|. It oxidizes endogenously produced formate to produce carbon dioxide and passes the generated electrons to |FRAME: PROTON| to evolve |FRAME: HYDROGEN-MOLECULE| under anaerobic conditions |CITS: [2187144]| |CITS: [1625581]|.
+COMMENT - /
+COMMENT - /Formate dehydrogenase H, a <i>FdhF</i> encoded selenopolypeptide, catalyzes the oxidation of formate generating |FRAME: CARBON-DIOXIDE| and transferring the electrons to hydrogenase 3, which is the first part of the reaction |CITS: [13449036]|. Hydrogenase 3 is encoded by by the <i>hyc</i> operon which has eight ORFs, <i>hycA, hycB, hycC, hycD, hycE, hycF, hycG</i> and <i>hycH</i> |CITS: [21261819]| |CITS: [1812811]|. A model has been proposed that demonstrates how FdhF tranfers electrons to the catalytic subunit HycE of hydrogenase 3 via HycB, HycF and HycG subunits. HycB and HycF are both [4Fe-4S] ferredoxin type electron transport proteins, while HycE and HycG have homology to NADH ubiquinone oxidoreductase (NUO) subunits of mitochondria and chloroplasts |CITS: [2187144]|. The model demonstrates electron transfer from FdhF to HycB to HycF to HycG to HycE, with HycC and HycD acting as membrane anchoring proteins |CITS: [1625581]|.
+COMMENT - /
+COMMENT - /The product of <i>hycH</i> is required for the conversion of a precursor form of HycE into the mature form but is not part of the functional FHL complex |CITS: [1625581]|.
+COMMENT - /
+COMMENT - /HycA is a FHL repressor protein encoded by <i>hycA</i>, which represses the <i>hyc</i> operon |CITS: [11931558]|, and its deletion results in increased FDH-H and hydrogenase activity |CITS: [1625581]|. The <i>fhlA</i> gene encodes the FHL activator protein FhlA which also controls the transcription of the FHL complex |CITS: [16269707]|. FhlA promotes the transcription of the <i>fdhF, hyc and hyp</i> operons |CITS: [10848985]| |CITS: [2280686]|. It might be possible to control FHL activity and the hydrogen production rate by manipulating <i>fhlA</i> and <i>hycA</i> |CITS: [16269707]|.
+COMMENT - /
+COMMENT - /The biosynthesis of the FHL complex is controlled by the concentration of formate in the cell |CITS: [16269707]||CITS: [1779767]|. Selenium and molybdenum are necessary at the active site of FDH-H, and nickel is necessary at the active site of Hyd-3 |CITS: [9036855]| |CITS: [1482271]|.
+COMMENT - /
+COMMENT - /
+COMMENT - /
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - brito
+PREDECESSORS - (RXN-12275 RXN-12274)
+PREDECESSORS - (RXN-12274)
+PRIMARIES - (RXN-12275 (|Reduced-hydrogenase-3|) (HYDROGEN-MOLECULE))
+PRIMARIES - (RXN-12274 (FORMATE) (|Reduced-hydrogenase-3|))
+REACTION-LAYOUT - (RXN-12275 (:LEFT-PRIMARIES Reduced-hydrogenase-3) (:DIRECTION :L2R) (:RIGHT-PRIMARIES HYDROGEN-MOLECULE))
+REACTION-LAYOUT - (RXN-12274 (:LEFT-PRIMARIES FORMATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Reduced-hydrogenase-3))
+REACTION-LIST - RXN-12275
+REACTION-LIST - RXN-12274
+//
+UNIQUE-ID - UBISYN-PWY
+TYPES - Super-Pathways
+TYPES - Ubiquinone-Biosynthesis
+COMMON-NAME - superpathway of ubiquinol-8 biosynthesis (prokaryotic)
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /Ubiquinone (also known as coenzyme Q) is an isoprenoid quinone that functions as an electron carrier
+COMMENT - /in membranes.
+COMMENT - /In eukaryotes ubiquinone is found mostly within the inner mitochondrial membrane, where it functions
+COMMENT - /in respiratory electron transport, transferring two electrons from either complex I (NADH dehydrogenase)
+COMMENT - /or complex II (succinate-ubiquinone reductase) to complex III (<i>bc</i><sub>1</sub> complex).
+COMMENT - /The quinone nucleus of ubiquinone is derived directly from |FRAME: 4-hydroxybenzoate|, while the
+COMMENT - /isoprenoid subunits of the polyisoprenoid tail are synthesized via the |FRAME: NONMEVIPP-PWY|,
+COMMENT - /which feeds isoprene units into the |FRAME: Polyprenyl-Biosynthesis| pathways.
+COMMENT - /
+COMMENT - /The number of isoprenoid subunits in the ubiquinone side chain vary in different species. For example,
+COMMENT - /|FRAME: TAX-4932| has 6 such subunits, |FRAME: TAX-83333| has 8, rat and mouse have 9, and
+COMMENT - /|FRAME: TAX-9606| has 10. The ubiquinones are often named according to the number of carbons in
+COMMENT - /the side chain (e.g. ubi-30) or the number of isoprenoid subunits (e.g. Q-10).
+COMMENT - /
+COMMENT - /Following addition of the polyprenyl tail, the product (4-hydroxy-3-polyprenylbenzoate), is processed
+COMMENT - /in three steps, namely decarboxylation, oxidation, and methylation. The prokaryotic and eukaryotic
+COMMENT - /pathways differ in the order of these steps: in eukaryotes the compound is oxidized and methylated
+COMMENT - /prior to decarboxylation; in prokaryotes the compound is first decarboxylated, followed by oxidation
+COMMENT - /and methylation |CITS: [Shepherd96]|.
+COMMENT - /
+COMMENT - /The ubiquinone biosynthesis pathway has been elucidated primarily by the use of mutant strains that
+COMMENT - /accumulate pathway intermediates; some of the enzymes in this pathway have not been biochemically
+COMMENT - /characterized.
+COMMENT - /
+COMMENT - /<b>About This Pathway</b>
+COMMENT - /
+COMMENT - /|FRAME: UBIQUINONE-8| (Q-8) is a common form of ubiquinone among bacteria. Most of the
+COMMENT - /Gram-negative facultative anaerobes, such as the enterobacteria, produce Q-8 (in addition to
+COMMENT - /|FRAME: CPD-9728| and |FRAME: DEMETHYLMENAQUINONE|).
+COMMENT - /Q-8 has been documented in several strains of |FRAME: TAX-562| |CITS: [13673033]|,
+COMMENT - /|FRAME: TAX-546|, |FRAME: TAX-548|, |FRAME: TAX-554|, |FRAME: TAX-584|, |FRAME: TAX-585|
+COMMENT - /|CITS: [4886765]| and |FRAME: TAX-615| |CITS: [Bezborodov69]|, as well as in the non-eneterobacteria
+COMMENT - /|FRAME: TAX-644|, |FRAME: TAX-648| |CITS: [4886765]| and |FRAME: TAX-51367| |CITS: [Collins81]|.
+COMMENT - /It is also common in aerobic Gram-negative bacteria, including |FRAME: TAX-354| |CITS:[13673033]
+COMMENT - /[4288128]|, |FRAME: TAX-353| |CITS: [13869492]|, |FRAME: TAX-107673| |CITS: [Denis75]|,
+COMMENT - /|FRAME: TAX-520| |CITS: [4351160]|, |FRAME: TAX-106590| |CITS: [Yamada68]|, and various
+COMMENT - /|FRAME: TAX-338| strains |CITS: [Ikemoto80]|.
+COMMENT - /Q-8 was also found to be the major quinone in an unidentified strain of the gliding bacterium
+COMMENT - /|FRAME: TAX-1021| |CITS: [Carr67]| and in some phototrophic bacteria, including |FRAME:TAX-1049|
+COMMENT - /|CITS:[14240125]|, |FRAME:TAX-1053|, |FRAME: TAX-28068| |CITS: [Carr65][5727384]|, and a strain of
+COMMENT - /|FRAME: TAX-1081| |CITS: [5727384]|.
+COMMENT - /Q-8 is often found as a secondary quinone in |FRAME: TAX-286| strains |CITS: [4886765]|.
+COMMENT - /
+COMMENT - /The best studied ubiquinone biosynthesis pathway is that of |FRAME: TAX-83333|, which produces
+COMMENT - /a |FRAME: UBIQUINONE-8|.
+COMMENT - /The first committed step of the pathway is the conversion of chorismate to |FRAME: 4-hydroxybenzoate|
+COMMENT - /by |FRAME: CHORPYRLY-MONOMER|. The enzyme retains and is efficiently inhibited by the product
+COMMENT - /of the reaction, 4-hydroxybenzoate, which may present a control mechanism for the ubiquinone
+COMMENT - /biosynthesis pathway or a mechanism for delivery of 4-hydroxybenzoate to the membrane
+COMMENT - /|CITS: [11455603][11825618]|.
+COMMENT - /
+COMMENT - /The second step in the pathway is the transfer of the polyisoprenoid tail onto
+COMMENT - /|FRAME: 4-hydroxybenzoate| by the membrane-bound
+COMMENT - /|FRAME: 4OHBENZOATE-OCTAPRENYLTRANSFER-MONOMER|. This is followed by the
+COMMENT - /decarboxylation of the ring structure by |FRAME: CPLX0-301| (or possibly by UbiX) to form
+COMMENT - /|FRAME: 2-OCTAPRENYLPHENOL|.  Under anaerobic conditions, this compound accumulates in the
+COMMENT - /membrane and is not converted into ubiquinone. Further steps in the pathway require the presence of
+COMMENT - /dioxygen |CITS: [361395]|.
+COMMENT - /
+COMMENT - /Following is the alternating introduction of three hydroxyl- and three methyl groups. With the exception
+COMMENT - /of the methyltransferase that catalyzes both of the <i>O</i>-methyltransferase reactions, UbiG, none
+COMMENT - /of the enzymes have been studied biochemically and their substrate and cofactor requirements are
+COMMENT - /still unknown.
+COMMENT - /
+COMMENT - /The enzymes of this pathway may form a membrane-associated complex |CITS: [393264]|. UbiX shows
+COMMENT - /a genetic interaction with UbiG, suggesting a possible physical interaction within a complex
+COMMENT - /|CITS: [16923914]|.
+COMMENT - /
+COMMENT - /For the biosynthesis of |FRAME: UBIQUINONE-8| in yeast, see |FRAME: PWY-5870|.
+CREDITS - SRI
+CREDITS - fulcher
+CREDITS - O-18
+CREDITS - riley
+IN-PATHWAY - ALL-CHORISMATE-PWY
+PATHWAY-LINKS - (FARNESYL-PP PWY-5123)
+PATHWAY-LINKS - (CHORISMATE ARO-PWY)
+PREDECESSORS - (4OHBENZOATE-OCTAPRENYLTRANSFER-RXN RXN-8992)
+PREDECESSORS - PWY-5783
+PREDECESSORS - (4OHBENZOATE-OCTAPRENYLTRANSFER-RXN CHORPYRLY-RXN)
+PREDECESSORS - PWY-6708
+PRIMARIES - (RXN-8992 (FARNESYL-PP) (OCTAPRENYL-DIPHOSPHATE))
+REACTION-LAYOUT - (PWY-5783 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (PWY-6708 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (PWY-5755 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - PWY-5783
+REACTION-LIST - PWY-6708
+REACTION-LIST - PWY-5755
+SUB-PATHWAYS - PWY-5783
+SUB-PATHWAYS - PWY-6708
+SUPER-PATHWAYS - ALL-CHORISMATE-PWY
+SYNONYMS - superpathway of ubiquinone-8 biosynthesis (prokaryotic)
+//
+UNIQUE-ID - PWY-4381
+TYPES - Fatty-acid-biosynthesis
+COMMON-NAME - fatty acid biosynthesis initiation I
+CITATIONS - :EV-COMP-AINF:3505146030:caspi
+CREDITS - SRI
+CREDITS - caspi
+CREDITS - THE-ARABIDOPSIS-INFORMATION-RESOURCE
+CREDITS - zhang
+IN-PATHWAY - FASYN-INITIAL-PWY
+PATHWAY-LINKS - (ACETOACETYL-S-ACP FASYN-ELONG-PWY)
+PREDECESSORS - (2.3.1.180-RXN MALONYL-COA-ACP-TRANSACYL-RXN)
+PREDECESSORS - (MALONYL-COA-ACP-TRANSACYL-RXN ACETYL-COA-CARBOXYLTRANSFER-RXN)
+PRIMARIES - (ACETYL-COA-CARBOXYLTRANSFER-RXN (ACETYL-COA) (MALONYL-COA))
+PRIMARIES - (2.3.1.180-RXN (MALONYL-ACP) NIL)
+PRIMARIES - (MALONYL-COA-ACP-TRANSACYL-RXN (MALONYL-COA) (MALONYL-ACP))
+REACTION-LAYOUT - (2.3.1.180-RXN (:LEFT-PRIMARIES MALONYL-ACP ACETYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Acetoacetyl-ACPs))
+REACTION-LAYOUT - (MALONYL-COA-ACP-TRANSACYL-RXN (:LEFT-PRIMARIES MALONYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES MALONYL-ACP))
+REACTION-LAYOUT - (ACETYL-COA-CARBOXYLTRANSFER-RXN (:LEFT-PRIMARIES ACETYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES MALONYL-COA))
+REACTION-LIST - 2.3.1.180-RXN
+REACTION-LIST - MALONYL-COA-ACP-TRANSACYL-RXN
+REACTION-LIST - ACETYL-COA-CARBOXYLTRANSFER-RXN
+SUPER-PATHWAYS - FASYN-INITIAL-PWY
+SYNONYMS - de novo fatty acid biosynthesis, initial reactions
+//
+UNIQUE-ID - PWY0-1433
+TYPES - Cofactor-Biosynthesis
+COMMON-NAME - tetrahydromonapterin biosynthesis
+CITATIONS - :EV-COMP-AINF:3505144193:caspi
+HYPOTHETICAL-REACTIONS - RXN0-6368
+PATHWAY-LINKS - (CPD0-2101 "excreted into the medium")
+PATHWAY-LINKS - (DIHYDRONEOPTERIN-P3 FOLSYN-PWY)
+PREDECESSORS - (RXN0-6367 RXN0-6368)
+PREDECESSORS - (RXN0-6368 H2NTPEPIM-RXN)
+REACTION-LAYOUT - (H2NTPEPIM-RXN (:LEFT-PRIMARIES DIHYDRONEOPTERIN-P3) (:DIRECTION :L2R) (:RIGHT-PRIMARIES DIHYDROMONAPTERIN-TRIPHOSPHATE))
+REACTION-LAYOUT - (RXN0-6368 (:LEFT-PRIMARIES DIHYDROMONAPTERIN-TRIPHOSPHATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-11770))
+REACTION-LAYOUT - (RXN0-6367 (:LEFT-PRIMARIES CPD0-2101) (:DIRECTION :R2L) (:RIGHT-PRIMARIES CPD-11770))
+REACTION-LIST - H2NTPEPIM-RXN
+REACTION-LIST - RXN0-6368
+REACTION-LIST - RXN0-6367
+//
+UNIQUE-ID - PWY-5747
+TYPES - Methyl-Citrate-Cycle
+COMMON-NAME - 2-methylcitrate cycle II
+CITATIONS - :EV-COMP-AINF:3430664954:fulcher
+CREDITS - SRI
+CREDITS - caspi
+PREDECESSORS - (4.2.1.99-RXN RXN-8977)
+PREDECESSORS - (RXN-8977 RXN-8979)
+PREDECESSORS - (RXN-8979 2-METHYLCITRATE-SYNTHASE-RXN)
+PREDECESSORS - (2-METHYLCITRATE-SYNTHASE-RXN PROPIONATE--COA-LIGASE-RXN)
+PREDECESSORS - (METHYLISOCITRATE-LYASE-RXN 4.2.1.99-RXN)
+PRIMARIES - (PROPIONATE--COA-LIGASE-RXN (PROPIONATE) (PROPIONYL-COA))
+REACTION-LAYOUT - (RXN-8977 (:LEFT-PRIMARIES CPD-9421) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-1136))
+REACTION-LAYOUT - (RXN-8979 (:LEFT-PRIMARIES CPD-622) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9421))
+REACTION-LAYOUT - (4.2.1.99-RXN (:LEFT-PRIMARIES CPD-618) (:DIRECTION :R2L) (:RIGHT-PRIMARIES CPD-1136))
+REACTION-LAYOUT - (METHYLISOCITRATE-LYASE-RXN (:LEFT-PRIMARIES CPD-618) (:DIRECTION :L2R) (:RIGHT-PRIMARIES PYRUVATE SUC))
+REACTION-LAYOUT - (2-METHYLCITRATE-SYNTHASE-RXN (:LEFT-PRIMARIES PROPIONYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-622))
+REACTION-LAYOUT - (PROPIONATE--COA-LIGASE-RXN (:LEFT-PRIMARIES PROPIONATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES PROPIONYL-COA))
+REACTION-LIST - RXN-8977
+REACTION-LIST - RXN-8979
+REACTION-LIST - 4.2.1.99-RXN
+REACTION-LIST - METHYLISOCITRATE-LYASE-RXN
+REACTION-LIST - 2-METHYLCITRATE-SYNTHASE-RXN
+REACTION-LIST - PROPIONATE--COA-LIGASE-RXN
+//
+UNIQUE-ID - PWY0-1337
+TYPES - Fatty-Acid-Degradation
+COMMON-NAME - oleate &beta;-oxidation
+CITATIONS - :EV-COMP-AINF:3505144188:caspi
+PATHWAY-LINKS - (CPD0-1162 (FAO-PWY . :INCOMING))
+PATHWAY-LINKS - (CPD0-1163 FAO-PWY)
+PATHWAY-LINKS - (CPD0-1159 "secreted into the growth medium")
+PREDECESSORS - (RXN0-5390 RXN0-5391)
+PRIMARIES - (RXN0-5393 (CPD0-1162) (CPD0-1163))
+PRIMARIES - (RXN0-5390 (CPD0-1158) (CPD0-1159))
+REACTION-LAYOUT - (RXN0-5393 (:LEFT-PRIMARIES CPD0-1162) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD0-1163))
+REACTION-LAYOUT - (RXN0-5390 (:LEFT-PRIMARIES CPD0-1158) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD0-1159))
+REACTION-LAYOUT - (RXN0-5391 (:LEFT-PRIMARIES CPD0-1162) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD0-1158))
+REACTION-LIST - RXN0-5393
+REACTION-LIST - RXN0-5390
+REACTION-LIST - RXN0-5391
+//
+UNIQUE-ID - PWY-5692
+TYPES - Allantoin-degradation
+TYPES - Super-Pathways
+COMMON-NAME - allantoin degradation to glyoxylate II
+CITATIONS - :EV-COMP-AINF:3505146030:caspi
+PATHWAY-LINKS - (GLYOX GLYCOLATEMET-PWY GLYOXDEG-PWY)
+PREDECESSORS - (URUR-RXN ALLANTOATE-DEIMINASE-RXN)
+PREDECESSORS - PWY-5698
+PREDECESSORS - (UREIDOGLYCOLATE-HYDROLASE-RXN URUR-RXN)
+REACTION-LAYOUT - (PWY-5698 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (URUR-RXN (:LEFT-PRIMARIES CPD0-2298) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-1091))
+REACTION-LAYOUT - (UREIDOGLYCOLATE-HYDROLASE-RXN (:LEFT-PRIMARIES CPD-1091) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GLYOX))
+REACTION-LIST - PWY-5698
+REACTION-LIST - URUR-RXN
+REACTION-LIST - UREIDOGLYCOLATE-HYDROLASE-RXN
+SUB-PATHWAYS - PWY-5698
+//
+UNIQUE-ID - GALACT-GLUCUROCAT-PWY
+TYPES - Super-Pathways
+COMMON-NAME - superpathway of hexuronide and hexuronate degradation
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+CREDITS - SRI
+CREDITS - fulcher
+PREDECESSORS - GALACTUROCAT-PWY
+PREDECESSORS - GLUCUROCAT-PWY
+REACTION-LAYOUT - (GLUCUROCAT-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (GALACTUROCAT-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - GLUCUROCAT-PWY
+REACTION-LIST - GALACTUROCAT-PWY
+SUB-PATHWAYS - GALACTUROCAT-PWY
+SUB-PATHWAYS - GLUCUROCAT-PWY
+SYNONYMS - galacturonate and glucuronate catabolism
+SYNONYMS - superpathway of galacturonate and glucuronate degradation
+//
+UNIQUE-ID - ACETOACETATE-DEG-PWY
+TYPES - Fatty-Acid-and-Lipid-Degradation
+COMMON-NAME - acetoacetate degradation (to acetyl CoA)
+CITATIONS - :EV-COMP-AINF:3505146030:caspi
+CREDITS - O-18
+CREDITS - riley
+CREDITS - O0-3
+CREDITS - ingraham
+PATHWAY-LINKS - (ACETYL-COA TCA)
+PREDECESSORS - (ACETOACETYL-COA-TRANSFER-RXN)
+PREDECESSORS - (ACETYL-COA-ACETYLTRANSFER-RXN ACETOACETYL-COA-TRANSFER-RXN)
+PRIMARIES - (ACETOACETYL-COA-TRANSFER-RXN NIL (ACETOACETYL-COA))
+REACTION-LAYOUT - (ACETOACETYL-COA-TRANSFER-RXN (:LEFT-PRIMARIES ACETYL-COA 3-KETOBUTYRATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES ACETOACETYL-COA))
+REACTION-LAYOUT - (ACETYL-COA-ACETYLTRANSFER-RXN (:LEFT-PRIMARIES ACETYL-COA) (:DIRECTION :R2L) (:RIGHT-PRIMARIES ACETOACETYL-COA))
+REACTION-LIST - ACETOACETYL-COA-TRANSFER-RXN
+REACTION-LIST - ACETYL-COA-ACETYLTRANSFER-RXN
+//
+UNIQUE-ID - PWY-6708
+TYPES - Ubiquinone-Biosynthesis
+COMMON-NAME - ubiquinol-8 biosynthesis (prokaryotic)
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /Ubiquinone (also known as coenzyme Q) is an isoprenoid quinone that functions as an electron carrier
+COMMENT - /in membranes.
+COMMENT - /In eukaryotes ubiquinone is found mostly within the inner mitochondrial membrane, where it functions
+COMMENT - /in respiratory electron transport, transferring two electrons from either complex I (NADH dehydrogenase)
+COMMENT - /or complex II (succinate-ubiquinone reductase) to complex III (<i>bc</i><sub>1</sub> complex).
+COMMENT - /The quinone nucleus of ubiquinone is derived directly from |FRAME: 4-hydroxybenzoate|, while the
+COMMENT - /isoprenoid subunits of the polyisoprenoid tail are synthesized via the |FRAME: NONMEVIPP-PWY|,
+COMMENT - /which feeds isoprene units into the |FRAME: Polyprenyl-Biosynthesis| pathways.
+COMMENT - /
+COMMENT - /The number of isoprenoid subunits in the ubiquinone side chain vary in different species. For example,
+COMMENT - /|FRAME: TAX-4932| has 6 such subunits, |FRAME: TAX-83333| has 8, rat and mouse have 9, and
+COMMENT - /|FRAME: TAX-9606| has 10. The ubiquinones are often named according to the number of carbons in
+COMMENT - /the side chain (e.g. ubi-30) or the number of isoprenoid subunits (e.g. Q-10).
+COMMENT - /
+COMMENT - /Following addition of the polyprenyl tail, the product (4-hydroxy-3-polyprenylbenzoate), is processed
+COMMENT - /in three steps, namely decarboxylation, oxidation, and methylation. The prokaryotic and eukaryotic
+COMMENT - /pathways differ in the order of these steps: in eukaryotes the compound is oxidized and methylated
+COMMENT - /prior to decarboxylation; in prokaryotes the compound is first decarboxylated, followed by oxidation
+COMMENT - /and methylation |CITS: [Shepherd96]|.
+COMMENT - /
+COMMENT - /The ubiquinone biosynthesis pathway has been elucidated primarily by the use of mutant strains that
+COMMENT - /accumulate pathway intermediates; some of the enzymes in this pathway have not been biochemically
+COMMENT - /characterized.
+COMMENT - /
+COMMENT - /<b>About This Pathway</b>
+COMMENT - /
+COMMENT - /|FRAME: UBIQUINONE-8| (Q-8) is a common form of ubiquinone among bacteria. Most of the
+COMMENT - /Gram-negative facultative anaerobes, such as the enterobacteria, produce Q-8 (in addition to
+COMMENT - /|FRAME: CPD-9728| and |FRAME: DEMETHYLMENAQUINONE|).
+COMMENT - /Q-8 has been documented in several strains of |FRAME: TAX-562| |CITS: [13673033]|,
+COMMENT - /|FRAME: TAX-546|, |FRAME: TAX-548|, |FRAME: TAX-554|, |FRAME: TAX-584|, |FRAME: TAX-585|
+COMMENT - /|CITS: [4886765]| and |FRAME: TAX-615| |CITS: [Bezborodov69]|, as well as in the non-eneterobacteria
+COMMENT - /|FRAME: TAX-644|, |FRAME: TAX-648| |CITS: [4886765]| and |FRAME: TAX-51367| |CITS: [Collins81]|.
+COMMENT - /It is also common in aerobic Gram-negative bacteria, including |FRAME: TAX-354| |CITS:[13673033]
+COMMENT - /[4288128]|, |FRAME: TAX-353| |CITS: [13869492]|, |FRAME: TAX-107673| |CITS: [Denis75]|,
+COMMENT - /|FRAME: TAX-520| |CITS: [4351160]|, |FRAME: TAX-106590| |CITS: [Yamada68]|, and various
+COMMENT - /|FRAME: TAX-338| strains |CITS: [Ikemoto80]|.
+COMMENT - /Q-8 was also found to be the major quinone in an unidentified strain of the gliding bacterium
+COMMENT - /|FRAME: TAX-1021| |CITS: [Carr67]| and in some phototrophic bacteria, including |FRAME:TAX-1049|
+COMMENT - /|CITS:[14240125]|, |FRAME:TAX-1053|, |FRAME: TAX-28068| |CITS: [Carr65][5727384]|, and a strain of
+COMMENT - /|FRAME: TAX-1081| |CITS: [5727384]|.
+COMMENT - /Q-8 is often found as a secondary quinone in |FRAME: TAX-286| strains |CITS: [4886765]|.
+COMMENT - /
+COMMENT - /The best studied ubiquinone biosynthesis pathway is that of |FRAME: TAX-83333|, which produces
+COMMENT - /a |FRAME: UBIQUINONE-8|.
+COMMENT - /The first committed step of the pathway is the conversion of chorismate to |FRAME: 4-hydroxybenzoate|
+COMMENT - /by |FRAME: CHORPYRLY-MONOMER|. The enzyme retains and is efficiently inhibited by the product
+COMMENT - /of the reaction, 4-hydroxybenzoate, which may present a control mechanism for the ubiquinone
+COMMENT - /biosynthesis pathway or a mechanism for delivery of 4-hydroxybenzoate to the membrane
+COMMENT - /|CITS: [11455603][11825618]|.
+COMMENT - /
+COMMENT - /The second step in the pathway is the transfer of the polyisoprenoid tail onto
+COMMENT - /|FRAME: 4-hydroxybenzoate| by the membrane-bound
+COMMENT - /|FRAME: 4OHBENZOATE-OCTAPRENYLTRANSFER-MONOMER|. This is followed by the
+COMMENT - /decarboxylation of the ring structure by |FRAME: CPLX0-301| (or possibly by UbiX) to form
+COMMENT - /|FRAME: 2-OCTAPRENYLPHENOL|.  Under anaerobic conditions, this compound accumulates in the
+COMMENT - /membrane and is not converted into ubiquinone. Further steps in the pathway require the presence of
+COMMENT - /dioxygen |CITS: [361395]|.
+COMMENT - /
+COMMENT - /Following is the alternating introduction of three hydroxyl- and three methyl groups. With the exception
+COMMENT - /of the methyltransferase that catalyzes both of the <i>O</i>-methyltransferase reactions, UbiG, none
+COMMENT - /of the enzymes have been studied biochemically and their substrate and cofactor requirements are
+COMMENT - /still unknown.
+COMMENT - /
+COMMENT - /The enzymes of this pathway may form a membrane-associated complex |CITS: [393264]|. UbiX shows
+COMMENT - /a genetic interaction with UbiG, suggesting a possible physical interaction within a complex
+COMMENT - /|CITS: [16923914]|.
+COMMENT - /
+COMMENT - /For the biosynthesis of |FRAME: UBIQUINONE-8| in yeast, see |FRAME: PWY-5870|.
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+IN-PATHWAY - UBISYN-PWY
+PATHWAY-LINKS - (|4-hydroxybenzoate| PWY-5755)
+PATHWAY-LINKS - (OCTAPRENYL-DIPHOSPHATE PWY-5783)
+PREDECESSORS - (4OHBENZOATE-OCTAPRENYLTRANSFER-RXN)
+PREDECESSORS - (DHHB-METHYLTRANSFER-RXN OCTAPRENYL-METHYL-METHOXY-BENZOQ-OH-RXN)
+PREDECESSORS - (OCTAPRENYL-METHYL-METHOXY-BENZOQ-OH-RXN 2-OCTAPRENYL-METHOXY-BENZOQ-METH-RXN)
+PREDECESSORS - (2-OCTAPRENYL-METHOXY-BENZOQ-METH-RXN 2-OCTAPRENYL-6-METHOXYPHENOL-HYDROX-RXN)
+PREDECESSORS - (2-OCTAPRENYL-6-METHOXYPHENOL-HYDROX-RXN 2-OCTAPRENYL-6-OHPHENOL-METHY-RXN)
+PREDECESSORS - (2-OCTAPRENYL-6-OHPHENOL-METHY-RXN 2-OCTAPRENYLPHENOL-HYDROX-RXN)
+PREDECESSORS - (2-OCTAPRENYLPHENOL-HYDROX-RXN 3-OCTAPRENYL-4-OHBENZOATE-DECARBOX-RXN)
+PREDECESSORS - (3-OCTAPRENYL-4-OHBENZOATE-DECARBOX-RXN 4OHBENZOATE-OCTAPRENYLTRANSFER-RXN)
+PRIMARIES - (4OHBENZOATE-OCTAPRENYLTRANSFER-RXN (OCTAPRENYL-DIPHOSPHATE |4-hydroxybenzoate|) NIL)
+REACTION-LAYOUT - (4OHBENZOATE-OCTAPRENYLTRANSFER-RXN (:LEFT-PRIMARIES 4-hydroxybenzoate OCTAPRENYL-DIPHOSPHATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 3-OCTAPRENYL-4-HYDROXYBENZOATE))
+REACTION-LAYOUT - (3-OCTAPRENYL-4-OHBENZOATE-DECARBOX-RXN (:LEFT-PRIMARIES 3-OCTAPRENYL-4-HYDROXYBENZOATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 2-OCTAPRENYLPHENOL))
+REACTION-LAYOUT - (2-OCTAPRENYLPHENOL-HYDROX-RXN (:LEFT-PRIMARIES 2-OCTAPRENYLPHENOL) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 2-OCTAPRENYL-6-HYDROXYPHENOL))
+REACTION-LAYOUT - (2-OCTAPRENYL-6-OHPHENOL-METHY-RXN (:LEFT-PRIMARIES 2-OCTAPRENYL-6-HYDROXYPHENOL) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 2-OCTAPRENYL-6-METHOXYPHENOL))
+REACTION-LAYOUT - (2-OCTAPRENYL-6-METHOXYPHENOL-HYDROX-RXN (:LEFT-PRIMARIES 2-OCTAPRENYL-6-METHOXYPHENOL) (:DIRECTION :L2R) (:RIGHT-PRIMARIES OCTAPRENYL-METHOXY-BENZOQUINONE))
+REACTION-LAYOUT - (2-OCTAPRENYL-METHOXY-BENZOQ-METH-RXN (:LEFT-PRIMARIES OCTAPRENYL-METHOXY-BENZOQUINONE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES OCTAPRENYL-METHYL-METHOXY-BENZQ))
+REACTION-LAYOUT - (DHHB-METHYLTRANSFER-RXN (:LEFT-PRIMARIES OCTAPRENYL-METHYL-OH-METHOXY-BENZQ) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-9956))
+REACTION-LAYOUT - (OCTAPRENYL-METHYL-METHOXY-BENZOQ-OH-RXN (:LEFT-PRIMARIES OCTAPRENYL-METHYL-METHOXY-BENZQ) (:DIRECTION :L2R) (:RIGHT-PRIMARIES OCTAPRENYL-METHYL-OH-METHOXY-BENZQ))
+REACTION-LIST - 4OHBENZOATE-OCTAPRENYLTRANSFER-RXN
+REACTION-LIST - 3-OCTAPRENYL-4-OHBENZOATE-DECARBOX-RXN
+REACTION-LIST - 2-OCTAPRENYLPHENOL-HYDROX-RXN
+REACTION-LIST - 2-OCTAPRENYL-6-OHPHENOL-METHY-RXN
+REACTION-LIST - 2-OCTAPRENYL-6-METHOXYPHENOL-HYDROX-RXN
+REACTION-LIST - 2-OCTAPRENYL-METHOXY-BENZOQ-METH-RXN
+REACTION-LIST - DHHB-METHYLTRANSFER-RXN
+REACTION-LIST - OCTAPRENYL-METHYL-METHOXY-BENZOQ-OH-RXN
+SUPER-PATHWAYS - UBISYN-PWY
+SYNONYMS - ubiquinone-8 biosynthesis (prokaryotic)
+//
+UNIQUE-ID - DARABCATK12-PWY
+TYPES - D-Arabinose-Degradation
+COMMON-NAME - D-arabinose degradation I
+CITATIONS - :EV-COMP-AINF:3319177684:caromk
+CREDITS - SRI
+CREDITS - keseler
+PREDECESSORS - (GLYCOLALD-DEHYDROG-RXN DARABALDOL-RXN)
+PREDECESSORS - (DARABALDOL-RXN DARABKIN-RXN)
+PREDECESSORS - (DARABKIN-RXN DARABISOM-RXN)
+PRIMARIES - (DARABALDOL-RXN (D-RIBULOSE-1-P) (GLYCOLALDEHYDE DIHYDROXY-ACETONE-PHOSPHATE))
+REACTION-LAYOUT - (GLYCOLALD-DEHYDROG-RXN (:LEFT-PRIMARIES GLYCOLALDEHYDE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GLYCOLLATE))
+REACTION-LAYOUT - (DARABALDOL-RXN (:LEFT-PRIMARIES D-RIBULOSE-1-P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES DIHYDROXY-ACETONE-PHOSPHATE GLYCOLALDEHYDE))
+REACTION-LAYOUT - (DARABKIN-RXN (:LEFT-PRIMARIES D-RIBULOSE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES D-RIBULOSE-1-P))
+REACTION-LAYOUT - (DARABISOM-RXN (:LEFT-PRIMARIES D-arabinopyranose) (:DIRECTION :L2R) (:RIGHT-PRIMARIES D-RIBULOSE))
+REACTION-LIST - GLYCOLALD-DEHYDROG-RXN
+REACTION-LIST - DARABALDOL-RXN
+REACTION-LIST - DARABKIN-RXN
+REACTION-LIST - DARABISOM-RXN
+SYNONYMS - D-arabinose catabolism
+//
+UNIQUE-ID - PWY-5965
+TYPES - Fatty-acid-biosynthesis
+COMMON-NAME - fatty acid biosynthesis initiation III
+CITATIONS - :EV-COMP-AINF:3505146030:caspi
+CREDITS - SRI
+CREDITS - caspi
+IN-PATHWAY - FASYN-INITIAL-PWY
+PATHWAY-LINKS - (|Acetoacetyl-ACPs| FASYN-ELONG-PWY)
+PATHWAY-LINKS - (FASYN-ELONG-PWY)
+PREDECESSORS - (3-OXOACYL-ACP-SYNTH-BASE-RXN MALONYL-ACPDECARBOX-RXN)
+PRIMARIES - (3-OXOACYL-ACP-SYNTH-BASE-RXN NIL (|Acetoacetyl-ACPs|))
+REACTION-LAYOUT - (MALONYL-ACPDECARBOX-RXN (:LEFT-PRIMARIES MALONYL-ACP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES ACETYL-ACP))
+REACTION-LAYOUT - (3-OXOACYL-ACP-SYNTH-BASE-RXN (:LEFT-PRIMARIES MALONYL-ACP ACETYL-ACP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Acetoacetyl-ACPs))
+REACTION-LIST - MALONYL-ACPDECARBOX-RXN
+REACTION-LIST - 3-OXOACYL-ACP-SYNTH-BASE-RXN
+SUPER-PATHWAYS - FASYN-INITIAL-PWY
+//
+UNIQUE-ID - PWY0-1356
+TYPES - ANAEROBIC-RESPIRATION
+TYPES - Electron-Transfer
+COMMON-NAME - formate to dimethyl sulfoxide electron transfer
+CITATIONS - :EV-COMP-AINF:3430664922:fulcher
+CREDITS - O0-13
+CREDITS - lnolan
+PREDECESSORS - (DIMESULFREDUCT-RXN FORMATEDEHYDROG-RXN)
+PRIMARIES - (FORMATEDEHYDROG-RXN (FORMATE) (|Menaquinols|))
+REACTION-LAYOUT - (DIMESULFREDUCT-RXN (:LEFT-PRIMARIES Menaquinols) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-7670))
+REACTION-LAYOUT - (FORMATEDEHYDROG-RXN (:LEFT-PRIMARIES FORMATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Menaquinols))
+REACTION-LIST - DIMESULFREDUCT-RXN
+REACTION-LIST - FORMATEDEHYDROG-RXN
+//
+UNIQUE-ID - CENTFERM-PWY
+TYPES - Acetyl-CoA-Butyrate
+TYPES - Pyruvate-Degradation
+COMMON-NAME - pyruvate fermentation to butanoate
+CITATIONS - :EV-COMP-AINF:3505146030:caspi
+CREDITS - SRI
+CREDITS - caspi
+PREDECESSORS - (ACETYL-COA-ACETYLTRANSFER-RXN PYRUFLAVREDUCT-RXN)
+PREDECESSORS - (RXN-11662 ACETYL-COA-ACETYLTRANSFER-RXN)
+PREDECESSORS - (RXN-11667 RXN-11662)
+PREDECESSORS - (BUTYRYL-COA-DEHYDROGENASE-RXN RXN-11667)
+PREDECESSORS - (BUTYRATE-KINASE-RXN PHOSPHATE-BUTYRYLTRANSFERASE-RXN)
+PREDECESSORS - (PHOSPHATE-BUTYRYLTRANSFERASE-RXN BUTYRYL-COA-DEHYDROGENASE-RXN)
+PRIMARIES - (BUTYRATE-KINASE-RXN (BUTYRYL-P) (BUTYRIC_ACID))
+PRIMARIES - (PHOSPHATE-BUTYRYLTRANSFERASE-RXN (BUTYRYL-COA) (BUTYRYL-P))
+PRIMARIES - (BUTYRYL-COA-DEHYDROGENASE-RXN (CROTONYL-COA) (BUTYRYL-COA))
+PRIMARIES - (ACETYL-COA-ACETYLTRANSFER-RXN (ACETYL-COA) (ACETOACETYL-COA))
+REACTION-LAYOUT - (BUTYRYL-COA-DEHYDROGENASE-RXN (:LEFT-PRIMARIES BUTYRYL-COA) (:DIRECTION :R2L) (:RIGHT-PRIMARIES CROTONYL-COA))
+REACTION-LAYOUT - (PYRUFLAVREDUCT-RXN (:LEFT-PRIMARIES PYRUVATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES ACETYL-COA))
+REACTION-LAYOUT - (RXN-11667 (:LEFT-PRIMARIES S-3-HYDROXYBUTANOYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CROTONYL-COA))
+REACTION-LAYOUT - (RXN-11662 (:LEFT-PRIMARIES S-3-HYDROXYBUTANOYL-COA) (:DIRECTION :R2L) (:RIGHT-PRIMARIES ACETOACETYL-COA))
+REACTION-LAYOUT - (BUTYRATE-KINASE-RXN (:LEFT-PRIMARIES BUTYRIC_ACID) (:DIRECTION :R2L) (:RIGHT-PRIMARIES BUTYRYL-P))
+REACTION-LAYOUT - (PHOSPHATE-BUTYRYLTRANSFERASE-RXN (:LEFT-PRIMARIES BUTYRYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES BUTYRYL-P))
+REACTION-LAYOUT - (ACETYL-COA-ACETYLTRANSFER-RXN (:LEFT-PRIMARIES ACETYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES ACETOACETYL-COA))
+REACTION-LIST - BUTYRYL-COA-DEHYDROGENASE-RXN
+REACTION-LIST - PYRUFLAVREDUCT-RXN
+REACTION-LIST - RXN-11667
+REACTION-LIST - RXN-11662
+REACTION-LIST - BUTYRATE-KINASE-RXN
+REACTION-LIST - PHOSPHATE-BUTYRYLTRANSFERASE-RXN
+REACTION-LIST - ACETYL-COA-ACETYLTRANSFER-RXN
+SYNONYMS - central fermentation pathway
+SYNONYMS - acetobutylicum fermentation
+SYNONYMS - pyruvate fermentation to butyrate
+//
+UNIQUE-ID - FASYN-INITIAL-PWY
+TYPES - Fatty-acid-biosynthesis
+TYPES - Super-Pathways
+COMMON-NAME - superpathway of fatty acid biosynthesis initiation (E. coli)
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - <b>General Background</b>
+COMMENT - /
+COMMENT - /Fatty acids are key building blocks for the phospholipid components of cell membranes and are
+COMMENT - /determinants of intracellular communication, in the form of lipid second messengers |CITS: [11094259]|,
+COMMENT - /and fatty acyl moieties of proteins that modify their location and function |CITS: [10446384]|.
+COMMENT - /
+COMMENT - /There are two basic types of fatty acid (FAS) biosynthesis mechanisms. The type I system is found in
+COMMENT - /mammals and lower eukaryotes. The mammalian system consists of a single gene product that contains all of the reaction centers required to produce a fatty acid (see
+COMMENT - /|FRAME: CPLX-7628| from |FRAME: TAX-9606|), while the system of lower eukaryotes (such as yeast)
+COMMENT - /consists of two genes, whose polypeptide products combine to form a multifunctional complex
+COMMENT - /(see |FRAME: CPLX-7627| from |FRAME: TAX-4932|).
+COMMENT - /
+COMMENT - /Type II systems are found in bacteria, plants |CITS: [15952903]|, parasites of the |FRAME: TAX-5794|
+COMMENT - /phylum |CITS: [17112527]| and mitochondria |CITS: [12882974][12654921]|.
+COMMENT - /The reactions in these systems are catalyzed by a series of individual soluble proteins that are each
+COMMENT - /encoded by a discrete gene, and the pathway intermediates are transferred between the enzymes as
+COMMENT - /thioesters of |FRAME: ACP|.
+COMMENT - /
+COMMENT - /The best studied pathway is that of |FRAME: TAX-83333|, from which all the enzymes have been purified
+COMMENT - /and crystalized. In plants fatty acid synthesis occurs mainly in plastids of leaf mesophyll cells, seeds,
+COMMENT - /and oil-accumulating fruits. Although most of the synthesis occurrs in plastids, it has been shown that
+COMMENT - /mitochondria are also capable of synthesizing fatty acids |CITS: [14660674]|.
+COMMENT - /
+COMMENT - /Fatty acid biosynthesis starts with an initiation sequence that produces |FRAME: Acetoacetyl-ACPs|,
+COMMENT - /an activated molecule that is used for subsequent elongation reactions, which ultimately
+COMMENT - /produce the final fatty acid products. This superpathway describes only the initiation sequence,
+COMMENT - /subsequent elongation reactions are described in the pathways |FRAME: FASYN-ELONG-PWY| and
+COMMENT - /|FRAME: PWY0-862|.
+COMMENT - /
+COMMENT - /<b>About This Pathway</b>
+COMMENT - /
+COMMENT - /|FRAME: TAX-83333| has several different routes in which it can produce acetoacetyl-ACP, using
+COMMENT - /different combinations of its three &beta;-ketoacyl-ACP synthases (KAS),
+COMMENT - /|FRAME: FABB-CPLX|, |FRAME: 3-OXOACYL-ACP-SYNTHII-CPLX| and |FRAME: CPLX0-252|,
+COMMENT - /which are encoded by |FRAME: EG10274|, |FRAME: EG12606| and |FRAME: EG10277|, respectively.
+COMMENT - /In general, the |FRAME: EG10277|-encoded enzyme is responsible for the initiation of fatty acid
+COMMENT - /elongation, utilizing acyl-coA primers, while the |FRAME: EG10274|/|FRAME: EG12606| products
+COMMENT - /are responsible for the subsequent rounds of elongation, condensing malonyl-ACP with different length
+COMMENT - /acyl-ACPs to extend the acyl chain by two carbons |CITS: [15952903][18384517]|.
+COMMENT - /
+COMMENT - /Three pathways for the initiation of fatty acid biosynthesis have been proposed |CITS: [1551888]|.
+COMMENT - /
+COMMENT - /In the first pathway (see |FRAME: PWY-4381|) |FRAME: CPLX0-252| catalyzes the condensation of
+COMMENT - /|FRAME: ACETYL-COA| with |FRAME: MALONYL-ACP| to yield |FRAME: Acetoacetyl-ACPs|.
+COMMENT - /
+COMMENT - /In the second pathway (see |FRAME: PWY-5966|) the acetate moiety is first transferred from
+COMMENT - /|FRAME: ACETYL-COA| to |FRAME: ACETYL-ACP| by |FRAME:ACP-S-ACETYLTRANSFER-ENZRXN|
+COMMENT - /(this is a second function of |FRAME: CPLX0-252|; it is not clear whether an additional dedicated
+COMMENT - /enzyme exists in the organism). The acetyl-ACP is then condensed with |FRAME: MALONYL-ACP|
+COMMENT - /by |FRAME: FABB-CPLX| (or alternatively |FRAME: 3-OXOACYL-ACP-SYNTHII-CPLX|).
+COMMENT - /
+COMMENT - /The third pathway (see |FRAME: PWY-5965|) involves the decarboxylation of |FRAME: MALONYL-ACP|
+COMMENT - /by |FRAME: FABB-CPLX| to form |FRAME: ACETYL-ACP| followed by subsequent condensation with
+COMMENT - /a second |FRAME: MALONYL-ACP|.
+COMMENT - /
+COMMENT - /It is now believed that |FRAME: CPLX0-252| is the key enzyme in the initiation of fatty acids biosynthesis
+COMMENT - /|CITS: [15952903]|. It selectively catalyzes the formation of acetoacetyl-ACP and specifically uses CoA
+COMMENT - /thioesters rather than acyl-ACP as the primer. The products tend to be shorter than the products of KASI
+COMMENT - /and II, which are involved primarily in elongation reactions, and unlike the other two enzymes, KASIII
+COMMENT - /cannot participate in the terminal elongation steps of fatty acid biosynthesis.
+COMMENT - /
+COMMENT - /While |FRAME: FABB-CPLX| and |FRAME: 3-OXOACYL-ACP-SYNTHII-CPLX| have been shown <i>in
+COMMENT - /vitro</i> to utilize substrates with short acyl moieties, forming acetoacetyl-ACP,
+COMMENT - /the importance of these enzyme for initiation of fatty acid biosynthesis <i>in vivo</i> is not clear
+COMMENT - /|CITS: [15952903]|.
+COMMENT - /
+COMMENT - /
+COMMENT - /
+COMMENT - /
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+CREDITS - O-18
+CREDITS - riley
+PATHWAY-LINKS - (|Acetoacetyl-ACPs| FASYN-ELONG-PWY)
+PREDECESSORS - PWY-5966
+PREDECESSORS - (MALONYL-ACPDECARBOX-RXN MALONYL-COA-ACP-TRANSACYL-RXN)
+PREDECESSORS - PWY-5965
+PREDECESSORS - (3-OXOACYL-ACP-SYNTH-BASE-RXN MALONYL-COA-ACP-TRANSACYL-RXN)
+PREDECESSORS - PWY-4381
+PREDECESSORS - (ACP-S-ACETYLTRANSFER-RXN)
+PREDECESSORS - (3-OXOACYL-ACP-SYNTH-BASE-RXN ACP-S-ACETYLTRANSFER-RXN)
+PRIMARIES - (ACETYL-COA-CARBOXYLTRANSFER-RXN (ACETYL-COA) (MALONYL-COA))
+PRIMARIES - (ACP-S-ACETYLTRANSFER-RXN (ACETYL-COA))
+PRIMARIES - (3-OXOACYL-ACP-SYNTH-BASE-RXN NIL (|Acetoacetyl-ACPs|))
+PRIMARIES - (MALONYL-COA-ACP-TRANSACYL-RXN NIL (MALONYL-ACP))
+REACTION-LAYOUT - (PWY-5966 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (PWY-5965 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (PWY-4381 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (ACP-S-ACETYLTRANSFER-RXN (:LEFT-PRIMARIES ACETYL-COA) (:DIRECTION :L2R) (:RIGHT-PRIMARIES ACETYL-ACP))
+REACTION-LAYOUT - (3-OXOACYL-ACP-SYNTH-BASE-RXN (:LEFT-PRIMARIES MALONYL-ACP ACETYL-ACP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Acetoacetyl-ACPs))
+REACTION-LIST - PWY-5966
+REACTION-LIST - PWY-5965
+REACTION-LIST - PWY-4381
+REACTION-LIST - ACP-S-ACETYLTRANSFER-RXN
+REACTION-LIST - 3-OXOACYL-ACP-SYNTH-BASE-RXN
+SUB-PATHWAYS - PWY-5966
+SUB-PATHWAYS - PWY-5965
+SUB-PATHWAYS - PWY-4381
+//
+UNIQUE-ID - LIPAS-PWY
+TYPES - Fatty-Acid-and-Lipid-Degradation
+COMMON-NAME - triacylglycerol degradation
+CITATIONS - :EV-COMP-AINF:3601229717:fulcher
+COMMENT - Triacylglycerol (TAG) degradation is critical to many plants for which lipids rather than carbohydrates are
+COMMENT - /the major seed storage reserves. The breakdown of the seed storage lipid provides carbon skeletons and
+COMMENT - /energy that can drive postgerminative plant growth before the plant root system and photosynthetic
+COMMENT - /capacity are fully established.
+COMMENT - /
+COMMENT - /TAG degradation occurs in the seed oil body where TAG is deposited and stored. The liberated free
+COMMENT - /fatty acids are transported to glyoxysomes where they are converted to acetyl-CoAs via the beta
+COMMENT - /oxidation pathway (|FRAME: PWY-5136|). The acetyl-CoAs are eventually converted to carbohydrates via glyoxylate
+COMMENT - /cycle (|FRAME: PWY-561|). It is generally thought that the hydrolytic attack of TAG primarily occurs at the sn-1 or
+COMMENT - /sn-3 positions but not the sn-2 position. Sn-2 monoacylglycerols are naturally racemized to sn-1
+COMMENT - /monoacylglycerols to be completely hydrolyzed by monoacylglycerol lipases (pg255
+COMMENT - /in |CITS: [plantbiochemistry97]|).
+COMMENT - /
+COMMENT - /Despite the importance of the pathway for plants, there is still not much known about the plant enzymes
+COMMENT - /and genes of the pathway, especially di- and mono-acylglycerol lipases. To date, only an Arabidopsis
+COMMENT - /triacylglycerol lipase has been biochemically and genetically proven to play a role in the breakdown of
+COMMENT - /seed storage TAG during seed germination.
+COMMENT - /
+COMMENT - /In <i>Saccharomyces cerevisiae</i> the degradation of TAG and phospholipids is taking place in the lipid droplets |CITS:[16916618] [22345606]| where all the tri- to monoacylglycerol lipases of yeast have been shown to be located and enzymatically active |CITS:[10515935] [16135509]|. The major TAG lipase TGL3p also exhibited DAG lipase activity <i>in vitro</i> |CITS:[16267052]|. The other TAG lipase of importance in yeast, i.e. TGL4 has even been demonstrated to represent a multi-functional enzyme which also acts as steryl ester hydrolase, sn-1 and sn-2 phospholipase A2 and acyl-CoA dependent lysophospholipid acyltransferase |CITS:[20332534]|. In addition, the TAG lipase TGL5 has been found to be bifunctional and furthermore catalyzes the acylation of lysophosphilipids |CITS:[20016004]| indicating that TAG lipase enzymes of yeast are likewise involved in catabolic and anabolic pathways of fatty acid metabolism. The <i>in vivo</i> and <i>in vitro</i> activity of the only monoacylglycerol lipase (MGL) in yeast encoded by YJU3 has been demonstrated in &Delta;yju3 mutants which showed no MGL activity but could be rescued by murine monoacylglycerol lipase (mMGL). Moreover, heterologous expressed and purified YJU3 enzyme efficiently hydrolyzed both |FRAME:CPD-11690| and |FRAME:CPD0-1812| to yield |FRAME:GLYCEROL| and |FRAME:OLEATE-CPD| |CITS:[20554061]|.
+COMMENT - /
+CREDITS - fulcher
+CREDITS - O-28
+CREDITS - hartmut
+CREDITS - SRI
+CREDITS - Iourovitski
+PATHWAY-LINKS - (GLYCEROL PWY-4261)
+PREDECESSORS - (3.1.1.23-RXN RXN-1603)
+PREDECESSORS - (RXN-1603 RXN-1602)
+PREDECESSORS - (RXN-1602 TRIACYLGLYCEROL-LIPASE-RXN)
+PRIMARIES - (3.1.1.23-RXN (CPD-504) (GLYCEROL))
+PRIMARIES - (RXN-1602 (|1-2-Diglycerides|) (CPD-409))
+REACTION-LAYOUT - (RXN-1603 (:LEFT-PRIMARIES CPD-409) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-504))
+REACTION-LAYOUT - (RXN-1602 (:LEFT-PRIMARIES 1-2-Diglycerides) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-409))
+REACTION-LAYOUT - (3.1.1.23-RXN (:LEFT-PRIMARIES CPD-504) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GLYCEROL))
+REACTION-LAYOUT - (TRIACYLGLYCEROL-LIPASE-RXN (:LEFT-PRIMARIES Triacylglycerides) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 1-2-Diglycerides))
+REACTION-LIST - RXN-1603
+REACTION-LIST - RXN-1602
+REACTION-LIST - 3.1.1.23-RXN
+REACTION-LIST - TRIACYLGLYCEROL-LIPASE-RXN
+SYNONYMS - triacylglyceride degradation
+SYNONYMS - triacylglycerol hydrolysis
+SYNONYMS - lipolysis
+//
+UNIQUE-ID - PWY0-1321
+TYPES - Nitrate-Reduction
+TYPES - Electron-Transfer
+TYPES - ANAEROBIC-RESPIRATION
+COMMON-NAME - nitrate reduction III (dissimilatory)
+CITATIONS - :EV-COMP-AINF:3430664923:fulcher
+CREDITS - O0-13
+CREDITS - lnolan
+CREDITS - SRI
+CREDITS - kr
+PREDECESSORS - (RXN0-3501 FORMATEDEHYDROG-RXN)
+PRIMARIES - (FORMATEDEHYDROG-RXN (FORMATE) (|Menaquinols|))
+REACTION-LAYOUT - (RXN0-3501 (:LEFT-PRIMARIES Menaquinols) (:DIRECTION :L2R) (:RIGHT-PRIMARIES NITRITE))
+REACTION-LAYOUT - (FORMATEDEHYDROG-RXN (:LEFT-PRIMARIES FORMATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Menaquinols))
+REACTION-LIST - RXN0-3501
+REACTION-LIST - FORMATEDEHYDROG-RXN
+SYNONYMS - formate to nitrate electron transfer
+//
+UNIQUE-ID - PWY-1861
+TYPES - Formaldehyde-Assimilation
+COMMON-NAME - formaldehyde assimilation II (RuMP Cycle)
+CITATIONS - :EV-COMP-AINF:3505146030:caspi
+CREDITS - SRI
+CREDITS - caspi
+PREDECESSORS - (RIBULP3EPIM-RXN 1TRANSKETO-RXN)
+PREDECESSORS - (RIB5PISOM-RXN 1TRANSKETO-RXN)
+PREDECESSORS - (1TRANSKETO-RXN TRANSALDOL-RXN)
+PREDECESSORS - (TRANSALDOL-RXN 2TRANSKETO-RXN)
+PREDECESSORS - (2TRANSKETO-RXN F16ALDOLASE-RXN)
+PREDECESSORS - (R10-RXN)
+PREDECESSORS - (R12-RXN R10-RXN)
+PREDECESSORS - (F16ALDOLASE-RXN 6PFRUCTPHOS-RXN)
+PRIMARIES - (R10-RXN (FORMALDEHYDE RIBULOSE-5P) NIL)
+PRIMARIES - (TRANSALDOL-RXN NIL NIL)
+PRIMARIES - (2TRANSKETO-RXN NIL (XYLULOSE-5-PHOSPHATE))
+PRIMARIES - (F16ALDOLASE-RXN NIL (DIHYDROXY-ACETONE-PHOSPHATE))
+PRIMARIES - (R12-RXN (CPD-26) (FRUCTOSE-6P))
+PRIMARIES - (6PFRUCTPHOS-RXN (FRUCTOSE-6P) (FRUCTOSE-16-DIPHOSPHATE))
+REACTION-LAYOUT - (RIB5PISOM-RXN (:LEFT-PRIMARIES RIBOSE-5P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES RIBULOSE-5P))
+REACTION-LAYOUT - (RIBULP3EPIM-RXN (:LEFT-PRIMARIES RIBULOSE-5P) (:DIRECTION :R2L) (:RIGHT-PRIMARIES XYLULOSE-5-PHOSPHATE))
+REACTION-LAYOUT - (1TRANSKETO-RXN (:LEFT-PRIMARIES GAP D-SEDOHEPTULOSE-7-P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES XYLULOSE-5-PHOSPHATE RIBOSE-5P))
+REACTION-LAYOUT - (TRANSALDOL-RXN (:LEFT-PRIMARIES GAP D-SEDOHEPTULOSE-7-P) (:DIRECTION :R2L) (:RIGHT-PRIMARIES ERYTHROSE-4P FRUCTOSE-6P))
+REACTION-LAYOUT - (2TRANSKETO-RXN (:LEFT-PRIMARIES XYLULOSE-5-PHOSPHATE ERYTHROSE-4P) (:DIRECTION :R2L) (:RIGHT-PRIMARIES GAP FRUCTOSE-6P))
+REACTION-LAYOUT - (F16ALDOLASE-RXN (:LEFT-PRIMARIES FRUCTOSE-16-DIPHOSPHATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GAP DIHYDROXY-ACETONE-PHOSPHATE))
+REACTION-LAYOUT - (6PFRUCTPHOS-RXN (:LEFT-PRIMARIES FRUCTOSE-6P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES FRUCTOSE-16-DIPHOSPHATE))
+REACTION-LAYOUT - (R12-RXN (:LEFT-PRIMARIES CPD-26) (:DIRECTION :L2R) (:RIGHT-PRIMARIES FRUCTOSE-6P))
+REACTION-LAYOUT - (R10-RXN (:LEFT-PRIMARIES CPD-26) (:DIRECTION :R2L) (:RIGHT-PRIMARIES FORMALDEHYDE RIBULOSE-5P))
+REACTION-LIST - RIB5PISOM-RXN
+REACTION-LIST - RIBULP3EPIM-RXN
+REACTION-LIST - 1TRANSKETO-RXN
+REACTION-LIST - TRANSALDOL-RXN
+REACTION-LIST - 2TRANSKETO-RXN
+REACTION-LIST - F16ALDOLASE-RXN
+REACTION-LIST - 6PFRUCTPHOS-RXN
+REACTION-LIST - R12-RXN
+REACTION-LIST - R10-RXN
+SYNONYMS - ribulose monophosphate cycle
+SYNONYMS - formaldehyde assimilation
+SYNONYMS - RuMP pathway
+//
+UNIQUE-ID - PWY0-1355
+TYPES - Electron-Transfer
+TYPES - ANAEROBIC-RESPIRATION
+COMMON-NAME - formate to trimethylamine <i>N</i>-oxide electron transfer
+CITATIONS - :EV-COMP-AINF:3430664923:fulcher
+CREDITS - O0-13
+CREDITS - lnolan
+PREDECESSORS - (RXN0-5264 FORMATEDEHYDROG-RXN)
+PRIMARIES - (FORMATEDEHYDROG-RXN (FORMATE) (|Menaquinols|))
+REACTION-LAYOUT - (RXN0-5264 (:LEFT-PRIMARIES Menaquinols) (:DIRECTION :L2R) (:RIGHT-PRIMARIES TRIMETHYLAMINE))
+REACTION-LAYOUT - (FORMATEDEHYDROG-RXN (:LEFT-PRIMARIES FORMATE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES Menaquinols))
+REACTION-LIST - RXN0-5264
+REACTION-LIST - FORMATEDEHYDROG-RXN
+//
+UNIQUE-ID - PWY0-1391
+TYPES - Methylthioadenosine-Degradation
+COMMON-NAME - <i>S</i>-methyl-5'-thioadenosine degradation IV
+CITATIONS - :EV-COMP-AINF:3601229800:fulcher
+COMMENT - |FRAME: 5-METHYLTHIOADENOSINE| (MTA) is a side product of the |FRAME: BSUBPOLYAMSYN-PWY| and |FRAME: PWY0-1303| pathways.  Many organisms are able to recycle MTA via the |FRAME: PWY-4361 "methionine salvage"| pathway, but others, such as |FRAME:TAX-562|, are not able to recycle it.
+COMMENT - /
+COMMENT - /In |FRAME: TAX-83333| |FRAME: CPLX0-1541| hydrolyzes MTA to adenine and |FRAME: CPD-560| (MTR). MTR can not be further metabolized and is excreted out of the cell |CITS: [16788729]|.  No transporter for MTR is currently known.
+COMMENT - /
+COMMENT - /Excretion of MTR entails a loss of sulfur, which may explain why |FRAME: PUTRESCINE| rather than |FRAME: SPERMIDINE| is the major polyamine in <i>|FRAME:TAX-562|</i> |CITS: [10939241]|.
+COMMENT - /
+COMMENT - /In early experiments, |FRAME: CPD-560| was shown to be a normal biosynthetic product that is secreted into the growth medium by <i>|FRAME:TAX-562|</i> B |CITS: [4203512]|.
+COMMENT - /
+COMMENT - /Review: |CITS: [10939241]|
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - keseler
+PATHWAY-LINKS - (CPD-560 "excreted into the environment")
+PREDECESSORS - (METHYLTHIOADENOSINE-NUCLEOSIDASE-RXN)
+PRIMARIES - (METHYLTHIOADENOSINE-NUCLEOSIDASE-RXN (5-METHYLTHIOADENOSINE) (CPD-560))
+REACTION-LAYOUT - (METHYLTHIOADENOSINE-NUCLEOSIDASE-RXN (:LEFT-PRIMARIES 5-METHYLTHIOADENOSINE) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-560))
+REACTION-LIST - METHYLTHIOADENOSINE-NUCLEOSIDASE-RXN
+SYNONYMS - methylthioadenosine degradation IV
+//
+UNIQUE-ID - PWY-6630
+TYPES - Super-Pathways
+TYPES - TYROSINE-SYN
+COMMON-NAME - superpathway of tyrosine biosynthesis
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - The aromatic amino acid |FRAME: TYR| is biosynthesized from the principal precursors |FRAME: ERYTHROSE-4P| and |FRAME: PHOSPHO-ENOL-PYRUVATE| via |FRAME: CHORISMATE|, a common precursor of many aromatic compounds including |FRAME: TRP|, |FRAME: PHE|, and several other essential compunds, as shown in the |FRAME: ALL-CHORISMATE-PWY|.
+COMMENT - /
+COMMENT - /For more information about |FRAME: TYR| biosynthesis, see |FRAME: TYRSYN|.
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+PATHWAY-LINKS - (PHOSPHO-ENOL-PYRUVATE GLYCOLYSIS)
+PATHWAY-LINKS - (ERYTHROSE-4P NONOXIPENT-PWY)
+PREDECESSORS - (CHORISMATEMUT-RXN CHORISMATE-SYNTHASE-RXN)
+PREDECESSORS - ARO-PWY
+PREDECESSORS - TYRSYN
+PRIMARIES - (2.5.1.19-RXN (SHIKIMATE-5P) NIL)
+PRIMARIES - (DAHPSYN-RXN (PHOSPHO-ENOL-PYRUVATE ERYTHROSE-4P) NIL)
+REACTION-LAYOUT - (TYRSYN (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (ARO-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - TYRSYN
+REACTION-LIST - ARO-PWY
+SUB-PATHWAYS - TYRSYN
+SUB-PATHWAYS - ARO-PWY
+//
+UNIQUE-ID - PWY-6578
+TYPES - 7-Keto-8-aminopelargonate-Biosynthesis
+COMMON-NAME - 8-amino-7-oxononanoate biosynthesis III
+CITATIONS - :EV-COMP-AINF:3505144170:caspi
+KEY-REACTIONS - 7KAPSYN-RXN
+PREDECESSORS - (7KAPSYN-RXN 6-CARBOXYHEXANOATE--COA-LIGASE-RXN)
+PRIMARIES - (7KAPSYN-RXN (CPD-558) (8-AMINO-7-OXONONANOATE))
+PRIMARIES - (6-CARBOXYHEXANOATE--COA-LIGASE-RXN (CPD-205) (CPD-558))
+REACTION-LAYOUT - (7KAPSYN-RXN (:LEFT-PRIMARIES CPD-558) (:DIRECTION :L2R) (:RIGHT-PRIMARIES 8-AMINO-7-OXONONANOATE))
+REACTION-LAYOUT - (6-CARBOXYHEXANOATE--COA-LIGASE-RXN (:LEFT-PRIMARIES CPD-205) (:DIRECTION :L2R) (:RIGHT-PRIMARIES CPD-558))
+REACTION-LIST - 7KAPSYN-RXN
+REACTION-LIST - 6-CARBOXYHEXANOATE--COA-LIGASE-RXN
+SYNONYMS - 7-keto-8-aminopelargonate biosynthesis III
+//
+UNIQUE-ID - PWY-6901
+TYPES - Sugars-And-Polysaccharides-Degradation
+TYPES - Super-Pathways
+COMMON-NAME - glucose and xylose degradation
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - <b>Background</b>
+COMMENT - /
+COMMENT - /There is renewed interest in lignocellulosic biomass as a renewable feedstock for the production of |FRAME: ETOH| and other chemicals as result of increasing fuel costs and limited resources for fossil fuels |CITS: [16672461]|.  |FRAME: ETOH "Ethanol"| production from lignocellulose is not a straightforward process. |FRAME: CELLULOSE| and |FRAME: Hemicelluloses| form a complex with |FRAME: Lignins "lignin"| and need to be liberated first by delignification. |FRAME: CELLULOSE| and |FRAME: Hemicelluloses| then need to be depolymerized to release free sugars such as |FRAME: Glucose "glucose"| and |FRAME: XYLOSE "xylose" |. These mixed hexose and pentose sugars then require fermentation to produce |FRAME: ETOH| |CITS: [9246788]|.
+COMMENT - /
+COMMENT - /With the release of |FRAME: CELLULOSE| and |FRAME: Hemicelluloses| from delignification, low acid concentrations will hydrolyze |FRAME: Hemicelluloses| into monomeric sugars, while fungal cellulases are required to hydrolyze |FRAME: CELLULOSE| to glucose in a process called saccharification |CITS: [16209550]|. Fermentation of glucose to ethanol is also carried out by fungal cellulases which function optimally at 50&deg;C and pH 5.0 |CITS: [10514249]|. The component pentose sugar of hemicellulose, xylose is not easily converted to ethanol by any organism but can be converted to lactate by lactic acid bacteria using the |FRAME: P122-PWY| pathway |CITS: [1660563]|. |FRAME: Lactate "Lactate"| can be used as a source of lactic acid polymers to create biodegradeable plastics |CITS: [15269531]|. The conversion of xylose to lactate by lactic acid bacteria has limitations industrially as two of the five carbons in the pentose are converted to |FRAME: ACET| |CITS: [11800488]|.
+COMMENT - /
+COMMENT - /
+COMMENT - /<b>About this Pathway</b>
+COMMENT - /
+COMMENT - / |FRAME: TAX-1398| is a newly identified Gram-positive thermophilic bacterial strain that can grow and ferment at pH 5.0 and temperatures of 60&deg;C, conditions optimal for the hydrolysis of cellulose by fungal cellulases |CITS: [15269531]|. This strain can convert both glucose and xylose to lactate |CITS: [16672461]|. The conversion of xylose to lactate in |FRAME: TAX-1398| utilizes the |FRAME: NONOXIPENT-PWY|, unlike in other lactic acid bacteria which utilize the |FRAME: P122-PWY| pathway |CITS: [1660563]|.
+COMMENT - /
+COMMENT - /It should be noted that while |FRAME: TAX-1398| is thermophilic, and fungal cellulases function optimally at 50&deg;C, one of the enzymes in this pathway |FRAME: CPLX-8356| is thermolabile, and is rendered non-functional at 55&deg;C |CITS: [7462149]|.
+COMMENT - /
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - brito
+PREDECESSORS - (RIB5PISOM-RXN RXN-9952)
+PREDECESSORS - (GAPOXNPHOSPHN-RXN 2TRANSKETO-RXN)
+PREDECESSORS - (2TRANSKETO-RXN XYLULOKIN-RXN)
+PREDECESSORS - PENTOSE-P-PWY
+PREDECESSORS - (DLACTDEHYDROGNAD-RXN PEPDEPHOS-RXN)
+PREDECESSORS - (L-LACTATE-DEHYDROGENASE-RXN PEPDEPHOS-RXN)
+PREDECESSORS - (PEPDEPHOS-RXN 2PGADEHYDRAT-RXN)
+PREDECESSORS - (2PGADEHYDRAT-RXN 3PGAREARR-RXN)
+PREDECESSORS - (3PGAREARR-RXN PHOSGLYPHOS-RXN)
+PREDECESSORS - (PHOSGLYPHOS-RXN GAPOXNPHOSPHN-RXN)
+PREDECESSORS - XYLCAT-PWY
+PRIMARIES - (2TRANSKETO-RXN (XYLULOSE-5-PHOSPHATE) (GAP))
+PRIMARIES - (L-LACTATE-DEHYDROGENASE-RXN (PYRUVATE) (L-LACTATE))
+PRIMARIES - (PEPDEPHOS-RXN (PHOSPHO-ENOL-PYRUVATE) (PYRUVATE))
+REACTION-LAYOUT - (PENTOSE-P-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (2TRANSKETO-RXN (:LEFT-PRIMARIES XYLULOSE-5-PHOSPHATE ERYTHROSE-4P) (:DIRECTION :L2R) (:RIGHT-PRIMARIES GAP FRUCTOSE-6P))
+REACTION-LAYOUT - (DLACTDEHYDROGNAD-RXN (:LEFT-PRIMARIES D-LACTATE) (:DIRECTION :R2L) (:RIGHT-PRIMARIES PYRUVATE))
+REACTION-LAYOUT - (L-LACTATE-DEHYDROGENASE-RXN (:LEFT-PRIMARIES L-LACTATE) (:DIRECTION :R2L) (:RIGHT-PRIMARIES PYRUVATE))
+REACTION-LAYOUT - (PEPDEPHOS-RXN (:LEFT-PRIMARIES PYRUVATE) (:DIRECTION :R2L) (:RIGHT-PRIMARIES PHOSPHO-ENOL-PYRUVATE))
+REACTION-LAYOUT - (2PGADEHYDRAT-RXN (:LEFT-PRIMARIES 2-PG) (:DIRECTION :L2R) (:RIGHT-PRIMARIES PHOSPHO-ENOL-PYRUVATE))
+REACTION-LAYOUT - (3PGAREARR-RXN (:LEFT-PRIMARIES 2-PG) (:DIRECTION :R2L) (:RIGHT-PRIMARIES G3P))
+REACTION-LAYOUT - (PHOSGLYPHOS-RXN (:LEFT-PRIMARIES G3P) (:DIRECTION :R2L) (:RIGHT-PRIMARIES DPG))
+REACTION-LAYOUT - (GAPOXNPHOSPHN-RXN (:LEFT-PRIMARIES GAP) (:DIRECTION :L2R) (:RIGHT-PRIMARIES DPG))
+REACTION-LAYOUT - (XYLCAT-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - PENTOSE-P-PWY
+REACTION-LIST - 2TRANSKETO-RXN
+REACTION-LIST - DLACTDEHYDROGNAD-RXN
+REACTION-LIST - L-LACTATE-DEHYDROGENASE-RXN
+REACTION-LIST - PEPDEPHOS-RXN
+REACTION-LIST - 2PGADEHYDRAT-RXN
+REACTION-LIST - 3PGAREARR-RXN
+REACTION-LIST - PHOSGLYPHOS-RXN
+REACTION-LIST - GAPOXNPHOSPHN-RXN
+REACTION-LIST - XYLCAT-PWY
+SUB-PATHWAYS - PENTOSE-P-PWY
+SUB-PATHWAYS - XYLCAT-PWY
+//
+UNIQUE-ID - HEXITOLDEGSUPER-PWY
+TYPES - SUGAR-ALCOHOLS-DEG
+TYPES - Super-Pathways
+COMMON-NAME - superpathway of hexitol degradation (bacteria)
+CITATIONS - :EV-COMP-AINF:3601235850:fulcher
+COMMENT - Of the ten existing hexitols (|FRAME: CPD-15703|, |FRAME: CPD-12811|, |FRAME: CPD-15702|, |FRAME: SORBITOL|, |FRAME: CPD-12810|, |FRAME: MANNITOL|, |FRAME: CPD-15701|, |FRAME: CPD-357|, |FRAME: CPD-369| and |FRAME: GALACTITOL|) only three occur naturally - |FRAME: MANNITOL|, |FRAME: SORBITOL| (also known as D-glucitol), and |FRAME: GALACTITOL| (owing to symmetry, D- and L-galactitol are identical).
+COMMENT - /|FRAME: MANNITOL| is the most abundant polyol in nature, and is found in bacteria, fungi, algae, lichens and vascular plants.
+COMMENT - /
+COMMENT - /All three naturally-occurring hexitols can be utilized by bacteria as a total source of carbon and energy.
+COMMENT - /Each of these hexitols enters the cell via a specific phosphotransferase system, so the first intracellular species is the 6-phospho-derivative |CITS: [1100608]| (note that due to symmetry of |FRAME: MANNITOL| and |FRAME: GALACTITOL|, their phosphorylation at either end produces the same molecule. When these molecules are phosphorylated at the 6 position by the PTS system, the resulting molecules are named |FRAME: MANNITOL-1P| and |FRAME: GALACTITOL-1-PHOSPHATE|, respectively, by conventional nomenclature rules).
+COMMENT - /
+COMMENT - /In all three cases this sugar alcohol phosphate becomes the substrate for a dehydrogenase that oxidizes its 2-alcohol group to a keto group. In the cases of |FRAME: MANNITOL| and |FRAME: SORBITOL|, the resulting keto sugar phosphate is |FRAME: FRUCTOSE-6P|, an intermediate of glycolysis, and hence it flows through the pathways of central metabolism to satisfy the cell's need for precursor metabolites, reducing power, and metabolic energy |CITS: [6384188][2111176]|.
+COMMENT - /
+COMMENT - /In the case of |FRAME: GALACTITOL-1-PHOSPHATE|, however, the product of the dehydrogenation is |FRAME: TAGATOSE-6-PHOSPHATE|, which becomes the substrate of a kinase and subsequently an aldolase (in a pair of reactions that parallel those of glycolysis) before it is converted into intermediates (|FRAME: GAP| and
+COMMENT - /|FRAME: DIHYDROXY-ACETONE-PHOSPHATE|) of glycolysis |CITS: [8955298]|.
+CREDITS - fulcher
+CREDITS - SRI
+CREDITS - caspi
+PREDECESSORS - (6PFRUCTPHOS-RXN RXN-14812)
+PREDECESSORS - (GAPOXNPHOSPHN-RXN TAGAALDOL-RXN)
+PREDECESSORS - (6PFRUCTPHOS-RXN MANNPDEHYDROG-RXN)
+PREDECESSORS - PWY-5484
+PREDECESSORS - GALACTITOLCAT-PWY
+PREDECESSORS - SORBDEG-PWY
+PREDECESSORS - MANNIDEG-PWY
+PRIMARIES - (MANNPDEHYDROG-RXN (MANNITOL-1P) NIL)
+REACTION-LAYOUT - (PWY-5484 (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (GALACTITOLCAT-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (SORBDEG-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LAYOUT - (MANNIDEG-PWY (:LEFT-PRIMARIES) (:DIRECTION :L2R) (:RIGHT-PRIMARIES))
+REACTION-LIST - PWY-5484
+REACTION-LIST - GALACTITOLCAT-PWY
+REACTION-LIST - SORBDEG-PWY
+REACTION-LIST - MANNIDEG-PWY
+SUB-PATHWAYS - PWY-5484
+SUB-PATHWAYS - GALACTITOLCAT-PWY
+SUB-PATHWAYS - SORBDEG-PWY
+SUB-PATHWAYS - MANNIDEG-PWY//

@@ -8,7 +8,7 @@ Nest building module for tuatara.
 # TODO: add logging
 # TODO: Write docstring
 # TODO: direct logging to register
-# TODO: conflict reactions are commented
+# TODO: conflict reactions should be commented (or left to user to deal with?)
 
 
 import csv
