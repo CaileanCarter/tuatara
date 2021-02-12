@@ -88,7 +88,7 @@ class LP:
         Editor(filename=PATH)
 
     @staticmethod
-    def plot(model, lp):
+    def plot(model, lp, exclude=None, focus=None):
 
         G = nx.Graph()
         G.add_nodes_from([reac for reac in lp.keys()])
@@ -99,26 +99,36 @@ class LP:
                                 } for reac in lp.keys()
                                 }
 
+        if exclude == "default":
+            exclude = ["NADP", "NAD", "NADPH", "Pi", "PROTON", "WATER", "ADP", "ATP", "NADH", "PPI"]
+
         for reaction, values in reactions.items():
 
-            products = values["products"]
+            if exclude:
+                products = [product for product in values["products"] if product not in exclude]
+            elif focus:
+                products = [product for product in values["products"] if product in focus]
+            else:
+                products = values["products"]
 
             for r, v in reactions.items():
+                
+                if exclude:
+                    reactants = [reactant for reactant in v["reactants"] if reactant not in exclude]
+                elif focus:
+                    reactants = [reactant for reactant in v["reactants"] if reactant in focus]
+                else:
+                    reactants = v["reactants"]
 
-                reactants = v["reactants"]
-
-                if SetUtils.does_intersect(products, reactants):
+                if products and reactants and SetUtils.does_intersect(products, reactants):
 
                     G.add_edge(reaction, r)
         
         hub = sorted(G.degree(), key=itemgetter(1))[-1][0]
 
         ego_plot = nx.ego_graph(G, hub)
-
-        
         nx.draw(ego_plot, with_labels=True, pos=nx.spring_layout(G), edge_color='c')
         plt.show()
-
 
 
 class Model:

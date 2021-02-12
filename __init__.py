@@ -33,6 +33,7 @@ from .nest import (
 # TODO: Add extra functionality to scanner gui
 # TODO: write API reference
 # TODO: sort out register (is it necessary?)
+# TODO: create script to keep copy in main drive
 
 
 logging.basicConfig(level=logging.INFO, format="tuatara - %(levelname)s - %(message)s")

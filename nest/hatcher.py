@@ -139,7 +139,11 @@ def hatch(m, egg=None, fromspy=False):
         raise ValueError("Expected egg or fromspy argument.")
 
     reactions, removals = _parse_file(egg_path)
-    m.DelReactions(removals)
+    new_model = m.copy()
+    new_model.DelReactions(removals)
     for reaction in reactions:
-        m.sm.NewReaction(reaction.name, reaction.StoMat, reaction.direction)
-    return m
+        try:
+            new_model.sm.NewReaction(reaction.name, reaction.StoMat, reaction.direction)
+        except TypeError:
+            continue
+    return new_model
