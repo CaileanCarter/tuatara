@@ -1,5 +1,5 @@
 import logging
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 from os import path
 
 import numpy as np
@@ -7,23 +7,24 @@ import networkx as nx
 from operator import itemgetter
 import matplotlib.pyplot as plt
 from ScrumPy.Bioinf import PyoCyc
-from ..core.GUI import Editor
-from .utils import SetUtils, HidePrints
+from ..core.GUI import Editor, LPTable
+from .utils import SetUtils, HidePrints, split_reaction
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
 
-
-# TODO: fix core functions
 # TODO: make a standalone gist file out of this module
 
 
 class LP:
 
+    def __init__(self): raise TypeError("Object cannot be initialised.")
+
     @staticmethod
-    def build(model, 
-                fluxdict=None, 
+    def build(
+                model, 
                 reaction=None, 
+                fluxdict=None, 
                 flux=1, 
                 block_uptake=False, 
                 suffix="_tx",  
@@ -67,6 +68,7 @@ class LP:
 
     @staticmethod
     def prints(model, lp):
+        """Print lp with flux value and reactions. \nParameters: model and lp."""
         for key, value in lp.items():
             print(value, model.smx.ReacToStr(key))
 
@@ -78,17 +80,111 @@ class LP:
 
     @staticmethod
     def show(model, lp):
+        """
+        View LP in an Editor Window. Ideal for LPs with large contents without slowing down shell.
+
+            Parameters:
+                model (obj) : model
+                lp (obj) : lp
+        """
         DIR = path.dirname(path.realpath(__file__))
         PATH = path.join(DIR, "LP.tua")
 
         with open(PATH, 'w') as LPfile:
             for key, value in lp.items():
-                LPfile.write(f"{value} {model.smx.ReacToStr(key)}\n")
+                LPfile.write("{:.2f} {}\n".format(value, model.smx.ReacToStr(key)))
 
         Editor(filename=PATH)
 
+
     @staticmethod
-    def plot(model, lp, exclude=None, focus=None):
+    def tabulate(model, lp, output=None, reaction=None, exclude=None, include=None):
+        """
+        Show LP in a table 
+
+            Parameters:
+                model (obj) : model
+                lp (obj) : lp
+                output (str) : (optional) output to a text file as tab seperated
+                reaction (str) : (optional) name of reaction with constraint (for header)
+                exclude (list) : exclude given metabolites
+                include(list) : include only given metabolites
+            
+        """        
+        tableGUI = LPTable()
+
+        if exclude == "default":
+            exclude = ["NADP", "NAD", "NADPH", "Pi", "PROTON", "WATER", "ADP", "ATP", "NADH", "PPI"]
+
+        def filter_reaction(items):
+            if exclude:
+                return [item for item in items if item not in exclude]
+            elif include:
+                return [item for item in items if item in include]
+            else:
+                return items
+        
+        if output:
+            filehandle = open(output, 'w')
+            filehandle.write("Flux\tName\tReaction\tFrom\tTo")
+        
+        table = {}
+        for reaction, flux in lp.items():
+            table.update({reaction: {
+                                "flux" : "{:.2f}".format(flux),
+                                "reaction" : None,
+                                "from" : [],
+                                "to" : []
+                                }})
+            
+            reac = split_reaction(model.smx.ReacToStr(reaction)[:-2])
+            table[reaction]["reaction"] = " + ".join(reac.substrates) + " " + reac.direction + " " + " + ".join(reac.products)
+
+            substrates = filter_reaction(model.smx.Reactants(reaction))
+            products = filter_reaction(model.smx.Products(reaction))
+
+            for reaction_b in lp.keys():
+                if reaction_b != reaction:
+                    substrates_b = filter_reaction(model.smx.Reactants(reaction_b))
+                    products_b = filter_reaction(model.smx.Products(reaction_b))
+
+                    if SetUtils.does_intersect(substrates, products_b):
+                        table[reaction]["from"].append(reaction_b)
+                    if SetUtils.does_intersect(substrates_b, products):
+                        table[reaction]["to"].append(reaction_b)
+
+            result = table[reaction]
+
+            tableGUI.insert_data(
+                            result["flux"],
+                            reaction,
+                            result["reaction"],
+                            ", ".join(result["from"]),
+                            ", ".join(result["to"])
+            )
+            if output:
+                filehandle.write("{flux}\t{name}\t{reaction}\t{From}\t{To}".format(
+                            flux=result["flux"],
+                            name=reaction,
+                            reaction=result["reaction"],
+                            From=", ".join(result["from"]),
+                            To=", ".join(result["to"])
+                ))
+
+
+    @staticmethod
+    def plot(model, lp, exclude=None, include=None):
+
+        """
+        Plot LP as a network graph.
+
+            Parameters:
+                model (obj) : model
+                lp (obj) : lp
+                exclude (list) : a list of metabolites to exclude (or use 'default')
+                include (list) : a list of metabolites to only include
+
+        """
 
         G = nx.Graph()
         G.add_nodes_from([reac for reac in lp.keys()])
@@ -102,37 +198,29 @@ class LP:
         if exclude == "default":
             exclude = ["NADP", "NAD", "NADPH", "Pi", "PROTON", "WATER", "ADP", "ATP", "NADH", "PPI"]
 
-        for reaction, values in reactions.items():
-
+        def filter_reaction(items):
             if exclude:
-                products = [product for product in values["products"] if product not in exclude]
-            elif focus:
-                products = [product for product in values["products"] if product in focus]
+                return [item for item in items if item not in exclude]
+            elif include:
+                return [item for item in items if item in include]
             else:
-                products = values["products"]
+                return items
 
-            for r, v in reactions.items():
-                
-                if exclude:
-                    reactants = [reactant for reactant in v["reactants"] if reactant not in exclude]
-                elif focus:
-                    reactants = [reactant for reactant in v["reactants"] if reactant in focus]
-                else:
-                    reactants = v["reactants"]
-
+        for reaction, values in reactions.items():
+            products = filter_reaction(values["products"])
+            for reaction_b, values_b in reactions.items():
+                reactants = filter_reaction(values_b["reactants"])
                 if products and reactants and SetUtils.does_intersect(products, reactants):
-
-                    G.add_edge(reaction, r)
+                    G.add_edge(reaction, reaction_b)
         
         hub = sorted(G.degree(), key=itemgetter(1))[-1][0]
-
         ego_plot = nx.ego_graph(G, hub)
         nx.draw(ego_plot, with_labels=True, pos=nx.spring_layout(G), edge_color='c')
         plt.show()
 
 
 class Model:
-    #TODO: move to nest scripts
+    #TODO: move to nest scripts?
 
     def __init__(self): raise TypeError("Object cannot be initialised.")
         
@@ -174,196 +262,208 @@ class Model:
 
 
     @staticmethod
-    def check_biomass_production(model, reactions=None, flux=-1, **kwargs):
+    def check_biomass_production(model, reactions=None, flux=-1, suffix="_BM_tx", **kwargs):
         """
-        Check model's biomass production.
+        Check model's biomass production by .
 
             Parameters:
                 model (obj) : model
                 reactions (list) : dictionary of reaction flux
                 flux (int) : reaction flux
-                **kwargs : keyword arguments for build
+                suffix (str) : suffix denoting a biomass transporter
+                **kwargs : keyword arguments for build LP
             Returns:
                 rv (dict) : dictionary of biomass solutions
-
-        pre: True
-        post: the lp solution for production of each biomass components
         """
         rv = {}
 
-        bm = reactions if reactions else filter(lambda x : x.endswith('_bm_tx'), model.sm.cnames) 
+        bm = reactions if reactions else filter(lambda x : x.endswith(suffix), model.sm.cnames) 
         
+        log.info("Checking biomass production... this may take a minute.")
         for reac in bm:
-            sol = LP.build(model, reaction=reac, flux=flux, **kwargs)
+            with HidePrints():
+                sol = LP.build(model, reaction=reac, flux=flux, **kwargs)
             if sol:
                 rv[reac] = sol
             else:
-                log.info(reac)
+                log.info(f"No solution found for {reac}")
         return rv
 	
 
     @staticmethod
-    def transporters(m):
-        # TODO: ensure captures transporters properly
+    def transporters(model, stdout=None, include=None, only=None):
         """ 
-        Get a dictionary of all transporters present in model broken down.
+        Get a dictionary of all transporters present in model by suffix.
 
             Parameters:
                 m (obj) : model
+                stdout (bool) : print transporters
+                include (list) : include suffixes to find in reactions
+                only (list) : only showed specified suffixes
         
             Returns:
-                (rv, tx_tags) (tuple) :
-                            rv (dict) : reactions
-                            tx_tags (dict) :  reaction tag definitions
+                reactions (dict) : reaction suffix (key) and reactions (values : list)
+
+        Transporter tags:
+            _tx        = all
+            s_tx       = optional-substrates
+            bm_tx      = biomass
+            aa_bm_tx   = amino acids
+            nt_bm_tx   = nucleotides
+            w_bm_tx    = cell wall
+            l_bm_tx    = cell lipids
+            vit_bm_tx  = biomass specific vitamins
+            co_bm_tx   = biomass specific cofactors
+            f_tx       = fermentation
+            em_tx      = essential micronutrient
+            n_tx       = nitrogen source
+            sf_tx      = substrate/fermentation (transports met which is both f-product and substrate)
+            sup_tx     = supplementary nutrients e.g. vitamins
+            hp_tx      = heterologous product
         """
 
-        tx_tags = {
-            'stx'       : "optional-substrates",
-            'bmtx'      : "biomass",
-            'aa_bmtx'   : "amino acids",
-            'nt_bmtx'   : "nucleotides",
-            'w_bmtx'    : "cell wall",
-            'l_bmtx'    : "cell lipids",
-            'vit_bmtx'  : "biomass specific vitamins",
-            'co_bmtx'   : "biomass specific cofactors",
-            'ftx'       : "fermentation",
-            'emtx'      : "essential micronutrient",
-            'ntx'       : "nitrogen source",
-            'sftx'      : "substrate/fermentation (transports met which is both f-product and substrate)",
-            'sup'       : "supplementary nutrients e.g. vitamins",
-            'hptx'      : "heterologous product",
-            'all'       : "all"
-        }
+        suffixes = ["_tx","s_tx","bm_tx","aa_bm_tx","nt_bm_tx","w_bm_tx","l_bm_tx",
+                    "vit_bm_tx","co_bm_tx","f_tx","em_tx","n_tx","sf_tx","sup_tx","hp_tx"]
+        if only:
+            suffixes = only
+        elif include:
+            suffixes += include
+        reactions = {suffix : [] for suffix in suffixes}
 
-        rv = {}
+        for reaction in model.sm.cnames:
+            result = set((suffix for suffix in suffixes if reaction.endswith(suffix)))
+            if result:
+                for transporter in result:
+                    reactions[transporter].append(reaction)
+        
+        if stdout:
+            log.info("Suffix \tNumber of reactions\n---------------------------------------------------")
+            for suffix, reaction_list in reactions.items():
+                log.info("{0:<10} {1:>7.0f}".format(suffix, len(reaction_list)))
 
-        rv['stx'] = list(filter(lambda s: "s_tx" in s, m.sm.cnames))            # optional-substrates (carbon/energy sources)
-        rv['bmtx'] = list(filter(lambda s: "bm_tx" in s, m.sm.cnames))          # biomass
-        rv['aa_bmtx'] = list(filter(lambda s: "aa_bm_tx" in s, m.sm.cnames))    # amino acids
-        rv['nt_bmtx'] = list(filter(lambda s: "nt_bm_tx" in s, m.sm.cnames))    # nucleotides
-        rv['w_bmtx'] = list(filter(lambda s: "w_bm_tx" in s, m.sm.cnames))      # cell wall
-        rv['l_bmtx'] = list(filter(lambda s: "l_bm_tx" in s, m.sm.cnames))      # cell lipids
-        rv['vit_bmtx'] = list(filter(lambda s: "vit_bm_tx" in s, m.sm.cnames))  # biomass specific vitamins
-        rv['co_bmtx'] = list(filter(lambda s: "co_bm_tx" in s, m.sm.cnames))    # biomass specific cofactors
-        rv['ftx'] = list(filter(lambda s: "f_tx" in s, m.sm.cnames))            # fermentation
-        rv['emtx'] = list(filter(lambda s: "em_tx" in s, m.sm.cnames))          # essential micronutrient
-        rv['ntx'] = list(filter(lambda s: "n_tx" in s, m.sm.cnames))            # nitrogen source
-        rv['sftx'] = list(filter(lambda s: "sf_tx" in s, m.sm.cnames))          # substrate/fermentation (transports met which is both f-product and substrate)
-        rv['sup'] = list(filter(lambda s: "sup_tx" in s, m.sm.cnames))          # supplementary nutrients e.g. vitamins
-        rv['hptx'] = list(filter(lambda s: "hp_tx" in s, m.sm.cnames))          # a heterologous product
-        rv['all'] = list(filter(lambda s: "_tx" in s, m.sm.cnames))             # all transporters
-
-        return rv, tx_tags
-
-
-    @staticmethod
-    def transportersLong(m):
-
-        transp, _ = Model.transporters(m)
-        print ("*transporters total:  ", len(transp['tx']))
-        print ("\t-> substrates:  ", len(transp['stx'])+len(transp['sftx']))
-        print ("\t-> essential micronutrients:  ", len(transp['emtx']))
-        print ("\t-> nitrogen source:  ", len(transp['ntx']))
-        print ("\t-> supplementary substrates (e.g. vitamins):  ", len(transp['sup']))
-        print ("\t-> biomass precursors:  ", len(transp['bmtx']))
-        print ("\t-> fermentation products:  ", len(transp['ftx']))
-        print ("\t-> heterlogous products:  ", len(transp['hptx']))
-        print ("\tNote - both substrates and products", transp['sftx'])
+        return reactions
 
 
     #get metabolites from list of reactions
     @staticmethod
-    def get_mets(m, reacs):
-        """pre: model, [reacs]
-        post: [all mets in sol]"""
-
-        rv = []
-        
-        for i in reacs:
-            for met in m.sm.InvolvedWith(i):
-                if met not in rv:
-                    rv.append(met)
-        return rv
+    def reac_to_mets(m, reacs): return set((met for met in m.sm.InvolvedWith(reac) for reac in reacs))
 
 
     @staticmethod
-    def connects(m):
-        connected ={}
-        for met in m.sm.rnames:
-            connected[met] = m.sm.Connectedness(met)
-        rv = sorted(connected.items(), key=lambda c:c[1], reverse=True)
-        return rv
+    def connects(model):
+        connected = {met : model.sm.Connectedness(met) for met in model.sm.rnames}
+        return sorted(connected.items(), key=lambda c:c[1], reverse=True)
 
 
     @staticmethod
-    def ESubsets(m, returnMore=False):
+    def count_enzsubsets(model):
 
-        one = [] ; two = [] ; three = [] ; four = [] ; five = [] ; more = []
-        
-        subsets = m.EnzSubsets()
-        
-        for sub in subsets.keys():
-            if len(subsets[sub]) == 1:
-                one.append(sub)
-            elif len(subsets[sub]) == 2:
-                two.append(sub)
-            elif len(subsets[sub]) == 3:
-                three.append(sub)
-            elif len(subsets[sub]) == 4:
-                four.append(sub)
-            elif len(subsets[sub]) == 5:
-                five.append(sub)
-            elif len(subsets[sub]) > 5:
-                more.append(sub)
+        subsets_dict = defaultdict(list)
+        subsets = model.EnzSubsets()
 
-        if not returnMore:
-            return len(one),len(two),len(three),len(four),len(five),len(more)
-        else:
-            subsetDic = {}
-            subsetDic['one'] = one
-            subsetDic['two'] = two
-            subsetDic['three'] = three
-            subsetDic['four'] = four
-            subsetDic['five'] = five
-            subsetDic['moreThanFive'] = more
-            subsetDic['all'] = subsets
-            
-            return subsetDic
+        for sub, reacs in subsets.items():
+            num_reacs = len(reacs)
+            if num_reacs <= 5:
+                subsets_dict[num_reacs].append(sub)
+            else:
+                subsets_dict["more"].append(sub)
+
+        return subsets_dict       
 
 
     @staticmethod
-    def ShortSummary(m):
+    def summary(model, output=None):
+        log.info("Preparing summary... this may take a minute.")
+        reacs = len([reac for reac in model.sm.cnames if not reac.endswith("_tx")])
+        mets = len(model.sm.rnames)
 
-        print ("reactions: ", len(filter(lambda x: "_tx" not in x, m.sm.cnames)))
-        print ("metabolites: ", len(m.sm.rnames))
-        print ("transporters:", len(filter(lambda x: "_tx" in x, m.sm.cnames)))
+        transp = Model.transporters(model)
 
-
-    @staticmethod
-    def LongSummary(m):
-
-        print ("*reactions:", len(filter(lambda x: "_tx" not in x, m.sm.cnames)))
-        print ("*metabolites: ", len(m.sm.rnames) )
-        Model.transportersLong(m)
-
-        dead = m.DeadReactions()
-        inPercentD = round(100.0/len(m.sm.cnames)*(len(m.sm.cnames)-len(dead)),1)
+        num_dead = len(model.DeadReactions())
+        inPercentD = round(100.0/len(model.sm.cnames)*(len(model.sm.cnames)-num_dead),1)
         
-        orph = m.OrphanMets()
-        inPercentO = round(100.0/len(m.smx.rnames)*(len(m.smx.rnames)-len(orph)),1)
+        orph = len(model.OrphanMets())
+        inPercentO = round(100.0/len(model.smx.rnames)*(len(model.smx.rnames)-orph),1)
         
-        sSet = Model.ESubsets(m)
-        connecMets = Model.connects(m)
-        cycles = m.MaxCycles() #internal cycles?
-        #ping = m.PingConc() #doesn't work, but what is perturbing concentrations?...
+        enzsubsets = Model.count_enzsubsets(model)
+        connected_metabolites = Model.connects(model)
+        cycles = len(model.MaxCycles()) # internal cycles?
 
-        print ("\n*dead reactions: ", len(dead), "("+ str(inPercentD)+r"% live)")
-        print ("*orphan mets: ", len(orph), "("+ str(inPercentO)+"% not orphans)")
-        print ("*internal cycles: ", len(cycles))
-        print ("\n*enzyme subsets (grouped by #reacs in set):  " \
-        "one: ",sSet[0],", two: ",sSet[1],", three: ",sSet[2],", four: ", \
-        sSet[3],", five: ",sSet[4],", more: ",sSet[5])
-        print ("\n*top 15 connected mets: ", connecMets[:15])
+        top_ten = "\n\t".join([f"{position} {reac[0]} \twith {reac[1]} connections" for position, reac in enumerate(connected_metabolites[:10], start=1)])
+
+        statement = r"""
+        tuatara - summary of model
+
+        MAIN
+        Reactions:          {reacs}
+        Metabolites:        {mets}
+        Dead Reactions:     {num_dead} ({inPercentD}% live)
+        Orphan metabolites: {orph} ({inPercentO}% not orphans)
+        Internal cycles:    {cycles}
+
+        TRANSPORTERS
+        all                                                    {all}
+        (stx)      optional-substrates                         {stx}
+        (bmtx)     biomass                                     {bmtx}
+        (aa_bmtx)  amino acids                                 {aa_bmtx}
+        (nt_bmtx)  nucleotides                                 {nt_bmtx}
+        (w_bmtx)   cell wall                                   {w_bmtx}
+        (l_bmtx)   cell lipids                                 {l_bmtx}
+        (vit_bmtx) biomass specific vitamins                   {vit_bmtx}
+        (co_bmtx)  biomass specific cofactors                  {co_bmtx}
+        (ftx)      fermentation                                {ftx}
+        (emtx)     essential micronutrient                     {emtx}
+        (ntx)      nitrogen source                             {ntx}
+        (sftx)     substrate/fermentation                      {sftx}
+        (transports metetabolites which is both f-product and substrate)
+        (sup)      supplementary nutrients e.g. vitamins       {sup}
+        (hptx)     heterologous product                        {hptx}
+        
+        ENZYME SUBSETS (grouped by number of reactions in set)
+        One         {one}
+        Two         {two}
+        Three       {three}
+        Four        {four}
+        Five        {five}
+        More        {more}
+
+        TOP 10 CONNECTED METABOLITES
+        {top_ten}
+
+        END
+        """.format(
+            reacs=reacs,
+            mets=mets,
+            num_dead=num_dead, inPercentD=inPercentD,
+            orph=orph, inPercentO=inPercentO,
+            cycles=cycles,
+            all=len(transp["_tx"]),
+            stx=len(transp["s_tx"]),
+            bmtx=len(transp["bm_tx"]),
+            aa_bmtx=len(transp["aa_bm_tx"]),
+            nt_bmtx=len(transp["nt_bm_tx"]),
+            w_bmtx=len(transp["w_bm_tx"]),
+            l_bmtx=len(transp["l_bm_tx"]),
+            vit_bmtx=len(transp["vit_bm_tx"]),
+            co_bmtx=len(transp["co_bm_tx"]),
+            ftx=len(transp["f_tx"]),
+            emtx=len(transp["em_tx"]),
+            ntx=len(transp["n_tx"]),
+            sftx=len(transp["sf_tx"]),
+            sup=len(transp["sup_tx"]),
+            hptx=len(transp["hp_tx"]),
+            one=len(enzsubsets[1]),
+            two=len(enzsubsets[2]),
+            three=len(enzsubsets[3]),
+            four=len(enzsubsets[4]),
+            five=len(enzsubsets[5]),
+            more=len(enzsubsets["more"]),
+            top_ten=top_ten
+        )
+        print(statement)
+
+        if output:
+            with open(output, 'w') as out: out.write(statement)
 
 
 class DataBases:
@@ -392,7 +492,7 @@ class DataBases:
 
         
     @staticmethod
-    def compare(*args, names=None, GeneAsso=True, commons=True, uniques=True, summary=False, **kwargs):
+    def compare(*args, names=None, GeneAsso=True, commons=True, uniques=True, summary=True, **kwargs):
 
         master = {}
 
