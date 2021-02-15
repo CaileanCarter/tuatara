@@ -1,0 +1,91 @@
+# This file was made with the tuatara package and should not be
+# directly added to a ScrumPy model. Use the tools provided by
+# tuatara to add to interact with model. 
+
+
+# Egg ID: GL1
+
+########################### REACTIONS WITH CONFLICTS ###########################
+
+
+
+###################### REACTIONS NOT FOUND IN MODEL FILES ######################
+"rm_DNA-LIGASE-NAD+-RXN":
+     "DNA-N" +  "NAD" -> "DEOXYNUCLEOTIDESM" +  "NICOTINAMIDE_NUCLEOTIDE" +  "AMP"
+    ~
+
+"rm_RXN0-5052":
+     "General-Protein-Substrates" +  "WATER" -> "Peptides-holder" +  "Amino-Acids-20"
+    ~
+
+"rm_3.6.3.44-RXN":
+     "WATER" +  "ATP" <> "Xenobiotic" +  "Pi" +  "ADP"
+    ~
+
+"rm_2.7.13.3-RXN":
+     "Protein-Histidines" +  "ATP" -> "Protein-phospho-L-histidines" +  "ADP" +  "PROTON"
+    ~
+
+"rm_2.1.1.72-RXN":
+     "S-ADENOSYLMETHIONINE" +  "DNA-Adenines" -> "ADENOSYL-HOMO-CYS" +  "DNA-6-Methyl-Amino-Purines" +  "PROTON"
+    ~
+
+"rm_ACYLCOADEHYDROG-RXN":
+     "Saturated-Fatty-Acyl-CoA" +  "ETF-Oxidized" +  "PROTON" -> "TRANS-D2-ENOYL-COA" +  "ETF-Reduced"
+    ~
+
+
+########################### REACTIONS WITH ZERO FLUX ###########################
+"rm_R344-RXN":
+     "CPD-694" +  "ATP" <> "CPD-690" +  "P3I"
+    ~
+
+"rm_COBALADENOSYLTRANS-RXN":
+     "ATP" +  "COB-I-ALAMIN" <> "ADENOSYLCOBALAMIN" +  "P3I"
+    ~
+
+"rm_BTUR2-RXN":
+     "COBINAMIDE" +  "ATP" <> "ADENOSYLCOBINAMIDE" +  "P3I"
+    ~
+
+"rm_ADENYLATECYC-RXN":
+     "ATP" <> "CAMP" +  "PPI"
+    ~
+
+"rm_NITRATE-REDUCTASE-NADH-RXN":
+     "NITRITE" +  "WATER" +  "NAD" <> "PROTON" +  "NITRATE" +  "NADH"
+    ~
+
+"rm_FESO3OXI-RXN":
+     "SO3" + 2 "FE+3" +  "WATER" <>2 "PROTON" +  "SULFATE" + 2 "FE+2"
+    ~
+
+"rm_SULFITE-OXIDASE-RXN":
+     "SO3" +  "OXYGEN-MOLECULE" +  "WATER" -> "HYDROGEN-PEROXIDE" +  "SULFATE"
+    ~
+
+"rm_SULFITE-DEHYDROGENASE-RXN":
+     "SO3" + 2 "Cytochromes-C-Oxidized" +  "WATER" <> "SULFATE" + 2 "Cytochromes-C-Reduced"
+    ~
+
+"rm_DTDPDEHYDRHAMEPIM-RXN":
+     "DTDP-DEOH-DEOXY-GLUCOSE" <> "DTDP-DEOH-DEOXY-MANNOSE"
+    ~
+
+
+########################### REACTIONS ADDED TO MODEL ###########################
+"DIMESULFREDUCT-RXN":
+     "DMSO" +  "Menaquinols" <> "CPD-7670" +  "WATER" +  "Menaquinones"
+    ~
+
+"3.1.21.7-RXN":
+     "DNA-N" +  "WATER" -> "3-Hydroxy-Terminated-DNAs" +  "5-Phospho-terminated-DNAs"
+    ~
+
+"XYLONATE-DEHYDRATASE-RXN":
+     "D-XYLONATE" <> "WATER" +  "2-DH-3-DO-D-ARABINONATE"
+    ~
+
+"4.1.2.28-RXN":
+     "2-DH-3-DO-D-ARABINONATE" <> "GLYCOLALDEHYDE" +  "PYRUVATE"
+    ~

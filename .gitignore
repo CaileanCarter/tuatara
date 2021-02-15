@@ -6,4 +6,4 @@ tools/watchlist.txt
 tools/LP.tua
 tools/extras
 nest/registerdemo.yml
-nest/eggs/*.spy
+# nest/eggs/*.spy
