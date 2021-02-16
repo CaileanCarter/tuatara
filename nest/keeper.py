@@ -122,7 +122,7 @@ class RegisterManager:
         pass
 
 
-class nest(RegisterManager):
+class Eggs(RegisterManager):
 
     def __init__(self):
         super().__init__()
