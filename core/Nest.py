@@ -30,12 +30,35 @@ class Nest(dict):
         pass
 
     def __repr__(self):
-        pass
+        return ", ".join(self.__dict__.keys())
 
 
     def __delitem__(self, key):
         del self.__dict__[key]
 
+    def __iter__(self):
+
+        pass
+
+    #--------------------------------------------------
+    #Properties
+
+    @property
+    def columns(self):
+        return self.columns
+    
+
+    @property
+    def index(self):
+        return self.index
+
+
+    #--------------------------------------------------
+    #Methods
+
+    def from_file(self, files):
+        # TODO: accept str, list and dict
+        pass
 
     def apply(self, func, *args, index=None, **kwargs):
         pass
@@ -44,13 +67,11 @@ class Nest(dict):
     def iter(self):
         pass
 
-    def __iter__(self):
-        pass
-
 
     def serialise(self, file=None, **kwargs):
         # TODO: output to pickle
         pass
+
 
     def describe(self):
         pass

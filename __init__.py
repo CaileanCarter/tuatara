@@ -21,7 +21,7 @@ from .core import (
 from .nest import (
                 get_path, 
                 check_egg_exists, 
-                nest, 
+                Eggs, 
                 hatch
                     )
 

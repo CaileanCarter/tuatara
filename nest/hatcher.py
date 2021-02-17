@@ -13,10 +13,22 @@ Functions:
 import re
 from collections import namedtuple
 from itertools import zip_longest
-
+# import copy
 from ..tools.utils import dequote, remove_prefix
 from ..core.GUI import _ask_spy_file
 from .keeper import get_path
+
+
+def new_egg(obj):
+    class Egg(obj.__class__):
+        def __init__(self) : 
+            for attr, value in vars(obj).copy().items():
+                setattr(self, attr, value)
+    
+    newcopy = Egg()
+    newcopy.__class__ = obj.__class__
+    
+    return newcopy
 
 
 class _Parser:
@@ -120,6 +132,7 @@ def _parse_file(egg_path):
 
 
 def hatch(m, egg=None, fromspy=False):
+    # FIXME
     """
     Load an egg into the model.
 
@@ -139,11 +152,12 @@ def hatch(m, egg=None, fromspy=False):
         raise ValueError("Expected egg or fromspy argument.")
 
     reactions, removals = _parse_file(egg_path)
-    new_model = m.copy()
+    new_model = new_egg(m)
     new_model.DelReactions(removals)
     for reaction in reactions:
         try:
             new_model.sm.NewReaction(reaction.name, reaction.StoMat, reaction.direction)
         except TypeError:
             continue
+    m.Init()
     return new_model

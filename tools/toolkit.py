@@ -74,7 +74,7 @@ class LP:
 
 
     @staticmethod
-    def scan(lp, suffix="_tx", **kwargs): return list(filter(lambda x : x.endswith(suffix), lp.keys()))
+    def find(lp, text): return list(filter(lambda x : text in x, lp.keys()))
         # FIXME: should work but not tidy.
 
 
@@ -155,12 +155,13 @@ class LP:
 
             result = table[reaction]
 
-            tableGUI.insert_data(
-                            result["flux"],
-                            reaction,
-                            result["reaction"],
-                            ", ".join(result["from"]),
-                            ", ".join(result["to"])
+            if any([result["from"], result["to"]]):
+                tableGUI.insert_data(
+                                result["flux"],
+                                reaction,
+                                result["reaction"],
+                                ", ".join(result["from"]),
+                                ", ".join(result["to"])
             )
             if output:
                 filehandle.write("{flux}\t{name}\t{reaction}\t{From}\t{To}".format(
