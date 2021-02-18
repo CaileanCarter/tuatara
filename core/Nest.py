@@ -1,6 +1,10 @@
 
 from collections import namedtuple
 import pickle
+from ..nest.hatcher import hatch
+import ScrumPy
+# from ..nest.keeper import check_egg_exists
+
 
 
 class Nest(dict):
@@ -27,10 +31,10 @@ class Nest(dict):
 
 
     def __len__(self):
-        pass
+        return len(self.__dict__.keys())
 
     def __repr__(self):
-        return ", ".join(self.__dict__.keys())
+        return  "Nest: [" + ", ".join(self.__dict__.keys()) + "]"
 
 
     def __delitem__(self, key):
@@ -56,9 +60,36 @@ class Nest(dict):
     #--------------------------------------------------
     #Methods
 
-    def from_file(self, files):
+    @classmethod
+    def from_file(cls, model=None, files=None, names=None):
         # TODO: accept str, list and dict
-        pass
+        m = ScrumPy.Model(model)
+
+        if isinstance(files, dict):
+            names = list(files.keys())
+            files = list(files.values())
+        
+        elif isinstance(files, str):
+            files = [files]
+        
+        nest = [hatch(m, fromspy=egg) for egg in files]
+        nest.insert(0, m)
+        names.insert(0, 0)
+        return cls(*nest, names=names)
+
+
+    @classmethod
+    def from_nest(cls, model=None, eggs=None):
+        m = ScrumPy.Model(model)
+
+        nest = [hatch(m, egg) for egg in eggs]
+        nest.insert(0, m)
+        names = eggs
+        names.insert(0, 0)
+        return cls(*nest, names=names)
+
+
+
 
     def apply(self, func, *args, index=None, **kwargs):
         pass

@@ -9,234 +9,234 @@
 
 # Conflict found for reaction: 3.4.21.83-RXN
 # Conflict 1
- "3.4.21.83-RXN":
-     "OLIGOPEPTIDES" +  "WATER" ->2 "Peptides-holder"
-    ~
+#"3.4.21.83-RXN":
+#    "OLIGOPEPTIDES" +  "WATER" ->2 "Peptides-holder"
+#   ~
 # Conflict 2
- "3.4.21.83-RXN":
-     "OLIGOPEPTIDES" +  "WATER" -> "Peptides-holder"
-    ~
+#"3.4.21.83-RXN":
+#    "OLIGOPEPTIDES" +  "WATER" -> "Peptides-holder"
+#   ~
 
 # Conflict found for reaction: GLUTAMINE--TRNA-LIGASE-RXN
 # Conflict 1
- "GLUTAMINE--TRNA-LIGASE-RXN":
-     "PROTON" +  "GLN-tRNAs" +  "GLN" +  "ATP" -> "Charged-GLN-tRNAs" +  "PPI" +  "AMP"
-    ~
+#"GLUTAMINE--TRNA-LIGASE-RXN":
+#    "PROTON" +  "GLN-tRNAs" +  "GLN" +  "ATP" -> "Charged-GLN-tRNAs" +  "PPI" +  "AMP"
+#   ~
 # Conflict 2
- "GLUTAMINE--TRNA-LIGASE-RXN":
-     "GLN-tRNAs" +  "GLN" +  "ATP" -> "Charged-GLN-tRNAs" +  "PPI" +  "AMP"
-    ~
+#"GLUTAMINE--TRNA-LIGASE-RXN":
+#    "GLN-tRNAs" +  "GLN" +  "ATP" -> "Charged-GLN-tRNAs" +  "PPI" +  "AMP"
+#   ~
 
 # Conflict found for reaction: RXN0-6435
 # Conflict 1
- "RXN0-6435":
-     "CARBAMOYL-P" +  "ATP" +  "EG10487-MONOMER" <> "MONOMER0-4166" +  "AMP" +  "PPI" +  "Pi"
-    ~
+#"RXN0-6435":
+#    "CARBAMOYL-P" +  "ATP" +  "EG10487-MONOMER" <> "MONOMER0-4166" +  "AMP" +  "PPI" +  "Pi"
+#   ~
 # Conflict 2
- "RXN0-6435":
-     "CARBAMOYL-P" +  "HypE-Proteins" +  "ATP" +  "WATER" -> "HypE-S-carboxamide" +  "AMP" +  "PPI" +  "Pi" +  "PROTON"
-    ~
+#"RXN0-6435":
+#    "CARBAMOYL-P" +  "HypE-Proteins" +  "ATP" +  "WATER" -> "HypE-S-carboxamide" +  "AMP" +  "PPI" +  "Pi" +  "PROTON"
+#   ~
 
 # Conflict found for reaction: RXN-15298
 # Conflict 1
- "RXN-15298":
-     "CPD-16502" <> "CPD-16503" +  "DIHYDROXY-ACETONE-PHOSPHATE"
-    ~
+#"RXN-15298":
+#    "CPD-16502" <> "CPD-16503" +  "DIHYDROXY-ACETONE-PHOSPHATE"
+#   ~
 # Conflict 2
- "RXN-15298":
-     "CPD-16502" <> "CPD-18717" +  "DIHYDROXY-ACETONE-PHOSPHATE"
-    ~
+#"RXN-15298":
+#    "CPD-16502" <> "CPD-18717" +  "DIHYDROXY-ACETONE-PHOSPHATE"
+#   ~
 
 # Conflict found for reaction: RXN0-5455
 # Conflict 1
- "RXN0-5455":
-     "HYDROXYPROPANAL" +  "NAD" +  "WATER" <>2 "PROTON" +  "3-HYDROXY-PROPIONATE" +  "NADH"
-    ~
+#"RXN0-5455":
+#    "HYDROXYPROPANAL" +  "NAD" +  "WATER" <>2 "PROTON" +  "3-HYDROXY-PROPIONATE" +  "NADH"
+#   ~
 # Conflict 2
- "RXN0-5455":
-     "HYDROXYPROPANAL" +  "NAD-P-OR-NOP" +  "WATER" -> "3-HYDROXY-PROPIONATE" +  "NADH-P-OR-NOP" + 2 "PROTON"
-    ~
+#"RXN0-5455":
+#    "HYDROXYPROPANAL" +  "NAD-P-OR-NOP" +  "WATER" -> "3-HYDROXY-PROPIONATE" +  "NADH-P-OR-NOP" + 2 "PROTON"
+#   ~
 
 # Conflict found for reaction: RXN0-3922
 # Conflict 1
- "RXN0-3922":
-     "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "NAD-P-OR-NOP" +  "WATER" <> "CPD-9000" +  "NADH-P-OR-NOP" + 2 "PROTON"
-    ~
+#"RXN0-3922":
+#    "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "NAD-P-OR-NOP" +  "WATER" <> "CPD-9000" +  "NADH-P-OR-NOP" + 2 "PROTON"
+#   ~
 # Conflict 2
- "RXN0-3922":
-     "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "NAD-P-OR-NOP" +  "WATER" -> "CPD-9000" +  "NADH-P-OR-NOP" + 2 "PROTON"
-    ~
+#"RXN0-3922":
+#    "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "NAD-P-OR-NOP" +  "WATER" -> "CPD-9000" +  "NADH-P-OR-NOP" + 2 "PROTON"
+#   ~
 
 # Conflict found for reaction: RXN0-3921
 # Conflict 1
- "RXN0-3921":
-     "GAMMA-GLUTAMYL-PUTRESCINE" +  "WATER" +  "OXYGEN-MOLECULE" <> "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "HYDROGEN-PEROXIDE" +  "AMMONIUM"
-    ~
+#"RXN0-3921":
+#    "GAMMA-GLUTAMYL-PUTRESCINE" +  "WATER" +  "OXYGEN-MOLECULE" <> "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "HYDROGEN-PEROXIDE" +  "AMMONIUM"
+#   ~
 # Conflict 2
- "RXN0-3921":
-     "GAMMA-GLUTAMYL-PUTRESCINE" +  "WATER" +  "OXYGEN-MOLECULE" -> "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "HYDROGEN-PEROXIDE" +  "AMMONIUM"
-    ~
+#"RXN0-3921":
+#    "GAMMA-GLUTAMYL-PUTRESCINE" +  "WATER" +  "OXYGEN-MOLECULE" -> "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "HYDROGEN-PEROXIDE" +  "AMMONIUM"
+#   ~
 
 # Conflict found for reaction: RXN0-5509
 # Conflict 1
- "RXN0-5509":
-     "mRNAs" +  "WATER" ->2 "ssRNAs"
-    ~
+#"RXN0-5509":
+#    "mRNAs" +  "WATER" ->2 "ssRNAs"
+#   ~
 # Conflict 2
- "RXN0-5509":
-     "mRNAs" +  "WATER" ->2 "mRNA-Fragments"
-    ~
+#"RXN0-5509":
+#    "mRNAs" +  "WATER" ->2 "mRNA-Fragments"
+#   ~
 
 
 
 ###################### REACTIONS NOT FOUND IN MODEL FILES ######################
-"rm_RXN-15129":
-     "CYS" <> "PROTON" +  "2-AMINOACRYLATE" +  "HS"
-    ~
+#"rm_RXN-15129":
+#    "CYS" <> "PROTON" +  "2-AMINOACRYLATE" +  "HS"
+#   ~
 
-"rm_ALCOHOL-DEHYDROGENASE-NADPORNOP+-RXN":
-     "NADP" +  "Alcohols" <> "Aldehydes" +  "NADPH" +  "PROTON"
-    ~
+#"rm_ALCOHOL-DEHYDROGENASE-NADPORNOP+-RXN":
+#    "NADP" +  "Alcohols" <> "Aldehydes" +  "NADPH" +  "PROTON"
+#   ~
 
-"rm_RXN0-6487":
-     "CPD-347" +  "NADP" <> "HYDROXYPROPANAL" +  "NADPH" +  "PROTON"
-    ~
+#"rm_RXN0-6487":
+#    "CPD-347" +  "NADP" <> "HYDROXYPROPANAL" +  "NADPH" +  "PROTON"
+#   ~
 
-"rm_2.3.1.118-RXN":
-     "N-Hydroxy-Arylamines" +  "ACETYL-COA" <> "N-Acetoxy-Arylamines" +  "CO-A"
-    ~
+#"rm_2.3.1.118-RXN":
+#    "N-Hydroxy-Arylamines" +  "ACETYL-COA" <> "N-Acetoxy-Arylamines" +  "CO-A"
+#   ~
 
-"rm_2.4.1.230-RXN":
-     "CPD-16569" +  "Pi" <> "Glucopyranose" +  "CPD-448"
-    ~
+#"rm_2.4.1.230-RXN":
+#    "CPD-16569" +  "Pi" <> "Glucopyranose" +  "CPD-448"
+#   ~
 
-"rm_RXN-18999":
-     "CPD-9190" +  "Pi" <> "GLC-1-P" +  "GLYCERATE"
-    ~
+#"rm_RXN-18999":
+#    "CPD-9190" +  "Pi" <> "GLC-1-P" +  "GLYCERATE"
+#   ~
 
-"rm_RXN0-5414":
-     "CPD0-1192" +  "WATER" <> "PROTON" +  "CPD0-1193" +  "ACET"
-    ~
+#"rm_RXN0-5414":
+#    "CPD0-1192" +  "WATER" <> "PROTON" +  "CPD0-1193" +  "ACET"
+#   ~
 
-"rm_RXN-19793":
-     "CPD-21409" +  "WATER" -> "CPD-21406" +  "CPD-21407"
-    ~
+#"rm_RXN-19793":
+#    "CPD-21409" +  "WATER" -> "CPD-21406" +  "CPD-21407"
+#   ~
 
-"rm_RXN-12448":
-     "Secondary-Alcohols" +  "NAD" <> "LONG-CHAIN-KETONE" +  "NADH" +  "PROTON"
-    ~
+#"rm_RXN-12448":
+#    "Secondary-Alcohols" +  "NAD" <> "LONG-CHAIN-KETONE" +  "NADH" +  "PROTON"
+#   ~
 
-"rm_ALCOHOL-DEHYDROG-GENERIC-RXN":
-     "Primary-Alcohols" +  "NAD" <> "Aldehydes" +  "NADH" +  "PROTON"
-    ~
+#"rm_ALCOHOL-DEHYDROG-GENERIC-RXN":
+#    "Primary-Alcohols" +  "NAD" <> "Aldehydes" +  "NADH" +  "PROTON"
+#   ~
 
-"rm_PFLDEACTIV-RXN":
-     "PYRUVFORMLY-CPLX" <> "PYRUVFORMLY-INACTIVE-CPLX"
-    ~
+#"rm_PFLDEACTIV-RXN":
+#    "PYRUVFORMLY-CPLX" <> "PYRUVFORMLY-INACTIVE-CPLX"
+#   ~
 
-"rm_3.4.23.43-RXN":
-     "WATER" +  "type-IV-prepillin" -> "Cleaved-Type-IV-Prepillins" +  "Peptides-holder"
-    ~
+#"rm_3.4.23.43-RXN":
+#    "WATER" +  "type-IV-prepillin" -> "Cleaved-Type-IV-Prepillins" +  "Peptides-holder"
+#   ~
 
-"rm_RXN0-5057":
-     "KDO2-LIPID-IVA" +  "ADP-L-GLYCERO-D-MANNO-HEPTOSE" <> "PROTON" +  "HEPTOSYL-KDO2-LIPID-IVA" +  "ADP"
-    ~
+#"rm_RXN0-5057":
+#    "KDO2-LIPID-IVA" +  "ADP-L-GLYCERO-D-MANNO-HEPTOSE" <> "PROTON" +  "HEPTOSYL-KDO2-LIPID-IVA" +  "ADP"
+#   ~
 
-"rm_CYCPHOSDIESTER-RXN":
-     "Cyclic-2-3-Nucleoside-Monophosphates" +  "WATER" -> "3-Prime-Ribonucleoside-Monophosphates" +  "PROTON"
-    ~
+#"rm_CYCPHOSDIESTER-RXN":
+#    "Cyclic-2-3-Nucleoside-Monophosphates" +  "WATER" -> "3-Prime-Ribonucleoside-Monophosphates" +  "PROTON"
+#   ~
 
-"rm_3-NUCLEOTID-RXN":
-     "3-Prime-Ribonucleoside-Monophosphates" +  "WATER" -> "Ribonucleosides" +  "Pi"
-    ~
+#"rm_3-NUCLEOTID-RXN":
+#    "3-Prime-Ribonucleoside-Monophosphates" +  "WATER" -> "Ribonucleosides" +  "Pi"
+#   ~
 
-"rm_3.2.1.21-RXN":
-     "Beta-D-glucosides" +  "WATER" -> "Non-Glucosylated-Glucose-Acceptors" +  "GLC"
-    ~
+#"rm_3.2.1.21-RXN":
+#    "Beta-D-glucosides" +  "WATER" -> "Non-Glucosylated-Glucose-Acceptors" +  "GLC"
+#   ~
 
-"rm_ALLOSE-KINASE-RXN":
-     "D-Allopyranose" +  "ATP" <> "PROTON" +  "D-ALLOSE-6-PHOSPHATE" +  "ADP"
-    ~
+#"rm_ALLOSE-KINASE-RXN":
+#    "D-Allopyranose" +  "ATP" <> "PROTON" +  "D-ALLOSE-6-PHOSPHATE" +  "ADP"
+#   ~
 
-"rm_3.2.1.14-RXN":
-     "CHITIN" +  "WATER" ->2 "Chitodextrins"
-    ~
+#"rm_3.2.1.14-RXN":
+#    "CHITIN" +  "WATER" ->2 "Chitodextrins"
+#   ~
 
-"rm_ACYLCOADEHYDROG-RXN":
-     "Saturated-Fatty-Acyl-CoA" +  "ETF-Oxidized" +  "PROTON" -> "TRANS-D2-ENOYL-COA" +  "ETF-Reduced"
-    ~
+#"rm_ACYLCOADEHYDROG-RXN":
+#    "Saturated-Fatty-Acyl-CoA" +  "ETF-Oxidized" +  "PROTON" -> "TRANS-D2-ENOYL-COA" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17775":
-     "OLEOYL-COA" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19172" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17775":
+#    "OLEOYL-COA" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19172" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17779":
-     "CPD-19144" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19170" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17779":
+#    "CPD-19144" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19170" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17783":
-     "CPD-15436" +  "ETF-Oxidized" +  "PROTON" -> "CPD0-1162" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17783":
+#    "CPD-15436" +  "ETF-Oxidized" +  "PROTON" -> "CPD0-1162" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17784":
-     "CPD-18346" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19163" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17784":
+#    "CPD-18346" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19163" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17788":
-     "CPD-10269" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19162" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17788":
+#    "CPD-10269" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19162" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17792":
-     "CPD-19147" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19161" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17792":
+#    "CPD-19147" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19161" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17796":
-     "CPD-19148" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19150" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17796":
+#    "CPD-19148" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19150" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-7001":
-     "Purine-Ribonucleosides" +  "ARSENATE" <> "Purine-Bases" +  "RIBOSE-1-ARSENATE"
-    ~
+#"rm_RXN-7001":
+#    "Purine-Ribonucleosides" +  "ARSENATE" <> "Purine-Bases" +  "RIBOSE-1-ARSENATE"
+#   ~
 
-"rm_RXN-14029":
-     "Purine-Deoxyribonucleosides" +  "Pi" <> "Purine-Bases" +  "DEOXY-D-RIBOSE-1-PHOSPHATE"
-    ~
+#"rm_RXN-14029":
+#    "Purine-Deoxyribonucleosides" +  "Pi" <> "Purine-Bases" +  "DEOXY-D-RIBOSE-1-PHOSPHATE"
+#   ~
 
-"rm_PNP-RXN":
-     "Purine-Ribonucleosides" +  "Pi" <> "Purine-Bases" +  "RIBOSE-1P"
-    ~
+#"rm_PNP-RXN":
+#    "Purine-Ribonucleosides" +  "Pi" <> "Purine-Bases" +  "RIBOSE-1P"
+#   ~
 
-"rm_RXN-9920":
-     "Protein-Phosphoserines" +  "WATER" -> "Protein-L-serines" +  "Pi"
-    ~
+#"rm_RXN-9920":
+#    "Protein-Phosphoserines" +  "WATER" -> "Protein-L-serines" +  "Pi"
+#   ~
 
-"rm_NITRATREDUCT-RXN":
-     "NITRITE" +  "Acceptor" +  "WATER" <> "NITRATE" +  "Donor-H2"
-    ~
+#"rm_NITRATREDUCT-RXN":
+#    "NITRITE" +  "Acceptor" +  "WATER" <> "NITRATE" +  "Donor-H2"
+#   ~
 
-"rm_RXN-13853":
-     "Nitroaromatic-Ox-Compounds" +  "NADH-P-OR-NOP" <> "Nitroaromatic-Red-Compounds" +  "NAD-P-OR-NOP"
-    ~
+#"rm_RXN-13853":
+#    "Nitroaromatic-Ox-Compounds" +  "NADH-P-OR-NOP" <> "Nitroaromatic-Red-Compounds" +  "NAD-P-OR-NOP"
+#   ~
 
-"rm_1.5.1.34-RXN":
-     "5678-TETRAHYDROPTERIDINE" +  "NAD-P-OR-NOP" <> "67-DIHYDROPTERIDINE" +  "NADH-P-OR-NOP" +  "PROTON"
-    ~
+#"rm_1.5.1.34-RXN":
+#    "5678-TETRAHYDROPTERIDINE" +  "NAD-P-OR-NOP" <> "67-DIHYDROPTERIDINE" +  "NADH-P-OR-NOP" +  "PROTON"
+#   ~
 
-"rm_RXN0-7002":
-     "CPD0-2501" +  "WATER" <> "N-ACETYL-D-GLUCOSAMINE-6-P" +  "GLUCOSAMINE"
-    ~
+#"rm_RXN0-7002":
+#    "CPD0-2501" +  "WATER" <> "N-ACETYL-D-GLUCOSAMINE-6-P" +  "GLUCOSAMINE"
+#   ~
 
-"rm_TRANS-RXNBJ-2813":
-     "CELLOBIOSE" +  "PHOSPHO-ENOL-PYRUVATE" <> "CPD-507" +  "PYRUVATE"
-    ~
+#"rm_TRANS-RXNBJ-2813":
+#    "CELLOBIOSE" +  "PHOSPHO-ENOL-PYRUVATE" <> "CPD-507" +  "PYRUVATE"
+#   ~
 
-"rm_ORNCARBAMTRANSFER-RXN":
-     "L-ORNITHINE" +  "CARBAMOYL-P" <> "PROTON" +  "L-CITRULLINE" +  "Pi"
-    ~
+#"rm_ORNCARBAMTRANSFER-RXN":
+#    "L-ORNITHINE" +  "CARBAMOYL-P" <> "PROTON" +  "L-CITRULLINE" +  "Pi"
+#   ~
 
-"rm_ACYLNEURAMINATE-CYTIDYLYLTRANSFERASE-RXN":
-     "CPD-1119" +  "PROTON" +  "CTP" <> "CPD-189" +  "PPI"
-    ~
+#"rm_ACYLNEURAMINATE-CYTIDYLYLTRANSFERASE-RXN":
+#    "CPD-1119" +  "PROTON" +  "CTP" <> "CPD-189" +  "PPI"
+#   ~
 
 
 ########################### REACTIONS WITH ZERO FLUX ###########################

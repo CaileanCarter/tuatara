@@ -16,7 +16,8 @@ from .core import (
                 Inputs, 
                 read_yaml, 
                 read_json,
-                pick
+                pick,
+                Nest
                     )
 from .nest import (
                 get_path, 

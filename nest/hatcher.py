@@ -19,15 +19,13 @@ from ..core.GUI import _ask_spy_file
 from .keeper import get_path
 
 
-def new_egg(obj):
-    class Egg(obj.__class__):
+def _new_egg(obj):
+    class _Egg(obj.__class__):
         def __init__(self) : 
             for attr, value in vars(obj).copy().items():
                 setattr(self, attr, value)
-    
-    newcopy = Egg()
+    newcopy = _Egg()
     newcopy.__class__ = obj.__class__
-    
     return newcopy
 
 
@@ -139,20 +137,22 @@ def hatch(m, egg=None, fromspy=False):
         Parameters:
             m (obj) : model
             egg (str) : egg ID
-            fromspy (bool) : open file explorer to select .spy file 
+            fromspy (bool|str) : open file explorer to select .spy file or open file path
 
         Returns:
             m (obj) : model of egg
     """
     if egg:
         egg_path = get_path(egg)
+    elif isinstance(fromspy, str):
+        egg_path = fromspy
     elif fromspy:
         egg_path = _ask_spy_file()
     else:
         raise ValueError("Expected egg or fromspy argument.")
 
     reactions, removals = _parse_file(egg_path)
-    new_model = new_egg(m)
+    new_model = _new_egg(m)
     new_model.DelReactions(removals)
     for reaction in reactions:
         try:
