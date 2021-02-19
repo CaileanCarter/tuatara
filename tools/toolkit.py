@@ -1,14 +1,16 @@
 import logging
-from collections import namedtuple, defaultdict
+from collections import defaultdict, namedtuple
+from operator import itemgetter
 from os import path
 
-import numpy as np
-import networkx as nx
-from operator import itemgetter
 import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
+from flashtext import KeywordProcessor
 from ScrumPy.Bioinf import PyoCyc
+
 from ..core.GUI import Editor, LPTable
-from .utils import SetUtils, HidePrints, split_reaction
+from .utils import HidePrints, SetUtils, split_reaction
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
@@ -224,7 +226,39 @@ class Model:
 
     def __init__(self): raise TypeError("Object cannot be initialised.")
         
+    
+    @staticmethod
+    def find(model, keyword, types):
+        """
+        Easily find a metabolite or reaction by a keyword.
         
+            Parameters:
+                model (obj) : model
+                keyword (str) : keyword to search for
+                types (str|tuple) : 'met' or 'reac'
+
+            Returns:
+                matches (list) : list of matches
+        """
+        keyword_processor = KeywordProcessor()
+        keyword_processor.add_keyword(keyword)
+
+        matches = []
+
+        if "met" in types:
+            for met in model.smx.rnames:
+                match = keyword_processor.extract_keywords(met)
+                if match: matches.append(met)
+
+        if "reac" in types:
+            for reac in model.smx.cnames:
+                match = keyword_processor.extract_keywords(reac)
+                if match: 
+                    matches.append(reac)
+
+        return matches
+
+
     @staticmethod
     def merge_models(model_a, model_b):
         model_a.md.Reactions.update(model_b.md.Reactions)
