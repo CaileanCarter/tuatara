@@ -18,11 +18,13 @@ Functions:
     str_len(value)                      -> str
     is_quoted(s)                        -> bool
     dequote(s)                          -> str
+    flatten(items, ignore_types)        -> iterable
 """
 
 import re
 import sys
 from collections import namedtuple
+from collections.abc import Iterable
 from os import devnull
 
 
@@ -114,6 +116,25 @@ def is_quoted(s: str) -> bool: return len(s)>2 and (s[0] == s[-1] == '"')
 
 
 def dequote(s : str) -> str: return s[1:-1] if is_quoted(s) else s
+
+
+def flatten(items, ignore_types=(str, bytes, int)):
+    """Flatten a nested sequence"""
+    for x in items:
+        if isinstance(x, Iterable) and not isinstance(x, ignore_types):
+            yield from flatten(x, ignore_types)
+        else: 
+            yield x
+
+
+def dedupe(items, key=None):
+    """Remove duplicates while maintaining insertion order"""
+    seen = set()
+    for item in items:
+        val = item if key is None else key(item)
+        if val not in seen:
+            yield item
+            seen.add(item)
 
 
 class HidePrints:

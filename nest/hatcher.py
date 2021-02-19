@@ -130,7 +130,6 @@ def _parse_file(egg_path):
 
 
 def hatch(m, egg=None, fromspy=False):
-    # FIXME
     """
     Load an egg into the model.
 

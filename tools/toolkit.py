@@ -75,7 +75,6 @@ class LP:
 
     @staticmethod
     def find(lp, text): return list(filter(lambda x : text in x, lp.keys()))
-        # FIXME: should work but not tidy.
 
 
     @staticmethod
