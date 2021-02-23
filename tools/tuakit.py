@@ -173,6 +173,9 @@ class LP:
                             To=", ".join(result["to"])
                 ))
 
+        if output:
+            filehandle.close()
+
 
     @staticmethod
     def plot(model, lp, exclude=None, include=None):
@@ -402,7 +405,7 @@ class Model:
             else:
                 subsets_dict["more"].append(sub)
 
-        return subsets_dict       
+        return subsets_dict
 
 
     @staticmethod
@@ -502,9 +505,8 @@ class Model:
 
 class DataBases:
 
-    def __init__(self):
-        raise TypeError("DataBases object cannot be initialised.")
-
+    def __init__(self): raise TypeError("DataBases object cannot be initialised.")
+        
 
     @staticmethod
     def open_many(*args, common=None, dirs=None, data='data', **kwargs) -> tuple:
@@ -644,6 +646,7 @@ class DataBases:
         for met in updatedDB.keys():
             db.dbs['Compound'][met] = updatedDB[met]
         return db
+
 
     @staticmethod
     def NoGene(db): return [reaction for reaction in db.dbs["REACTION"].keys() if not db[reaction].GetGenes()]

@@ -1,9 +1,9 @@
 /dump
 TestBench.ipynb
 /__pycache__
-*/__pycache__
-tools/watchlist.txt
-tools/LP.tua
-tools/extras
-nest/registerdemo.yml
+/*/__pycache__
+/tools/watchlist.txt
+/tools/LP.tua
+/tools/extras
+/nest/registerdemo.yml
 # nest/eggs/*.spy

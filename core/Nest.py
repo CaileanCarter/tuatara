@@ -1,12 +1,14 @@
 
 from collections import namedtuple
-import pickle
+import logging
+# import pickle
 from ..nest.hatcher import hatch
 from ..tools.utils import flatten, dedupe
-import ScrumPy
+from ScrumPy import Model as ScrumPyModel
 # from ..nest.keeper import check_egg_exists
 
-
+log = logging.getLogger(__name__)
+log.addHandler(logging.NullHandler())
 
 
 class Nest(dict):
@@ -22,17 +24,33 @@ class Nest(dict):
     def __getitem__(self, attr):
         if isinstance(attr, list): 
             return [self.__dict__[model]["Model"] for model in attr]
-        elif isinstance(attr, slice): 
-            return [self.__dict__[model]["Model"] for model in list(self.__dict__.keys())[attr]]
-        elif isinstance(attr, int):
+        # elif isinstance(attr, slice): 
+        #     return [self.__dict__[model]["Model"] for model in list(self.__dict__.keys())[attr]]
+        elif isinstance(attr, slice):
             return [self.__dict__[model]["Model"] for model in list(self.__dict__.keys())][attr]
         else: 
             return self.__dict__[attr]["Model"]
 
 
-    def __setitem__(self, name, model):
+    def __setitem__(self, index, values):
         #FIXME: not for adding model but including data.
-        self.__dict__[name]["Model"] = model
+
+        if isinstance(index, (str, int)):
+
+            if isinstance(values, (str, int)):
+                for key in self.__dict__.keys():
+                    self.__dict__[key][index] = values
+
+            elif isinstance(values, (list, tuple, set)):
+                for key, value in zip(self.__dict__.keys(), values):
+                    self.__dict__[key][index] = value
+
+            else:
+                raise TypeError(f"Unexpected type: {type(values)}.")
+
+        if isinstance(index, list):
+            # model selection
+            pass
 
 
     def __len__(self):
@@ -67,7 +85,6 @@ class Nest(dict):
         return self.__dict__.keys()
         
 
-    
     def items(self):
         for key, value in self.__dict__.items():
             yield key, value
@@ -86,6 +103,12 @@ class Nest(dict):
         col_index = [col for col in self.columns() if isinstance(col, int)]
         return max(col_index) + 1
 
+    
+    def _next_index(self):
+        indexes = [index for index in self.keys() if isinstance(index, int)]
+        next_index = max(indexes) + 1
+        return next_index
+
 
     #--------------------------------------------------
     #Methods
@@ -93,7 +116,7 @@ class Nest(dict):
     @classmethod
     def from_file(cls, model=None, files=None, names=None):
         # TODO: accept str, list and dict
-        m = ScrumPy.Model(model)
+        m = ScrumPyModel(model)
 
         if isinstance(files, dict):
             names = list(files.keys())
@@ -110,7 +133,7 @@ class Nest(dict):
 
     @classmethod
     def from_nest(cls, model=None, eggs=None):
-        m = ScrumPy.Model(model)
+        m = ScrumPyModel(model)
 
         nest = [hatch(m, egg) for egg in eggs]
         nest.insert(0, m)
@@ -119,8 +142,10 @@ class Nest(dict):
         return cls(*nest, names=names)
 
 
-    def insert(self, eggs=None):
-        pass
+    def insert(self, egg, name=None):
+        if not name:
+            name = self._next_index()
+        self.__dict__.update({name : {"Model" : egg}})
 
 
     def drop(self, egg=None):
