@@ -13,9 +13,9 @@ Functions:
 import re
 from collections import namedtuple
 from itertools import zip_longest
-# import copy
-from ..tools.utils import dequote, remove_prefix
+
 from ..core.GUI import _ask_spy_file
+from ..tools.utils import dequote, remove_prefix
 from .keeper import get_path
 
 

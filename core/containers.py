@@ -22,8 +22,8 @@ class Nest(dict):
         else:
             self.__dict__.update({index : {"Model" : model} for index, model in enumerate(models) if self._check_model(model)})
 
-
-    def _check_model(self, model):
+    @staticmethod
+    def _check_model(model):
         """Type checking for models"""
         assert hasattr(model, "sm"), f"Nest accepts model object, not {type(model)}"
         return True
@@ -167,7 +167,8 @@ class Nest(dict):
         try:
             m = ScrumPyModel(model)
         except TypeError:
-            m= model
+            if cls._check_model(model):
+                m = model
 
         if isinstance(files, dict):
             names, files = [[name][f] for name, f in files.items()]
@@ -188,7 +189,8 @@ class Nest(dict):
         try:
             m = ScrumPyModel(model)
         except TypeError:
-            m = model
+            if cls._check_model(model):
+                m = model
 
         nest = [hatch(m, egg) for egg in eggs]
         nest.insert(0, m)
@@ -284,9 +286,19 @@ class Nest(dict):
 class Community(pd.DataFrame):
 
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, model, *args, index=None, **kwargs):
 
+        try:
+            m = ScrumPy.Model(model)
+        except:
+            if Nest._check_model(model):
+                m = model
+
+        models = {"model" : [hatch(model) for model in args]}
+        models["model"].insert(0, m)
+        if index and index[0] != "model":
+            index.insert(0, "model")
+        super().__init__(models, index=index, **kwargs)
 
 
     #----------------------------------------------

@@ -17,7 +17,8 @@ from .core import (
                 read_yaml, 
                 read_json,
                 pick,
-                Nest
+                Nest,
+                Community
                     )
 from .nest import (
                 get_path, 
