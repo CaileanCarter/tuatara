@@ -193,9 +193,7 @@ class WatchList:
 
 def helper(cls):
     @wraps(cls)
-    def wrapper(*args, debug=False, **kwargs):
-        if debug:
-            log.info(f"Calling {cls.__name__}")
+    def wrapper(*args, **kwargs):
         c = cls.__new__(cls)
         return c(*args, **kwargs)
     return wrapper
@@ -203,6 +201,7 @@ def helper(cls):
 
 @helper
 class scan(WatchList):
+    #FIXME: arguments do not show on method call
 
     """
     Scan .spy file for unwanted items. Launches a table showing line, matches and reaction.

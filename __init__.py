@@ -34,7 +34,8 @@ from .nest import (
 # TODO: write API reference
 # TODO: sort out register (is it necessary?)
 # TODO: create script to keep copy in main drive
-
+# TODO: consider including jellyfish to find matching reactions
+# TODO: implement system where models can interact
 
 logging.basicConfig(level=logging.INFO, format="tuatara - %(levelname)s - %(message)s")
 

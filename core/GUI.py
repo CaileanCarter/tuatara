@@ -37,14 +37,25 @@ class Editor(pyshell.EditorWindow):
         pyshell.EditorWindow.__init__(self, root=self.root, *args, **kwargs)
 
 
-class Scanner(tk.Frame):
+class Table(tk.Frame):
+
+    def __init__(self):
+        self.root = tk.Tk()
+        self.id = 0
+        self.iid = 0
+        try:
+            self.initialiseUI()
+        except:
+            raise NameError
+        
+
+class Scanner(Table):
     
     def __init__(self, egg):
-        self.root = tk.Tk()
         self.egg = egg
-        self.initialiseUI()
-
+        super().__init__()
     
+
     def initialiseUI(self):
         self.root.title(f"Scan results - {self.egg}")
 
@@ -62,24 +73,17 @@ class Scanner(tk.Frame):
 
         self.treeview = self.tree
 
-        self.id = 0
-        self.iid = 0
-
-
+        
     def insert_data(self, line, matches, reaction):
         self.treeview.insert('', self.id, iid=self.iid, text=f"Line {line}", values=(matches, reaction))
         self.id += 1
         self.iid += 1
 
 
-class LPTable(tk.Frame):
+class LPTable(Table):
 
     def __init__(self):
-        self.root = tk.Tk()
-        self.initialiseUI()
-
-        self.id = 0
-        self.iid = 0
+        super().__init__()
         
     def initialiseUI(self):
         self.root.title(f"LP results")

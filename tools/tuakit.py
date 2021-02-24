@@ -15,8 +15,8 @@ from .utils import HidePrints, SetUtils, split_reaction
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
 
-# TODO: make a standalone gist file out of this module
-
+# TODO: make a standalone gist file out of this module, will need to somehow include dependencies? 
+# Or make as a standalone package.
 
 class LP:
 
@@ -24,14 +24,15 @@ class LP:
 
     @staticmethod
     def build(
-                model, 
-                reaction=None, 
-                fluxdict=None, 
-                flux=1, 
-                block_uptake=False, 
-                suffix="_tx",  
-                obj=None,
-                solve=True):
+                model,
+                reaction=None,
+                fluxdict=None,
+                flux=1,
+                block_uptake=False,
+                suffix="_tx",
+                obj="min",
+                solve=True
+                ):
         """
         Build linear programme from model.
         
@@ -42,24 +43,26 @@ class LP:
                 flux (int) : flux value for reaction
                 block_uptake (bool) : block transporters
                 suffix (str) : block transporters with given suffix ('_tx' for all transporters; '_mm_tx' for media transporters)
-                obj (str) : linear programme objective
+                obj (str) : linear programme objective ("min")
                 solve (bool) : solve LP
 
             Returns:
                 lp (obj) : linear programme of model
         """
+        # Does not have capacity to deal with biomass data -> use BuildLP script
         
         lp = model.GetLP()
+
+        if obj == "min":
+            lp.SetObjDirec("Min")
+            lp.SetObjective(model.sm.cnames)   # minimise total flux
+
         if block_uptake:
-            lp = lp.SetFixedFlux({tx : 0 for tx in filter(lambda x: x.endswith(suffix), model.sm.cnames)})
-        
+            lp.SetFixedFlux({tx : 0 for tx in filter(lambda x: x.endswith(suffix), model.sm.cnames)})
         if reaction:
             lp.SetFixedFlux({reaction : flux})
         if fluxdict:
             lp.SetFixedFlux(fluxdict)
-
-        if obj == "min":
-            lp.SetObjective(model.sm.cnames)   # minimise total flux
 
         if solve:
             lp.Solve()
@@ -77,6 +80,7 @@ class LP:
 
     @staticmethod
     def find(lp, text): return list(filter(lambda x : text in x, lp.keys()))
+    #FIXME: what is this even for??
 
 
     @staticmethod
@@ -99,7 +103,7 @@ class LP:
 
 
     @staticmethod
-    def tabulate(model, lp, output=None, reaction=None, exclude=None, include=None):
+    def tabulate(model, lp, output=None, exclude=None, include=None):
         """
         Show LP in a table 
 
@@ -107,7 +111,6 @@ class LP:
                 model (obj) : model
                 lp (obj) : lp
                 output (str) : (optional) output to a text file as tab seperated
-                reaction (str) : (optional) name of reaction with constraint (for header)
                 exclude (list) : exclude given metabolites
                 include(list) : include only given metabolites
             
@@ -264,6 +267,8 @@ class Model:
 
     @staticmethod
     def merge_models(model_a, model_b):
+        #FIXME: this would edit the original models, make it so entirely new model is made.
+        #FIXME: I doubt this script works anymore, is it worth having?
         model_a.md.Reactions.update(model_b.md.Reactions)
         model_a.md.Metabolites.update(model_b.md.Metabolites)
         for x in model_b.md.xMetabolites:
@@ -439,22 +444,22 @@ class Model:
         Internal cycles:    {cycles}
 
         TRANSPORTERS
-        all                                                    {all}
-        (stx)      optional-substrates                         {stx}
-        (bmtx)     biomass                                     {bmtx}
-        (aa_bmtx)  amino acids                                 {aa_bmtx}
-        (nt_bmtx)  nucleotides                                 {nt_bmtx}
-        (w_bmtx)   cell wall                                   {w_bmtx}
-        (l_bmtx)   cell lipids                                 {l_bmtx}
-        (vit_bmtx) biomass specific vitamins                   {vit_bmtx}
-        (co_bmtx)  biomass specific cofactors                  {co_bmtx}
-        (ftx)      fermentation                                {ftx}
-        (emtx)     essential micronutrient                     {emtx}
-        (ntx)      nitrogen source                             {ntx}
-        (sftx)     substrate/fermentation                      {sftx}
+        all                                                     {all}
+        (s_tx)      optional-substrates                         {stx}
+        (bm_tx)     biomass                                     {bmtx}
+        (aa_bm_tx)  amino acids                                 {aa_bmtx}
+        (nt_bm_tx)  nucleotides                                 {nt_bmtx}
+        (w_bm_tx)   cell wall                                   {w_bmtx}
+        (l_bm_tx)   cell lipids                                 {l_bmtx}
+        (vit_bm_tx) biomass specific vitamins                   {vit_bmtx}
+        (co_bm_tx)  biomass specific cofactors                  {co_bmtx}
+        (f_tx)      fermentation                                {ftx}
+        (em_tx)     essential micronutrient                     {emtx}
+        (n_tx)      nitrogen source                             {ntx}
+        (sf_tx)     substrate/fermentation                      {sftx}
         (transports metetabolites which is both f-product and substrate)
-        (sup)      supplementary nutrients e.g. vitamins       {sup}
-        (hptx)     heterologous product                        {hptx}
+        (sup)       supplementary nutrients e.g. vitamins       {sup}
+        (hp_tx)     heterologous product                        {hptx}
         
         ENZYME SUBSETS (grouped by number of reactions in set)
         One         {one}
@@ -601,6 +606,7 @@ class DataBases:
 
     @staticmethod
     def dump(db, filename, data):
+        #FIXME
         '''Pre:
         Post: Wites data from db to a file'''
 
