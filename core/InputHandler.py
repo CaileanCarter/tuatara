@@ -63,7 +63,7 @@ class Inputs:
     annots : str
         File path for directory containing Prokka annotation files of database organism genomes in tabular format.
         The Galaxy output is normally titled: "Prokka on [input]: tsv"
-        Ensure file name is the same name as that in the roary files.
+        Ensure file name is the same name as given in the roary files.
         Format: organism_name.tabular
 
 

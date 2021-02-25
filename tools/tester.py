@@ -215,7 +215,7 @@ class scan(WatchList):
     """
 
 
-    def __call__(self, egg=False, from_file=False, file_path=None, stdout=False, **kwargs):
+    def __call__(self, egg=None, from_file=False, file_path=None, stdout=False):
         watchlist = self.open_watchlist()
 
         keyword_processor = KeywordProcessor()

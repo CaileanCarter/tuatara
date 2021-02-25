@@ -7,12 +7,14 @@ import pandas as pd
 import seaborn as sns
 from matplotlib.colors import LogNorm
 
+# TODO: write me.
+class RBH(pd.DataFrame):
 
-class RBH:
+    def __init__(self, filepath=None, sep="\t"):
+        self._df = pd.read_csv(filepath, sep=sep)
 
-    def __init__(self, filepath=None):
-        self._fp = filepath
-        self._df = pd.read_csv(filepath, sep="\t")
+        for attr, value in vars(self._df).items():
+            setattr(self, attr, value)
 
 
     def plot(self):

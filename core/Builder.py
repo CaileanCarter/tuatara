@@ -116,7 +116,7 @@ class BuildNest:
 
     ...
     Parameters:
-        nest (class object) : A class object containing all necessary inputs.
+        inputs (obj) : A class object containing all necessary inputs.
 
     
     Attributes
@@ -143,17 +143,17 @@ class BuildNest:
 
     """
 
-    def __init__(self, nest):
+    def __init__(self, inputs):
 
-        # private imported attributes from nest
-        self._db =          nest._db_fp
-        self._dbs =         nest.databases
-        self._rename =      nest._rename
-        self._col_drop =    nest._drop_columns
-        self._model =       nest.model
-        self._gpa_fp =      nest.gpafile
-        self._locustags =   nest.locustags
-        self._annots =      nest.annotations
+        # private imported attributes from inputs
+        self._db =          inputs._db_fp
+        self._dbs =         inputs.databases
+        self._rename =      inputs._rename
+        self._col_drop =    inputs._drop_columns
+        self._model =       inputs.model
+        self._gpa_fp =      inputs.gpafile
+        self._locustags =   inputs.locustags
+        self._annots =      inputs.annotations
         
         # private class attributes
         self._hashtable =        None

@@ -129,17 +129,17 @@ def _parse_file(egg_path):
             return egg_reactions, remove_list
 
 
-def hatch(m, egg=None, fromspy=False):
+def hatch(model, egg=None, fromspy=False):
     """
     Load an egg into the model.
 
         Parameters:
-            m (obj) : model
+            model (obj) : model
             egg (str) : egg ID
             fromspy (bool|str) : open file explorer to select .spy file or open file path
 
         Returns:
-            m (obj) : model of egg
+            model (obj) : model of egg
     """
     if egg:
         egg_path = get_path(egg)
@@ -151,12 +151,12 @@ def hatch(m, egg=None, fromspy=False):
         raise ValueError("Expected egg or fromspy argument.")
 
     reactions, removals = _parse_file(egg_path)
-    new_model = _new_egg(m)
+    new_model = _new_egg(model)
     new_model.DelReactions(removals)
     for reaction in reactions:
         try:
             new_model.sm.NewReaction(reaction.name, reaction.StoMat, reaction.direction)
         except TypeError:
             continue
-    m.Init()
+    model.Init()
     return new_model

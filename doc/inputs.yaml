@@ -1,0 +1,18 @@
+model : UTI89
+roary : /usr/users/TSL_fr015/carterc/udrive/svn/model/work/Ecoli_UTI89/Data/gpa_alldb.txt
+databases : 
+    UTI89 : EcoliUTI89
+    REL606 : EcoliB_REL606
+    O157_H7_EDL933 : EcoliO157H7_EDL933
+    CFT073 : EcoliCFT073
+    k-12 : Ecolik12    
+fp : /filepath/svn/model/database/
+annots : /filepath/svn/model/work/Ecoli_UTI89/Data/annotation/
+locustags : /filepath/svn/model/work/Ecoli_UTI89/Data/gpa_alldb_locusid.txt
+rename : 
+    CP000243_1 : UTI89
+    CP000819_1 : REL606
+    CP008957_1 : O157_H7_EDL933
+    CP051263_1 : CFT073
+    U00096_3 : k-12  
+drop_columns :  Prokka_on_data_1

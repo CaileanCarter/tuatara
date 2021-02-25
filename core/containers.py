@@ -22,6 +22,7 @@ class Nest(dict):
         else:
             self.__dict__.update({index : {"Model" : model} for index, model in enumerate(models) if self._check_model(model)})
 
+
     @staticmethod
     def _check_model(model):
         """Type checking for models"""
