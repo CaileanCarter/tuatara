@@ -33,8 +33,6 @@ class Nest(dict):
     def __getitem__(self, attr):
         if isinstance(attr, list): 
             return [self.__dict__[model]["Model"] for model in attr]
-        # elif isinstance(attr, slice): 
-        #     return [self.__dict__[model]["Model"] for model in list(self.__dict__.keys())[attr]]
         elif isinstance(attr, slice):
             return [self.__dict__[model]["Model"] for model in list(self.__dict__.keys())][attr]
         else: 
@@ -257,8 +255,6 @@ class Nest(dict):
 
 
     def describe(self):
-        #Fixed
-
         desc = []
         for name, model in self.iter_models():
             name = str(name).upper()
@@ -281,13 +277,17 @@ class Nest(dict):
 
         print(statement)
 
+    
+    def to_community(self):
+        #TODO: write me.
+        pass
 
 
-# TODO: implement community feature -> extensive, pandas version of Nest
+# TODO: implement community feature -> pandas version of Nest
 class Community(pd.DataFrame):
 
 
-    def __init__(self, model, *args, index=None, **kwargs):
+    def __init__(self, model, *args, index=None, columns=None, **kwargs):
 
         try:
             m = ScrumPy.Model(model)
@@ -295,15 +295,21 @@ class Community(pd.DataFrame):
             if Nest._check_model(model):
                 m = model
 
-        models = {"model" : [hatch(model) for model in args]}
+        models = {"model" : [hatch(model, egg) for egg in args]}
         models["model"].insert(0, m)
         if index and index[0] != "model":
             index.insert(0, "model")
-        super().__init__(models, index=index, **kwargs)
+
+        if columns:
+            arguments = {**models, **columns}
+        else:
+            arguments = models
+
+        super().__init__(arguments, index=index, **kwargs)
 
 
     #----------------------------------------------
-    #Input options
+    #Constructors
 
     @classmethod
     def from_nest(cls, model, *args):
@@ -312,3 +318,11 @@ class Community(pd.DataFrame):
     @classmethod
     def read_file(cls, model, file, delimiter=",", **kwargs):
         pass
+
+
+    #-----------------------------------------------
+    #Methods
+
+    def iter_models(self):
+        for model in self["model"].values:
+            yield model
