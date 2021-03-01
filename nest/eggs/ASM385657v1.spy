@@ -1,0 +1,937 @@
+# This file was made with the tuatara package and should not be
+# directly added to a ScrumPy model. Use the tools provided by
+# tuatara to add to interact with model. 
+
+
+# Egg ID: ASM385657v1
+
+########################### REACTIONS WITH CONFLICTS ###########################
+
+# Conflict found for reaction: 3.4.21.83-RXN
+# Conflict 1
+ "3.4.21.83-RXN":
+     "OLIGOPEPTIDES" +  "WATER" ->2 "Peptides-holder"
+    ~
+# Conflict 2
+ "3.4.21.83-RXN":
+     "OLIGOPEPTIDES" +  "WATER" -> "Peptides-holder"
+    ~
+
+# Conflict found for reaction: RXN0-5455
+# Conflict 1
+ "RXN0-5455":
+     "HYDROXYPROPANAL" +  "NAD" +  "WATER" <>2 "PROTON" +  "3-HYDROXY-PROPIONATE" +  "NADH"
+    ~
+# Conflict 2
+ "RXN0-5455":
+     "HYDROXYPROPANAL" +  "NAD-P-OR-NOP" +  "WATER" -> "3-HYDROXY-PROPIONATE" +  "NADH-P-OR-NOP" + 2 "PROTON"
+    ~
+
+# Conflict found for reaction: RXN0-3922
+# Conflict 1
+ "RXN0-3922":
+     "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "NAD-P-OR-NOP" +  "WATER" <> "CPD-9000" +  "NADH-P-OR-NOP" + 2 "PROTON"
+    ~
+# Conflict 2
+ "RXN0-3922":
+     "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "NAD-P-OR-NOP" +  "WATER" -> "CPD-9000" +  "NADH-P-OR-NOP" + 2 "PROTON"
+    ~
+
+# Conflict found for reaction: RXN0-3921
+# Conflict 1
+ "RXN0-3921":
+     "GAMMA-GLUTAMYL-PUTRESCINE" +  "WATER" +  "OXYGEN-MOLECULE" <> "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "HYDROGEN-PEROXIDE" +  "AMMONIUM"
+    ~
+# Conflict 2
+ "RXN0-3921":
+     "GAMMA-GLUTAMYL-PUTRESCINE" +  "WATER" +  "OXYGEN-MOLECULE" -> "GAMMA-GLUTAMYL-GAMMA-AMINOBUTYRALDEH" +  "HYDROGEN-PEROXIDE" +  "AMMONIUM"
+    ~
+
+# Conflict found for reaction: RXN0-5509
+# Conflict 1
+ "RXN0-5509":
+     "mRNAs" +  "WATER" ->2 "ssRNAs"
+    ~
+# Conflict 2
+ "RXN0-5509":
+     "mRNAs" +  "WATER" ->2 "mRNA-Fragments"
+    ~
+
+# Conflict found for reaction: 2.7.10.1-RXN
+# Conflict 1
+ "2.7.10.1-RXN":
+     "ATP" +  "Protein-Tyrosines" <> "ADP" +  "Protein-tyrosine-phosphates" +  "PROTON"
+    ~
+# Conflict 2
+ "2.7.10.1-RXN":
+     "ATP" +  "Protein-Tyrosines" -> "ADP" +  "Protein-tyrosine-phosphates" +  "PROTON"
+    ~
+
+# Conflict found for reaction: 3.4.19.12-RXN
+# Conflict 1
+ "3.4.19.12-RXN":
+     "Ubiquitin-C-terminal-thioesters" +  "WATER" -> "Ubiquitins" +  "Thiols"
+    ~
+# Conflict 2
+ "3.4.19.12-RXN":
+     "PROTEIN-N-UBIQUITYL-LYSINE" +  "WATER" -> "Protein-L-lysine" +  "Ubiquitin-C-Terminal-Glycine"
+    ~
+
+
+
+###################### REACTIONS NOT FOUND IN MODEL FILES ######################
+"rm_GALACTITOLPDEHYD-RXN":
+     "GALACTITOL-1-PHOSPHATE" +  "NAD" <> "PROTON" +  "TAGATOSE-6-PHOSPHATE" +  "NADH"
+    ~
+
+"rm_TRANS-RXN-169":
+     "PTS-I-pi-phospho-L-histidines" +  "SORBITOL" <> "D-SORBITOL-6-P" +  "PTS-I-Histidines"
+    ~
+
+"rm_TRANS-RXN-168":
+     "PTS-I-pi-phospho-L-histidines" +  "TREHALOSE" <> "TREHALOSE-6P" +  "PTS-I-Histidines"
+    ~
+
+"rm_TRANS-RXN-167A":
+     "PTS-I-pi-phospho-L-histidines" +  "GLUCOSAMINE" -> "D-GLUCOSAMINE-6-P" +  "PTS-I-Histidines"
+    ~
+
+"rm_TRANS-RXN-161":
+     "PTS-I-pi-phospho-L-histidines" +  "GALACTITOL" -> "GALACTITOL-1-PHOSPHATE" +  "PTS-I-Histidines"
+    ~
+
+"rm_TRANS-RXN-156":
+     "PTS-I-pi-phospho-L-histidines" +  "MANNITOL" <> "MANNITOL-1P" +  "PTS-I-Histidines"
+    ~
+
+"rm_TRANS-RXN-155B":
+     "PTS-I-pi-phospho-L-histidines" +  "CHITOBIOSE" -> "DIACETYLCHITOBIOSE-6-PHOSPHATE" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN0-17":
+     "NACMUR" +  "PTS-I-pi-phospho-L-histidines" -> "CPD0-881" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15157":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-10726" -> "CPD-16155" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15156":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-10725" -> "CPD-16156" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15155":
+     "PTS-I-pi-phospho-L-histidines" +  "D-Fructopyranose" -> "D-fructopyranose-1-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15154":
+     "PTS-I-pi-phospho-L-histidines" +  "BETA-D-FRUCTOSE" -> "FRU1P" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15152":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-10723" -> "CPD-16154" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15151":
+     "PTS-I-pi-phospho-L-histidines" +  "Fructofuranose" -> "D-fructofuranose-1-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15150":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15382" -> "CPD-15970" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15084":
+     "PTS-I-pi-phospho-L-histidines" +  "FRU" <> "D-fructose-1-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-14983":
+     "PTS-I-pi-phospho-L-histidines" +  "GALACTOSAMINE" -> "D-GALACTOSAMINE-6-PHOSPHATE" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-14982":
+     "PTS-I-pi-phospho-L-histidines" +  "N-acetyl-D-galactosamine" -> "N-ACETYL-D-GALACTOSAMINE-6-PHOSPHATE" +  "PTS-I-Histidines"
+    ~
+
+"rm_2.7.1.69-RXN":
+     "PTS-I-pi-phospho-L-histidines" +  "Sugar" -> "PTS-I-Histidines" +  "Sugar-Phosphate"
+    ~
+
+"rm_SUCROSEPHOSPHO-RXN":
+     "PTS-I-pi-phospho-L-histidines" +  "SUCROSE" -> "PTS-I-Histidines" +  "CPD-15716"
+    ~
+
+"rm_RXN-15334":
+     "PTS-I-pi-phospho-L-histidines" +  "DIHYDROXYACETONE" -> "DIHYDROXY-ACETONE-PHOSPHATE" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15185":
+     "PTS-I-pi-phospho-L-histidines" +  "N-ACETYL-D-GLUCOSAMINE" -> "CPD-16167" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15184":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-12541" -> "CPD-16168" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15182":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-16164" -> "CPD-16166" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15181":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-16163" -> "CPD-16165" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15180":
+     "PTS-I-pi-phospho-L-histidines" +  "ALPHABETA-TREHALOSE" -> "CPD-16162" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15178":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15987" -> "CPD-16161" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15177":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15986" -> "CPD-16160" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15176":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-9569" -> "L-sorbopyranose-1-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15175":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15989" -> "CPD-16159" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15174":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15988" -> "CPD-16158" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15173":
+     "PTS-I-pi-phospho-L-histidines" +  "L-sorbofuranose" -> "L-sorbofuranse-1-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15172":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15616" -> "CPD-531" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15171":
+     "PTS-I-pi-phospho-L-histidines" +  "GALACTOSE" -> "CPD-15712" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15170":
+     "PTS-I-pi-phospho-L-histidines" +  "ALPHA-D-GALACTOSE" -> "CPD-1241" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15169":
+     "PTS-I-pi-phospho-L-histidines" +  "D-galactopyranose" -> "D-galactopyranose-6-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15168":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15590" -> "CPD-15984" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15167":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15717" -> "CPD-15983" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15166":
+     "PTS-I-pi-phospho-L-histidines" +  "ALPHA-MALTOSE" -> "CPD-1244" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15165":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-12601" -> "CPD-15711" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15164":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-13559" -> "MANNOSE-6P" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15163":
+     "PTS-I-pi-phospho-L-histidines" +  "D-mannopyranose" -> "CPD-15979" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15162":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15373" -> "CPD-15980" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15161":
+     "PTS-I-pi-phospho-L-histidines" +  "CELLOBIOSE" -> "CPD-507" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15160":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15976" -> "CPD-16157" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15159":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15971" -> "CPD-15974" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15158":
+     "PTS-I-pi-phospho-L-histidines" +  "Alpha-lactose" -> "LACTOSE-6P" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15145":
+     "PTS-I-pi-phospho-L-histidines" +  "ALPHA-GLUCOSE" -> "ALPHA-GLC-6-P" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15144":
+     "PTS-I-pi-phospho-L-histidines" +  "Glucopyranose" -> "D-glucopyranose-6-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15143":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15374" -> "CPD-9755" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15096":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-13545" <> "CPD-15993" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15095":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15990" <> "CPD-15991" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15094":
+     "PTS-I-pi-phospho-L-histidines" +  "L-sorbose" <> "L-sorbose-1-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15093":
+     "PTS-I-pi-phospho-L-histidines" +  "D-Galactose" <> "D-galactose-6-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15092":
+     "PTS-I-pi-phospho-L-histidines" +  "MALTOSE" <> "CPD-15982" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15087":
+     "PTS-I-pi-phospho-L-histidines" +  "MANNOSE" <> "Mannose-6-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15086":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15975" <> "CPD-15978" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15085":
+     "PTS-I-pi-phospho-L-histidines" +  "CPD-15972" <> "CPD-15973" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-15083":
+     "PTS-I-pi-phospho-L-histidines" +  "D-Glucose" <> "Glucose-6-phosphate" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-14729":
+     "PTS-I-pi-phospho-L-histidines" +  "GLUCOSAMINATE" <> "CPD-15586" +  "PTS-I-Histidines"
+    ~
+
+"rm_TRANS-RXN-157":
+     "PTS-I-pi-phospho-L-histidines" +  "GLC" <> "GLC-6-P" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN-12634":
+     "PTS-I-pi-phospho-L-histidines" +  "N-acetyl-D-glucosamine" -> "N-ACETYL-D-GLUCOSAMINE-6-P" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN0-2522":
+     "PTS-I-pi-phospho-L-histidines" +  "2-O-ALPHA-MANNOSYL-D-GLYCERATE" -> "CPD0-1063" +  "PTS-I-Histidines"
+    ~
+
+"rm_RXN0-2461":
+     "PTS-I-pi-phospho-L-histidines" +  "ASCORBATE" <> "L-ASCORBATE-6-PHOSPHATE" +  "PTS-I-Histidines"
+    ~
+
+"rm_PROTEIN-TYROSINE-PHOSPHATASE-RXN":
+     "Protein-tyrosine-phosphates" +  "WATER" -> "Pi" +  "Protein-Tyrosines"
+    ~
+
+"rm_RXN-11791":
+     "CPD-12575" +  "CPD-9646" -> "UMP" +  "CPD-12773"
+    ~
+
+"rm_2.7.10.1-RXN":
+     "ATP" +  "Protein-Tyrosines" <> "ADP" +  "Protein-tyrosine-phosphates" +  "PROTON"
+    ~
+
+"rm_GDP-GLUCOSIDASE-RXN":
+     "GDP-D-GLUCOSE" +  "WATER" -> "PROTON" +  "GLC" +  "GDP"
+    ~
+
+"rm_GDPMANMANHYDRO-RXN":
+     "GDP-MANNOSE" +  "WATER" -> "MANNOSE" +  "PROTON" +  "GDP"
+    ~
+
+"rm_6PGLUCONDEHYDROG-RXN":
+     "CPD-2961" +  "NAD-P-OR-NOP" <> "RIBULOSE-5P" +  "CARBON-DIOXIDE" +  "NADH-P-OR-NOP"
+    ~
+
+"rm_TAGATOSE-KINASE-RXN":
+     "D-tagatofuranose" +  "ATP" <> "PROTON" +  "TAGATOSE-6-PHOSPHATE" +  "ADP"
+    ~
+
+"rm_RXN0-4181":
+     "C-DI-GMP" +  "WATER" -> "PROTON" +  "L-DI-GMP"
+    ~
+
+"rm_3.4.21.87-RXN":
+     "WATER" +  "General-Protein-Substrates" -> "Peptides-holder"
+    ~
+
+"rm_3.4.22.36-RXN":
+     "pro-interleukin-1beta" +  "WATER" -> "Mature-1L-1beta"
+    ~
+
+"rm_CELLULOSE-SYNTHASE-UDP-FORMING-RXN":
+     "CPD-12575" <> "CELLULOSE" +  "UDP"
+    ~
+
+"rm_RXNHPQ-3":
+     "WATER" +  "ATP" <> "CPD-11678" +  "Pi" +  "ADP"
+    ~
+
+"rm_3.1.11.6-RXN":
+     "Single-Stranded-DNAs" +  "WATER" -> "Ribonucleoside-Monophosphates" +  "SS-Oligodeoxyribonucleotides"
+    ~
+
+"rm_DNA-LIGASE-NAD+-RXN":
+     "DNA-N" +  "NAD" -> "DEOXYNUCLEOTIDESM" +  "NICOTINAMIDE_NUCLEOTIDE" +  "AMP"
+    ~
+
+"rm_RXN-9920":
+     "Protein-Phosphoserines" +  "WATER" -> "Protein-L-serines" +  "Pi"
+    ~
+
+"rm_NITRATREDUCT-RXN":
+     "NITRITE" +  "Acceptor" +  "WATER" <> "NITRATE" +  "Donor-H2"
+    ~
+
+"rm_3.4.23.43-RXN":
+     "WATER" +  "type-IV-prepillin" -> "Cleaved-Type-IV-Prepillins" +  "Peptides-holder"
+    ~
+
+"rm_RXN0-7002":
+     "CPD0-2501" +  "WATER" <> "N-ACETYL-D-GLUCOSAMINE-6-P" +  "GLUCOSAMINE"
+    ~
+
+"rm_TRANS-RXNBJ-2813":
+     "CELLOBIOSE" +  "PHOSPHO-ENOL-PYRUVATE" <> "CPD-507" +  "PYRUVATE"
+    ~
+
+"rm_RXN-12105":
+     "25-DIDEHYDRO-D-GLUCONATE" +  "NADH-P-OR-NOP" +  "PROTON" <> "CPD-13059" +  "NAD-P-OR-NOP"
+    ~
+
+"rm_RXN-12107":
+     "L-IDONATE" +  "NAD" <> "5-DEHYDROGLUCONATE" +  "NADH" +  "PROTON"
+    ~
+
+"rm_ORNCARBAMTRANSFER-RXN":
+     "L-ORNITHINE" +  "CARBAMOYL-P" <> "PROTON" +  "L-CITRULLINE" +  "Pi"
+    ~
+
+"rm_2.1.1.72-RXN":
+     "S-ADENOSYLMETHIONINE" +  "DNA-Adenines" -> "ADENOSYL-HOMO-CYS" +  "DNA-6-Methyl-Amino-Purines" +  "PROTON"
+    ~
+
+"rm_ACYLNEURAMINATE-CYTIDYLYLTRANSFERASE-RXN":
+     "CPD-1119" +  "PROTON" +  "CTP" <> "CPD-189" +  "PPI"
+    ~
+
+"rm_ACYLCOADEHYDROG-RXN":
+     "Saturated-Fatty-Acyl-CoA" +  "ETF-Oxidized" +  "PROTON" -> "TRANS-D2-ENOYL-COA" +  "ETF-Reduced"
+    ~
+
+"rm_3.1.21.3-RXN":
+     "ATP" +  "DNA-N" +  "WATER" -> "Double-Stranded-DNA-with-terminal-PO4s" +  "ADP" +  "Pi"
+    ~
+
+
+########################### REACTIONS WITH ZERO FLUX ###########################
+"rm_1.1.1.271-RXN":
+     "CPD-13118" +  "NADP" <> "PROTON" +  "NADPH" +  "GDP-4-DEHYDRO-6-DEOXY-D-MANNOSE"
+    ~
+
+"rm_1.1.1.251-RXN":
+     "GALACTITOL-1-PHOSPHATE" +  "NAD" <> "CPD-15828" +  "NADH" +  "PROTON"
+    ~
+
+"rm_GDPMANDEHYDRA-RXN":
+     "GDP-MANNOSE" <> "GDP-4-DEHYDRO-6-DEOXY-D-MANNOSE" +  "WATER"
+    ~
+
+"rm_F16ALDOLASE-RXN":
+     "FRUCTOSE-16-DIPHOSPHATE" <> "DIHYDROXY-ACETONE-PHOSPHATE" +  "GAP"
+    ~
+
+"rm_RXN-10053":
+     "FRUCTOSE-16-DIPHOSPHATE" +  "METHYL-GLYOXAL" <> "CPD-10791" +  "GAP"
+    ~
+
+"rm_TAGAALDOL-RXN":
+     "TAGATOSE-1-6-DIPHOSPHATE" <> "DIHYDROXY-ACETONE-PHOSPHATE" +  "GAP"
+    ~
+
+"rm_MANNPGUANYLTRANGDP-RXN":
+     "PROTON" +  "MANNOSE-1P" +  "GDP" <> "GDP-MANNOSE" +  "Pi"
+    ~
+
+"rm_ALLANTOINASE-RXN":
+     "S-ALLANTOIN" +  "WATER" <> "PROTON" +  "ALLANTOATE"
+    ~
+
+"rm_RXN-9952":
+     "CPD-2961" +  "NADP" <> "RIBULOSE-5P" +  "CARBON-DIOXIDE" +  "NADPH"
+    ~
+
+"rm_RXN0-5120":
+     "CPD-12575" +  "CPD0-930" <> "PROTON" +  "CPD0-932" +  "UDP"
+    ~
+
+"rm_RXN0-5122":
+     "CPD0-933" +  "ADP-L-GLYCERO-D-MANNO-HEPTOSE" <> "PROTON" +  "CPD0-934" +  "ADP"
+    ~
+
+"rm_TAGAKIN-RXN":
+     "TAGATOSE-6-PHOSPHATE" +  "ATP" <> "PROTON" +  "TAGATOSE-1-6-DIPHOSPHATE" +  "ADP"
+    ~
+
+"rm_MALSYN-RXN":
+     "ACETYL-COA" +  "WATER" +  "GLYOX" -> "PROTON" +  "MAL" +  "CO-A"
+    ~
+
+"rm_UGD-RXN":
+     "CPD-12575" +  "WATER" + 2 "NAD" <> "UDP-GLUCURONATE" + 2 "NADH" + 3 "PROTON"
+    ~
+
+"rm_ACETOOHBUTSYN-RXN":
+     "PROTON" +  "PYRUVATE" +  "2-OXOBUTANOATE" <> "2-ACETO-2-HYDROXY-BUTYRATE" +  "CARBON-DIOXIDE"
+    ~
+
+"rm_ACETOLACTSYN-RXN":
+     "PROTON" + 2 "PYRUVATE" <> "2-ACETO-LACTATE" +  "CARBON-DIOXIDE"
+    ~
+
+"rm_1.1.1.39-RXN":
+     "MAL" +  "NAD" <> "NADH" +  "CARBON-DIOXIDE" +  "PYRUVATE"
+    ~
+
+"rm_RXN0-1461":
+     "COPROPORPHYRINOGEN_III" +  "OXYGEN-MOLECULE" + 2 "PROTON" -> "PROTOPORPHYRINOGEN" + 2 "CARBON-DIOXIDE" + 2 "WATER"
+    ~
+
+"rm_HEMN-RXN":
+    2 "S-ADENOSYLMETHIONINE" +  "COPROPORPHYRINOGEN_III" <> "PROTOPORPHYRINOGEN" + 2 "CARBON-DIOXIDE" + 2 "MET" + 2 "CH33ADO"
+    ~
+
+"rm_CPM-KDOSYNTH-RXN":
+     "KDO" +  "CTP" <> "CMP-KDO" +  "PPI"
+    ~
+
+"rm_HOMOSERINE-O-ACETYLTRANSFERASE-RXN":
+     "HOMO-SER" +  "ACETYL-COA" <> "CPD-667" +  "CO-A"
+    ~
+
+"rm_RXN-7644":
+     "SORBITOL" +  "NAD" <> "CPD-15382" +  "NADH" +  "PROTON"
+    ~
+
+"rm_L-IDITOL-2-DEHYDROGENASE-RXN":
+     "CPD-369" +  "NAD" <> "CPD-15616" +  "NADH" +  "PROTON"
+    ~
+
+"rm_RXN-14249":
+     "THR" +  "NAD" <> "AMINO-ACETONE" +  "CARBON-DIOXIDE" +  "NADH"
+    ~
+
+"rm_THREODEHYD-RXN":
+     "THR" +  "NAD" <>2 "PROTON" +  "AMINO-OXOBUT" +  "NADH"
+    ~
+
+"rm_RXN-14189":
+     "METOH" +  "HYDROGEN-PEROXIDE" <> "FORMALDEHYDE" + 2 "WATER"
+    ~
+
+"rm_RXN66-1":
+     "ETOH" +  "HYDROGEN-PEROXIDE" <>2 "WATER" +  "ACETALD"
+    ~
+
+"rm_CATAL-RXN":
+    2 "HYDROGEN-PEROXIDE" <>2 "WATER" +  "OXYGEN-MOLECULE"
+    ~
+
+"rm_RXN0-6369":
+     "NITRATE" +  "Ubiquinols" <> "NITRITE" +  "WATER" +  "Ubiquinones"
+    ~
+
+"rm_NITRATE-REDUCTASE-CYTOCHROME-RXN":
+     "NITRATE" +  "Reduced-cytochromes" <> "NITRITE" +  "Oxidized-cytochromes"
+    ~
+
+"rm_KETOHEXOKINASE-RXN":
+     "BETA-D-FRUCTOSE" +  "ATP" <> "PROTON" +  "FRU1P" +  "ADP"
+    ~
+
+"rm_DTDPDEHYRHAMREDUCT-RXN":
+     "DTDP-RHAMNOSE" +  "NADP" <> "DTDP-DEOH-DEOXY-MANNOSE" +  "NADPH" +  "PROTON"
+    ~
+
+"rm_DTDPGLUCDEHYDRAT-RXN":
+     "DTDP-D-GLUCOSE" <> "WATER" +  "DTDP-DEOH-DEOXY-GLUCOSE"
+    ~
+
+"rm_DTDPGLUCOSEPP-RXN":
+     "PROTON" +  "GLC-1-P" +  "TTP" <> "DTDP-D-GLUCOSE" +  "PPI"
+    ~
+
+"rm_RXN-9739":
+     "DMSO" +  "NADH" +  "PROTON" <> "CPD-7670" +  "WATER" +  "NAD"
+    ~
+
+"rm_DIMESULFREDUCT-RXN":
+     "Menaquinols" +  "DMSO" <> "Menaquinones" +  "WATER" +  "CPD-7670"
+    ~
+
+"rm_RXN0-5121":
+     "CPD0-932" +  "ATP" <> "PROTON" +  "CPD0-933" +  "ADP"
+    ~
+
+"rm_RXN0-5123":
+     "CPD0-934" +  "ATP" <> "PROTON" +  "CPD0-935" +  "ADP"
+    ~
+
+"rm_RXN0-6994":
+     "CPD0-2499" +  "WATER" -> "GLC-6-P" +  "METOH"
+    ~
+
+"rm_RXN0-5297":
+     "CPD-1181" +  "WATER" -> "GLC-6-P" +  "CPD-173"
+    ~
+
+"rm_RXN0-5295":
+     "CPD-1162" +  "WATER" -> "GLC-6-P" +  "HYDROQUINONE"
+    ~
+
+"rm_6-PHOSPHO-BETA-GLUCOSIDASE-RXN":
+     "CPD-507" +  "WATER" -> "GLC" +  "GLC-6-P"
+    ~
+
+"rm_GLUCONATE-5-DEHYDROGENASE-RXN":
+     "GLUCONATE" +  "NAD-P-OR-NOP" <> "5-DEHYDROGLUCONATE" +  "NADH-P-OR-NOP" +  "PROTON"
+    ~
+
+"rm_L-IDONATE-2-DEHYDROGENASE-RXN":
+     "L-IDONATE" +  "NADP" <> "5-DEHYDROGLUCONATE" +  "NADPH" +  "PROTON"
+    ~
+
+"rm_1.1.1.264-RXN":
+     "L-IDONATE" +  "NAD-P-OR-NOP" <> "5-DEHYDROGLUCONATE" +  "NADH-P-OR-NOP" +  "PROTON"
+    ~
+
+"rm_ADENYLATECYC-RXN":
+     "ATP" <> "CAMP" +  "PPI"
+    ~
+
+"rm_NITRATE-REDUCTASE-NADH-RXN":
+     "NITRITE" +  "WATER" +  "NAD" <> "PROTON" +  "NITRATE" +  "NADH"
+    ~
+
+"rm_FESO3OXI-RXN":
+     "SO3" + 2 "FE+3" +  "WATER" <>2 "PROTON" +  "SULFATE" + 2 "FE+2"
+    ~
+
+"rm_SULFITE-OXIDASE-RXN":
+     "SO3" +  "OXYGEN-MOLECULE" +  "WATER" -> "HYDROGEN-PEROXIDE" +  "SULFATE"
+    ~
+
+"rm_SULFITE-DEHYDROGENASE-RXN":
+     "SO3" + 2 "Cytochromes-C-Oxidized" +  "WATER" <> "SULFATE" + 2 "Cytochromes-C-Reduced"
+    ~
+
+"rm_RXN-13482":
+     "L-ORNITHINE" +  "CARBAMOYL-P" <> "PROTON" +  "L-CITRULLINE" +  "Pi"
+    ~
+
+"rm_RXN-9990":
+     "CPD0-1123" +  "CTP" <> "CMP-N-ACETYL-NEURAMINATE" +  "PPI"
+    ~
+
+
+########################### REACTIONS ADDED TO MODEL ###########################
+"RXN0-6528":
+     "YHAV-DEGRADATION-SUBSTRATE-MRNA" +  "WATER" ->2 "mRNA-Fragments"
+    ~
+
+"ORNCARBAMTRANSFER-RXN":
+     "L-ORNITHINE" +  "CARBAMOYL-P" <> "PROTON" +  "L-CITRULLINE" +  "Pi"
+    ~
+
+"RXN-10040":
+     "CPD-10797" +  "OXYGEN-MOLECULE" +  "NADH" +  "PROTON" -> "CPD-10796" +  "WATER" +  "NAD"
+    ~
+
+"MHPHYDROXY-RXN":
+     "PROTON" +  "3-HYDROXYPHENYL-PROPIONATE" +  "NADH" +  "OXYGEN-MOLECULE" -> "2-3-DIHYDROXYPHENYL-PROPIONATE" +  "WATER" +  "NAD"
+    ~
+
+"RXN-12073":
+     "CPD-10796" +  "OXYGEN-MOLECULE" -> "CPD0-2184" +  "PROTON"
+    ~
+
+"1.13.11.16-RXN":
+     "2-3-DIHYDROXYPHENYL-PROPIONATE" +  "OXYGEN-MOLECULE" -> "PROTON" +  "CPD-157"
+    ~
+
+"MHPCHYDROL-RXN":
+     "CPD-157" +  "WATER" <> "CPD-14447" +  "SUC" +  "PROTON"
+    ~
+
+"RXN-12070":
+     "CPD0-2184" +  "WATER" <> "CPD-14447" +  "FUM" +  "PROTON"
+    ~
+
+"2-OXOPENT-4-ENOATE-HYDRATASE-RXN":
+     "OXOPENTENOATE" +  "WATER" <> "4-HYDROXY-2-KETOVALERATE"
+    ~
+
+"ACETALD-DEHYDROG-RXN":
+     "ACETALD" +  "CO-A" +  "NAD" <> "ACETYL-COA" +  "NADH" +  "PROTON"
+    ~
+
+"RXN66-3":
+     "ACETALD" +  "NAD" +  "WATER" <>2 "PROTON" +  "NADH" +  "ACET"
+    ~
+
+"ALDXANAU-RXN":
+     "CHLOROACETALDEHYDE" +  "WATER" +  "NAD" <>2 "PROTON" +  "CHLOROACETIC-ACID" +  "NADH"
+    ~
+
+"RXN0-3962":
+     "ACETALD" +  "NADP" +  "WATER" <> "ACET" +  "NADPH" + 2 "PROTON"
+    ~
+
+"ALCOHOL-DEHYDROG-RXN":
+     "ETOH" +  "NAD" <> "ACETALD" +  "NADH" +  "PROTON"
+    ~
+
+"MHPELY-RXN":
+     "4-HYDROXY-2-KETOVALERATE" <> "ACETALD" +  "PYRUVATE"
+    ~
+
+"RXN0-2522":
+     "PTSH-PHOSPHORYLATED" +  "2-O-ALPHA-MANNOSYL-D-GLYCERATE" -> "CPD0-1063" +  "PTSH-MONOMER"
+    ~
+
+"DIMESULFREDUCT-RXN":
+     "DMSO" +  "Menaquinols" <> "CPD-7670" +  "WATER" +  "Menaquinones"
+    ~
+
+"RXN-19924":
+     "RNA-Holder" -> "Cyclic-Phosphate-Terminated-RNAs" +  "5Prime-OH-Terminated-RNAs"
+    ~
+
+"ALDOSE1EPIM-RXN":
+     "GALACTOSE" <> "ALPHA-D-GALACTOSE"
+    ~
+
+"ALDOSE-1-EPIMERASE-RXN":
+     "ALPHA-GLUCOSE" <> "GLC"
+    ~
+
+"RXN-17701":
+     "CPD-19111" +  "WATER" -> "CPD-21685" +  "GLYCEROL"
+    ~
+
+"RXN-17700":
+     "SULFOQUINOVOSYLDIACYLGLYCEROL" +  "WATER" -> "CPD-21685" +  "1-2-Diglycerides"
+    ~
+
+"FERREDOXIN--NAD+-REDUCTASE-RXN":
+    2 "Reduced-2Fe-2S-Ferredoxins" +  "NAD" +  "PROTON" <>2 "Oxidized-2Fe-2S-Ferredoxins" +  "NADH"
+    ~
+
+"MVHMETH-RXN":
+    2 "PROTON" + 2 "E-" <> "HYDROGEN-MOLECULE"
+    ~
+
+"MVHMETH-RXN":
+    2 "PROTON" + 2 "E-" <> "HYDROGEN-MOLECULE"
+    ~
+
+"RXN0-310":
+     "PROTON" +  "METHYL-MALONYL-COA" <> "PROPIONYL-COA" +  "CARBON-DIOXIDE"
+    ~
+
+"MVHMETH-RXN":
+    2 "PROTON" + 2 "E-" <> "HYDROGEN-MOLECULE"
+    ~
+
+"RXN-12275":
+     "Reduced-hydrogenase-3" + 2 "PROTON" <> "HYDROGEN-MOLECULE" +  "Oxidized-hydrogenase-3"
+    ~
+
+"RXN0-4141":
+     "HYDROGEN-MOLECULE" +  "Acceptor" <> "Donor-H2"
+    ~
+
+"HYDROGEN-DEHYDROGENASE-RXN":
+     "NAD" +  "HYDROGEN-MOLECULE" <> "NADH" +  "PROTON"
+    ~
+
+"1.12.1.3-RXN":
+     "NADP" +  "HYDROGEN-MOLECULE" <> "NADPH" +  "PROTON"
+    ~
+
+"RXN0-5256":
+     "HYDROGEN-MOLECULE" +  "Menaquinones" ->2 "PROTON" +  "Menaquinols"
+    ~
+
+"RXN-12215":
+    2 "HYDROGEN-MOLECULE" +  "NAD" + 2 "Oxidized-ferredoxins" <-5 "PROTON" +  "NADH" + 2 "Reduced-ferredoxins"
+    ~
+
+"3.4.13.22-RXN":
+     "D-ALA-D-ALA" +  "WATER" ->2 "D-ALANINE"
+    ~
+
+"RXN-15296":
+     "CPD-10247" <> "CPD-16501"
+    ~
+
+"MANNOSE-ISOMERASE-RXN":
+     "CPD-15373" <> "CPD-15382"
+    ~
+
+"RXN0-268":
+     "PROPIONYL-COA" +  "SUC" <> "PROPIONATE" +  "SUC-COA"
+    ~
+
+"RXN0-5462":
+     "GTP" +  "WATER" -> "PROTON" +  "GDP" +  "Pi"
+    ~
+
+"PHENPRODIOLDEHYDROG-RXN":
+     "CARBOXYETHYL-3-5-CYCLOHEXADIENE-1-2-DIOL" +  "NAD" <> "PROTON" +  "2-3-DIHYDROXYPHENYL-PROPIONATE" +  "NADH"
+    ~
+
+"RXN-12071":
+     "CPD-13034" +  "NAD" <> "CPD-10796" +  "NADH" +  "PROTON"
+    ~
+
+"MVHMETH-RXN":
+    2 "PROTON" + 2 "E-" <> "HYDROGEN-MOLECULE"
+    ~
+
+"1.1.1.83-RXN":
+     "NAD" +  "CPD-660" <> "NADH" +  "CARBON-DIOXIDE" +  "PYRUVATE"
+    ~
+
+"RXN-13158":
+     "2-D-THREO-HYDROXY-3-CARBOXY-ISOCAPROATE" +  "NAD" -> "2K-4CH3-PENTANOATE" +  "CARBON-DIOXIDE" +  "NADH"
+    ~
+
+"TARTRATE-DEHYDROGENASE-RXN":
+     "NAD" +  "TARTRATE" <> "PROTON" +  "NADH" +  "CPD-66"
+    ~
+
+"RXN0-3901":
+     "PUTRESCINE" +  "GLT" +  "ATP" -> "PROTON" +  "GAMMA-GLUTAMYL-PUTRESCINE" +  "ADP" +  "Pi"
+    ~
+
+"RXN0-3942":
+     "CPD-9000" +  "WATER" <> "GLT" +  "4-AMINO-BUTYRATE"
+    ~
+
+"GABATRANSAM-RXN":
+     "4-AMINO-BUTYRATE" +  "2-KETOGLUTARATE" <> "SUCC-S-ALD" +  "GLT"
+    ~
+
+"VAGL-RXN":
+     "5-AMINOPENTANOATE" +  "2-KETOGLUTARATE" <> "GLT" +  "CPD-280"
+    ~
+
+"RXN0-6676":
+     "CPD-6602" +  "NADPH" +  "PROTON" <> "CPD-13314" +  "NADP"
+    ~
+
+"RXN0-6677":
+     "CPD-13314" +  "NADPH" +  "PROTON" <> "CPD-13315" +  "NADP"
+    ~
+
+"RXN0-6720":
+     "CPD0-2467" +  "WATER" <> "CPD0-2468"
+    ~
+
+"RXN-15216":
+     "CPD-10551" <> "CPD0-2467"
+    ~
+
+"R524-RXN":
+     "CPD-69" +  "HCO3" +  "PROTON" <> "CARBAMATE" +  "CARBON-DIOXIDE"
+    ~
+
+"RXN0-5224":
+     "HCO3" +  "PROTON" <> "CARBON-DIOXIDE" +  "WATER"
+    ~
+
+"CARBODEHYDRAT-RXN":
+     "H2CO3" <> "WATER" +  "CARBON-DIOXIDE"
+    ~
+
+"RXN-16649":
+     "CPD-17927" +  "WATER" -> "CPD-17926" +  "D-ALANINE"
+    ~
+
+"PROTEIN-TYROSINE-PHOSPHATASE-RXN":
+     "Protein-tyrosine-phosphates" +  "WATER" -> "Pi" +  "Protein-Tyrosines"
+    ~
+
+"RXN0-962":
+     "FRUCTOSELYSINE" +  "ATP" <> "FRUCTOSELYSINE-6-PHOSPHATE" +  "ADP" +  "PROTON"
+    ~
+
+"AMINEPHEN-RXN":
+     "WATER" +  "OXYGEN-MOLECULE" +  "PHENYLETHYLAMINE" -> "PHENYLACETALDEHYDE" +  "AMMONIUM" +  "HYDROGEN-PEROXIDE"
+    ~
+
+"AMACETOXID-RXN":
+     "AMINO-ACETONE" +  "WATER" +  "OXYGEN-MOLECULE" -> "METHYL-GLYOXAL" +  "AMMONIUM" +  "HYDROGEN-PEROXIDE"
+    ~
+
+"PHENDEHYD-RXN":
+     "PHENYLACETALDEHYDE" +  "WATER" +  "NAD" <> "PHENYLACETATE" +  "NADH" + 2 "PROTON"
+    ~
+
+"RXN0-963":
+     "FRUCTOSELYSINE-6-PHOSPHATE" +  "WATER" <> "GLC-6-P" +  "LYS"
+    ~
+
+"RXN0-4841":
+     "FRUCTOSELYSINE" <> "PSICOSELYSINE"
+    ~
+
+"RXN-2425":
+     "3-HYDROXYADIPYL-COA" <> "TRANS-23-DEHYDROADIPYL-COA" +  "WATER"
+    ~
+
+"RXN0-6510":
+     "CPD0-2362" <> "CPD0-2363"
+    ~
+
+"RXN0-2044":
+     "3-HYDROXYADIPYL-COA" +  "NAD" <> "PROTON" +  "3-KETO-ADIPYL-COA" +  "NADH"
+    ~
+
+"RXN0-6512":
+     "TRANS-23-DEHYDROADIPYL-COA" +  "ACETYL-COA" <- "CPD0-2364" +  "CO-A"
+    ~
+
+"RXN-3641":
+     "SUC-COA" +  "ACETYL-COA" <> "3-KETO-ADIPYL-COA" +  "CO-A"
+    ~
+
+"RXN-10819":
+     "CO-A" +  "PHENYLACETATE" +  "ATP" -> "CPD-207" +  "PPI" +  "AMP"
+    ~
+
+"RXN0-6381":
+     "mRNAs" +  "WATER" ->2 "ssRNAs"
+    ~
+
+"RXN0-5509":
+     "mRNAs" +  "WATER" ->2 "mRNA-Fragments"
+    ~

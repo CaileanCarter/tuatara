@@ -62,12 +62,11 @@ class _ToNest:
 
         self._name          = egg
         self._file          = None
-        self._entry         =   (   "# This file was made with the tuatara package and should not be\n"
-                                    "# directly added to a ScrumPy model. Use the tools provided by\n"
-                                    "# tuatara to add to interact with model. \n\n\n")
-        self._zero_flux     = "########################### REACTIONS WITH ZERO FLUX ###########################\n"
+        self._entry         =   (   "# This file was made with the tuatara package.\n"
+                                    "# Use tuatara.hatch() to swap reactions \n\n\n")
+        self._zero_flux     = "############################# REACTIONS TO REMOVE ##############################\n"
         self._unidentified  = "###################### REACTIONS NOT FOUND IN MODEL FILES ######################\n"
-        self._reactions     = "########################### REACTIONS ADDED TO MODEL ###########################\n"
+        self._reactions     = "############################### REACTIONS TO ADD ###############################\n"
         self._conflicts     = "########################### REACTIONS WITH CONFLICTS ###########################\n"
         # statements are flanked with a single space, uppercase and centered using .center(80, "#")
 
@@ -117,6 +116,7 @@ class BuildNest:
     ...
     Parameters:
         inputs (obj) : A class object containing all necessary inputs.
+        debug (bool) : run BuildNest without writing to spy files.
 
     
     Attributes
@@ -143,7 +143,7 @@ class BuildNest:
 
     """
 
-    def __init__(self, inputs):
+    def __init__(self, inputs, debug=False):
 
         # private imported attributes from inputs
         self._db =          inputs._db_fp
@@ -166,10 +166,10 @@ class BuildNest:
 
         # method calls
         self._log_inputs()
-        self.__call__()
+        self.__call__(debug=debug)
 
 
-    def __call__(self):
+    def __call__(self, debug=False):
 
         gpa = pd.read_table(self._gpa_fp, index_col=0)                                               # read gene presence/absence file
         if self._rename:
@@ -195,6 +195,9 @@ class BuildNest:
         for dname in self._dbs:
             self._buildMasterReaction(dname)
         self._log_reactions()
+
+        if debug:
+            return
 
         for egg in self._accessory[self._accessory.columns.difference(self._dbs)].columns:
             with _ToNest(egg) as tnt:
@@ -597,5 +600,6 @@ class BuildNest:
     @samples.deleter
     def samples(self):
         raise AttributeError("Can't delete attribute")
+    
 
 ### END ###

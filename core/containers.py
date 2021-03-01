@@ -1,19 +1,39 @@
 
 # from collections import namedtuple
 import logging
+from abc import ABC, abstractmethod
 from itertools import chain, zip_longest
+
 import pandas as pd
+from ScrumPy import Model as ScrumPyModel
+
 # import pickle
 from ..nest.hatcher import hatch
-from ..tools.utils import flatten, dedupe
-from ScrumPy import Model as ScrumPyModel
+from ..tools.utils import dedupe, flatten
+
 # from ..nest.keeper import check_egg_exists
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
 
 
-class Nest(dict):
+class Constructors(ABC):
+
+    @abstractmethod
+    def from_nest(self):
+        pass
+
+    @abstractmethod
+    def from_file(self):
+        pass
+
+    @abstractmethod
+    def from_BuildNest(self):
+        pass
+
+
+
+class Nest(dict, Constructors):
 
 
     def __init__(self, *models, names=None):
@@ -86,7 +106,7 @@ class Nest(dict):
 
 
     def __repr__(self):
-        return  f"Nest dict keys: [{', '.join([str(key) for key in self.__dict__.keys()])}]"
+        return  f"Nest dict keys: {len(self.columns())}x{len(self)} [{', '.join([str(key) for key in self.__dict__.keys()])}]"
 
 
     def __delitem__(self, key):
@@ -204,8 +224,20 @@ class Nest(dict):
     def insert(self, egg, name=None):
         if not name:
             name = self._next_index()
+        assert self._check_model(egg)
         self.__dict__.update({name : {"Model" : egg}})
-        self.__dict__.update({name : {column : None for column in self.columns()}})
+        if len(self.columns()) != 1:
+            self.__dict__.update({name : {column : None for column in self.columns() if column != "Model"}})
+
+    
+    def insert_hatch(self, model, egg, name=None):
+        try:
+            m = ScrumPyModel(model)
+        except TypeError:
+            if self._check_model(model):
+                m = model
+        new_egg = hatch(m, egg)
+        self.insert(new_egg, name=name)
 
 
     def drop(self, egg=None, col=None):
@@ -283,27 +315,23 @@ class Nest(dict):
         pass
 
 
+    def to_dict(self): return self.__dict__
+
+
 # TODO: implement community feature -> pandas version of Nest
-class Community(pd.DataFrame):
+class Community(pd.DataFrame, Constructors):
 
 
-    def __init__(self, model, *args, index=None, columns=None, **kwargs):
+    def __init__(self, *models, index=None, columns=None, **kwargs):
 
-        try:
-            m = ScrumPy.Model(model)
-        except:
-            if Nest._check_model(model):
-                m = model
-
-        models = {"model" : [hatch(model, egg) for egg in args]}
-        models["model"].insert(0, m)
-        if index and index[0] != "model":
-            index.insert(0, "model")
+        if len(models) == 1 and isinstance(models[0], dict):
+            arguments = models[0]
+        else:
+            arguments = {"model" : [model for model in models if Nest._check_model(model)]}
 
         if columns:
-            arguments = {**models, **columns}
-        else:
-            arguments = models
+            arguments = {**arguments, **columns}
+    
 
         super().__init__(arguments, index=index, **kwargs)
 
@@ -312,8 +340,26 @@ class Community(pd.DataFrame):
     #Constructors
 
     @classmethod
-    def from_nest(cls, model, *args):
-        pass
+    def from_nest(cls, model, *eggs, index=None, columns=None, **kwargs):
+        try:
+            m = ScrumPy.Model(model)
+        except:
+            if Nest._check_model(model):
+                m = model
+
+        models = {"model" : [hatch(m, egg) for egg in eggs]}
+        models["model"].insert(0, m)
+        if index and index[0] != "model": #should check are equal length?
+            index.insert(0, "model")
+
+        if columns:
+            arguments = {**models, **columns}
+        else:
+            arguments = models
+
+        return cls(arguments, index=index, **kwargs)
+        
+
 
     @classmethod
     def read_file(cls, model, file, delimiter=",", **kwargs):

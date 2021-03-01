@@ -9,126 +9,126 @@
 
 # Conflict found for reaction: RXN0-6435
 # Conflict 1
- "RXN0-6435":
-     "CARBAMOYL-P" +  "ATP" +  "EG10487-MONOMER" <> "MONOMER0-4166" +  "AMP" +  "PPI" +  "Pi"
-    ~
+#"RXN0-6435":
+#    "CARBAMOYL-P" +  "ATP" +  "EG10487-MONOMER" <> "MONOMER0-4166" +  "AMP" +  "PPI" +  "Pi"
+#   ~
 # Conflict 2
- "RXN0-6435":
-     "CARBAMOYL-P" +  "HypE-Proteins" +  "ATP" +  "WATER" -> "HypE-S-carboxamide" +  "AMP" +  "PPI" +  "Pi" +  "PROTON"
-    ~
+#"RXN0-6435":
+#    "CARBAMOYL-P" +  "HypE-Proteins" +  "ATP" +  "WATER" -> "HypE-S-carboxamide" +  "AMP" +  "PPI" +  "Pi" +  "PROTON"
+#   ~
 
 # Conflict found for reaction: ENTDB-RXN
 # Conflict 1
- "ENTDB-RXN":
-     "APO-ENTB" +  "Apo-Aryl-Carrier-Proteins" +  "CO-A" <> "ENTB-CPLX" +  "3-5-ADP" +  "Holo-Aryl-Carrier-Proteins"
-    ~
+#"ENTDB-RXN":
+#    "APO-ENTB" +  "Apo-Aryl-Carrier-Proteins" +  "CO-A" <> "ENTB-CPLX" +  "3-5-ADP" +  "Holo-Aryl-Carrier-Proteins"
+#   ~
 # Conflict 2
- "ENTDB-RXN":
-     "APO-ENTB" +  "Apo-Aryl-Carrier-Proteins" +  "CO-A" <> "3-5-ADP" +  "Holo-Aryl-Carrier-Proteins"
-    ~
+#"ENTDB-RXN":
+#    "APO-ENTB" +  "Apo-Aryl-Carrier-Proteins" +  "CO-A" <> "3-5-ADP" +  "Holo-Aryl-Carrier-Proteins"
+#   ~
 # Conflict 3
- "ENTDB-RXN":
-     "Apo-EntB" +  "CO-A" -> "Holo-EntB" +  "3-5-ADP" +  "PROTON"
-    ~
+#"ENTDB-RXN":
+#    "Apo-EntB" +  "CO-A" -> "Holo-EntB" +  "3-5-ADP" +  "PROTON"
+#   ~
 
 
 
 ###################### REACTIONS NOT FOUND IN MODEL FILES ######################
-"rm_3.1.22.4-RXN":
-     "DNA-Combined-With-Exogenous-DNA" +  "WATER" -> "Resolution-of-Recombinational-Junction"
-    ~
+#"rm_3.1.22.4-RXN":
+#    "DNA-Combined-With-Exogenous-DNA" +  "WATER" -> "Resolution-of-Recombinational-Junction"
+#   ~
 
-"rm_RXN-17632":
-     "Protein-Lysine-Aminocarbinol" +  "WATER" -> "Protein-L-lysine" +  "D-LACTATE"
-    ~
+#"rm_RXN-17632":
+#    "Protein-Lysine-Aminocarbinol" +  "WATER" -> "Protein-L-lysine" +  "D-LACTATE"
+#   ~
 
-"rm_GLYOXIII-RXN":
-     "D-LACTATE" +  "PROTON" <- "METHYL-GLYOXAL" +  "WATER"
-    ~
+#"rm_GLYOXIII-RXN":
+#    "D-LACTATE" +  "PROTON" <- "METHYL-GLYOXAL" +  "WATER"
+#   ~
 
-"rm_1.8.4.13-RXN":
-     "MET" +  "Ox-Thioredoxin" +  "WATER" <> "CPD-8989" +  "Red-Thioredoxin"
-    ~
+#"rm_1.8.4.13-RXN":
+#    "MET" +  "Ox-Thioredoxin" +  "WATER" <> "CPD-8989" +  "Red-Thioredoxin"
+#   ~
 
-"rm_ACYLCOADEHYDROG-RXN":
-     "Saturated-Fatty-Acyl-CoA" +  "ETF-Oxidized" +  "PROTON" -> "TRANS-D2-ENOYL-COA" +  "ETF-Reduced"
-    ~
+#"rm_ACYLCOADEHYDROG-RXN":
+#    "Saturated-Fatty-Acyl-CoA" +  "ETF-Oxidized" +  "PROTON" -> "TRANS-D2-ENOYL-COA" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17775":
-     "OLEOYL-COA" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19172" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17775":
+#    "OLEOYL-COA" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19172" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17779":
-     "CPD-19144" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19170" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17779":
+#    "CPD-19144" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19170" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17783":
-     "CPD-15436" +  "ETF-Oxidized" +  "PROTON" -> "CPD0-1162" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17783":
+#    "CPD-15436" +  "ETF-Oxidized" +  "PROTON" -> "CPD0-1162" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17784":
-     "CPD-18346" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19163" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17784":
+#    "CPD-18346" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19163" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17788":
-     "CPD-10269" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19162" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17788":
+#    "CPD-10269" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19162" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17792":
-     "CPD-19147" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19161" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17792":
+#    "CPD-19147" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19161" +  "ETF-Reduced"
+#   ~
 
-"rm_RXN-17796":
-     "CPD-19148" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19150" +  "ETF-Reduced"
-    ~
+#"rm_RXN-17796":
+#    "CPD-19148" +  "ETF-Oxidized" +  "PROTON" -> "CPD-19150" +  "ETF-Reduced"
+#   ~
 
-"rm_NITRATREDUCT-RXN":
-     "NITRITE" +  "Acceptor" +  "WATER" <> "NITRATE" +  "Donor-H2"
-    ~
+#"rm_NITRATREDUCT-RXN":
+#    "NITRITE" +  "Acceptor" +  "WATER" <> "NITRATE" +  "Donor-H2"
+#   ~
 
-"rm_2.7.13.3-RXN":
-     "Protein-Histidines" +  "ATP" -> "Protein-phospho-L-histidines" +  "ADP" +  "PROTON"
-    ~
+#"rm_2.7.13.3-RXN":
+#    "Protein-Histidines" +  "ATP" -> "Protein-phospho-L-histidines" +  "ADP" +  "PROTON"
+#   ~
 
-"rm_LYXISOM-RXN":
-     "L-LYXOSE" <> "L-XYLULOSE"
-    ~
+#"rm_LYXISOM-RXN":
+#    "L-LYXOSE" <> "L-XYLULOSE"
+#   ~
 
-"rm_RXN-9023":
-     "CPD0-971" <> "Truncated-Limit-Dextrins"
-    ~
+#"rm_RXN-9023":
+#    "CPD0-971" <> "Truncated-Limit-Dextrins"
+#   ~
 
-"rm_RXN-1828":
-     "Long-linear-glucans" +  "ALPHA-GLUCOSE" <> "Short-glucans"
-    ~
+#"rm_RXN-1828":
+#    "Long-linear-glucans" +  "ALPHA-GLUCOSE" <> "Short-glucans"
+#   ~
 
-"rm_RXN-14354":
-     "GLC" <> "Soluble-Heteroglycans" +  "MALTOSE"
-    ~
+#"rm_RXN-14354":
+#    "GLC" <> "Soluble-Heteroglycans" +  "MALTOSE"
+#   ~
 
-"rm_MALTODEG-RXN":
-     "MALTOHEXAOSE" +  "MALTOSE" <> "CPD0-1133" +  "GLC"
-    ~
+#"rm_MALTODEG-RXN":
+#    "MALTOHEXAOSE" +  "MALTOSE" <> "CPD0-1133" +  "GLC"
+#   ~
 
-"rm_3.2.1.17-RXN":
-     "Peptidoglycans" +  "WATER" -> "NAcMur-Peptide-Undecaprenols" +  "N-acetyl-D-glucosamine"
-    ~
+#"rm_3.2.1.17-RXN":
+#    "Peptidoglycans" +  "WATER" -> "NAcMur-Peptide-Undecaprenols" +  "N-acetyl-D-glucosamine"
+#   ~
 
-"rm_2.1.1.72-RXN":
-     "S-ADENOSYLMETHIONINE" +  "DNA-Adenines" -> "ADENOSYL-HOMO-CYS" +  "DNA-6-Methyl-Amino-Purines" +  "PROTON"
-    ~
+#"rm_2.1.1.72-RXN":
+#    "S-ADENOSYLMETHIONINE" +  "DNA-Adenines" -> "ADENOSYL-HOMO-CYS" +  "DNA-6-Methyl-Amino-Purines" +  "PROTON"
+#   ~
 
-"rm_RXN0-7002":
-     "CPD0-2501" +  "WATER" <> "N-ACETYL-D-GLUCOSAMINE-6-P" +  "GLUCOSAMINE"
-    ~
+#"rm_RXN0-7002":
+#    "CPD0-2501" +  "WATER" <> "N-ACETYL-D-GLUCOSAMINE-6-P" +  "GLUCOSAMINE"
+#   ~
 
-"rm_TRANS-RXNBJ-2813":
-     "CELLOBIOSE" +  "PHOSPHO-ENOL-PYRUVATE" <> "CPD-507" +  "PYRUVATE"
-    ~
+#"rm_TRANS-RXNBJ-2813":
+#    "CELLOBIOSE" +  "PHOSPHO-ENOL-PYRUVATE" <> "CPD-507" +  "PYRUVATE"
+#   ~
 
-"rm_ACYLNEURAMINATE-CYTIDYLYLTRANSFERASE-RXN":
-     "CPD-1119" +  "PROTON" +  "CTP" <> "CPD-189" +  "PPI"
-    ~
+#"rm_ACYLNEURAMINATE-CYTIDYLYLTRANSFERASE-RXN":
+#    "CPD-1119" +  "PROTON" +  "CTP" <> "CPD-189" +  "PPI"
+#   ~
 
 
 ########################### REACTIONS WITH ZERO FLUX ###########################

@@ -284,10 +284,12 @@ def read_json(fp):
         annots=json_inputs["annots"],
         locustags=json_inputs["locustags"]
     )
-    if json_inputs["rename"]:
+    try:
         inputs.rename(json_inputs["rename"])
-    if json_inputs["drop_columns"]:
+    except: pass
+    try:
         inputs.drop(json_inputs["drop_columns"])
+    except: pass
     
     return inputs
     
