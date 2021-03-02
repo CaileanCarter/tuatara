@@ -1,13 +1,15 @@
 """
 Nest building module for tuatara.
 
+Classes
+-------
 
+    BuildNest(Inputs)
 
 """
 
 # TODO: add logging
-# TODO: Write docstring
-# TODO: direct logging to register
+# TODO: direct logging to register - is register needed?
 # TODO: conflict reactions should be commented (or left to user to deal with?)
 
 
@@ -22,16 +24,11 @@ from os import devnull, getcwd, listdir, path
 import numpy as np
 import pandas as pd
 from ScrumPy.Bioinf import PyoCyc
-from ..tools.utils import (    
-                    remove_suffix,
-                    split_reaction, 
-                    list_identical, 
-                    str_identical, 
-                    add_prefix,
-                    HidePrints,
-                    str_len
-                    )
+
 from ..nest import DIR
+from ..tools.utils import (HidePrints, add_prefix, list_identical,
+                           remove_suffix, split_reaction, str_identical,
+                           str_len)
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
@@ -70,12 +67,14 @@ class _ToNest:
         self._conflicts     = "########################### REACTIONS WITH CONFLICTS ###########################\n"
         # statements are flanked with a single space, uppercase and centered using .center(80, "#")
 
+
     def __enter__(self):
         self._file = open(f"{DIR}/{self._name}.spy", "w+")
 
         self._file.write(self._entry)
         self._file.write(f"# Egg ID: {self._name}\n\n")
         return self
+
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         "Writes to .spy file for egg upon exiting context manager"
@@ -87,17 +86,21 @@ class _ToNest:
                                     ]))
         self._file.close()
 
+
     def zero_flux(self, reactions: list):
         """Add reactions to be zero flux"""
         self._zero_flux += "\n\n".join(reactions)
+
 
     def zero_flux_unidentified(self, reactions: list):
         """Same as zero_flux but for reactions not found in model"""
         self._unidentified += "\n\n".join(reactions)
 
+
     def add_reactions(self, reactions: list):
         """Add reactions to .spy file"""
         self._reactions += "\n\n".join(reactions)
+
 
     def add_conflicts(self, conflicts: list):
         """Add a reaction but flag as having confliction between databases"""
@@ -168,8 +171,14 @@ class BuildNest:
         self._log_inputs()
         self.__call__(debug=debug)
 
+    
+    def __repr__(self):
+        return f"New eggs created: {', '.join(self.samples)}"
+
 
     def __call__(self, debug=False):
+
+        log.info("Building nest...")
 
         gpa = pd.read_table(self._gpa_fp, index_col=0)                                               # read gene presence/absence file
         if self._rename:
@@ -225,6 +234,8 @@ class BuildNest:
 
                 self.eggs[egg] = statement
                                             
+        log.info("Build complete. See 'BuildNest.eggs' for data relating to each egg.")
+
 
     #---------------------------------------------
     #internal logging
@@ -260,7 +271,8 @@ class BuildNest:
 
     #--------------------------------------------
     #core methods
-    def _merge_duplicate_genes(self, gpa):
+
+    def _merge_duplicate_genes(self, gpa : pd.DataFrame) -> pd.DataFrame:
         # While there is a way of doing this using pandas, it is considerably slower (~14 seconds)
         """Takes gpa DataFrame and merges rows with duplicated gene names. Returns DataFrame."""
         gpa_filtered = {}

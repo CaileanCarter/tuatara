@@ -1,7 +1,7 @@
 
 # from collections import namedtuple
 import logging
-from abc import ABC, abstractmethod
+from abc import ABC, abstractclassmethod
 from itertools import chain, zip_longest
 
 import pandas as pd
@@ -19,18 +19,27 @@ log.addHandler(logging.NullHandler())
 
 class Constructors(ABC):
 
-    @abstractmethod
+    @abstractclassmethod
     def from_nest(self):
         pass
 
-    @abstractmethod
+    @abstractclassmethod
     def from_file(self):
         pass
 
-    @abstractmethod
+    @abstractclassmethod
     def from_BuildNest(self):
         pass
 
+
+def open_model(model):
+    try:
+        m = ScrumPy.Model(model)
+    except:
+        if Nest._check_model(model):
+            m = model
+    finally:
+        return m
 
 
 class Nest(dict, Constructors):
@@ -62,7 +71,7 @@ class Nest(dict, Constructors):
     def __setitem__(self, index, values):
         #TODO: tidy and sort.
 
-        def TE(value): raise TypeError(f"Unexpected type: {type(value)}.")
+        # def TE(value): raise TypeError(f"Unexpected type: {type(value)}.")
 
         if isinstance(index, (str, int)):
 
@@ -74,7 +83,7 @@ class Nest(dict, Constructors):
                 for key, value in zip_longest(self.__dict__.keys(), values, fillvalue=None):
                     self.__dict__[key][index] = value
 
-            else: TE(values)
+            # else: TE(values)
         
 
         elif isinstance(index, (list, tuple, set)):
@@ -96,9 +105,8 @@ class Nest(dict, Constructors):
                     if i not in index[1]:
                         self.__dict__[i][col_name] = None
 
-            else: TE(values)
-        
-        else: TE(index)
+        #     else: TE(values)
+        # else: TE(index)
 
 
     def __len__(self):
@@ -182,18 +190,11 @@ class Nest(dict, Constructors):
   
     @classmethod
     def from_file(cls, model, files=None, names=None):
-        # TODO: accept str, list and dict
-        try:
-            m = ScrumPyModel(model)
-        except TypeError:
-            if cls._check_model(model):
-                m = model
+        m = open_model(model)
 
         if isinstance(files, dict):
-            names, files = [[name][f] for name, f in files.items()]
-            # names = list(files.keys())
-            # files = list(files.values())
-        
+            names, files = zip(*files.items())
+
         elif isinstance(files, str):
             files = [files]
         
@@ -205,17 +206,18 @@ class Nest(dict, Constructors):
 
     @classmethod
     def from_nest(cls, model, eggs=None):
-        try:
-            m = ScrumPyModel(model)
-        except TypeError:
-            if cls._check_model(model):
-                m = model
+        m = open_model(model)
 
         nest = [hatch(m, egg) for egg in eggs]
         nest.insert(0, m)
         names = eggs
         names.insert(0, "model")
         return cls(*nest, names=names)
+
+
+    @classmethod
+    def from_BuildNest(cls, model, BuildNest):
+        return cls.from_nest(model, eggs=BuildNest.samples)
 
 
     #--------------------------------------------------
@@ -231,11 +233,7 @@ class Nest(dict, Constructors):
 
     
     def insert_hatch(self, model, egg, name=None):
-        try:
-            m = ScrumPyModel(model)
-        except TypeError:
-            if self._check_model(model):
-                m = model
+        m = open_model(model)
         new_egg = hatch(m, egg)
         self.insert(new_egg, name=name)
 
@@ -303,7 +301,7 @@ class Nest(dict, Constructors):
         MAIN
         Models:     {len(self)}
         Columns:    {len(self.columns())}
-        \n\t{model_desc}
+        \n{model_desc}
         
         END"""
 
@@ -332,7 +330,6 @@ class Community(pd.DataFrame, Constructors):
         if columns:
             arguments = {**arguments, **columns}
     
-
         super().__init__(arguments, index=index, **kwargs)
 
 
@@ -341,11 +338,7 @@ class Community(pd.DataFrame, Constructors):
 
     @classmethod
     def from_nest(cls, model, *eggs, index=None, columns=None, **kwargs):
-        try:
-            m = ScrumPy.Model(model)
-        except:
-            if Nest._check_model(model):
-                m = model
+        m = open_model(model)
 
         models = {"model" : [hatch(m, egg) for egg in eggs]}
         models["model"].insert(0, m)
@@ -360,10 +353,35 @@ class Community(pd.DataFrame, Constructors):
         return cls(arguments, index=index, **kwargs)
         
 
+    @classmethod
+    def from_file(cls, model, files=None):
+        pass
+
 
     @classmethod
-    def read_file(cls, model, file, delimiter=",", **kwargs):
-        pass
+    def read_file(cls, model, file, delimiter="\n", **kwargs):
+        m = open_model(model)
+        models = [m]
+
+        if delimiter == "\n":
+            eggs = [line.strip() for line in open(file).readlines()]
+        else:
+            eggs = []
+            for line in open(file).readlines():
+                eggs.append(item.strip() for item in line.split(delimiter))
+
+        for egg in eggs:
+            if egg.endswith(".spy"):
+                models.append(hatch(m, fromspy=egg))
+            else:
+                models.append(hatch(m, egg))
+
+        return cls(*models, **kwargs)
+
+
+    @classmethod
+    def from_BuildNest(cls, model, BuildNest, columns=None):
+        return cls.from_nest(model, *BuildNest.samples, columns=columns)
 
 
     #-----------------------------------------------

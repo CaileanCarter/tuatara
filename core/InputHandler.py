@@ -120,7 +120,7 @@ class Inputs:
 
 
     def __repr__(self):
-        statement = f"Model: {self.model}\nDatabases: {', '.join(self.databases)}\nSamples: {', '.join(self.samples)}\nAll: {', '.join(self.names)}"
+        statement = f"tuatara - Inputs\n\nModel: {self.model}\n\nDatabases: {', '.join(self.databases)}\n\nSamples: {', '.join(self.samples)}\n\nAll: {', '.join(self.names)}"
         return statement
     
 

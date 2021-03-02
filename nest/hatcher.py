@@ -67,6 +67,7 @@ class _Parser:
                         metabolite = metabolite[1:].strip()
                     self._StoMat.update({metabolite : flux})
                         
+
     def split_reaction(self, reaction):
         # This version has a slight deviation from the original
         # The reaction input does not include the reaction name
@@ -95,6 +96,7 @@ class _Parser:
         products = [dequote(product.strip()) for product in trim_split[1].split("+")]
 
         return Reaction(substrates, direction[0], products)
+
 
     def return_StoMat(self) -> namedtuple: return self.StoDict(self._name, self._StoMat, self._direction)
 
@@ -160,3 +162,9 @@ def hatch(model, egg=None, fromspy=False):
             continue
     model.Init()
     return new_model
+
+
+def jump(egg, media):
+    #TODO: write me.
+    """For changing media"""
+    pass

@@ -11,6 +11,8 @@ import pickle
 from datetime import datetime
 from os import path, listdir, remove
 
+#TODO: finish this -> is it needed?
+
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
 
@@ -133,8 +135,10 @@ class Eggs(RegisterManager):
     def __len__(self):
         return len(self.eggs)
 
+
     def __iter__(self):
         return iter(self.eggs)
+
 
     @classmethod
     def rename(cls, pairs: dict):
