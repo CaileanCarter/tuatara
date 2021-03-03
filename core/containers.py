@@ -10,6 +10,7 @@ from ScrumPy import Model as ScrumPyModel
 # import pickle
 from ..nest.hatcher import hatch
 from ..tools.utils import dedupe, flatten
+from ..tools.tuakit import LP
 
 # from ..nest.keeper import check_egg_exists
 
@@ -355,6 +356,7 @@ class Community(pd.DataFrame, Constructors):
 
     @classmethod
     def from_file(cls, model, files=None):
+        #TODO: write me.
         pass
 
 
@@ -368,10 +370,12 @@ class Community(pd.DataFrame, Constructors):
         else:
             eggs = []
             for line in open(file).readlines():
-                eggs.append(item.strip() for item in line.split(delimiter))
+                eggs += [item.strip() for item in line.split(delimiter)]
 
         for egg in eggs:
-            if egg.endswith(".spy"):
+            if not egg:
+                continue
+            elif egg.endswith(".spy"):
                 models.append(hatch(m, fromspy=egg))
             else:
                 models.append(hatch(m, egg))
@@ -390,3 +394,13 @@ class Community(pd.DataFrame, Constructors):
     def iter_models(self):
         for model in self["model"].values:
             yield model
+
+    #FIXME
+    def GetLP(self, models="model", func=LP.build, **kwargs):
+        return self[models].map(lambda x : func(x, **kwargs))
+
+    def Solve(self, column):
+        return self[column].map(lambda x : x.Solve())
+
+    def GetPrimSol(self, column):
+        return self[column].map(lambda x : x.GetPrimSol())

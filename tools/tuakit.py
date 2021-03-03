@@ -50,6 +50,7 @@ class LP:
                 lp (obj) : linear programme of model
         """
         # Does not have capacity to deal with biomass data -> use BuildLP script
+        #TODO: implement biomass data
         
         lp = model.GetLP()
 
@@ -731,5 +732,3 @@ class ATP:
 
         return Sols
     
-
-
