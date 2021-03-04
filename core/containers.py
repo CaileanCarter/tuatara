@@ -1,5 +1,7 @@
 
 # from collections import namedtuple
+import sys
+import io
 import logging
 from abc import ABC, abstractclassmethod
 from itertools import chain, zip_longest
@@ -280,6 +282,15 @@ class Nest(dict, Constructors):
             yield key, value["Model"]
 
 
+    def fetchLP(self, models="model", func=LP.build, **kwargs):
+        def run_LP(model):
+            lp = func(model, **kwargs)
+            if isinstance(lp, dict): return lp #already solved
+            lp.Solve()
+            return lp.GetPrimSol()
+        return [run_LP(model) for _, model in self.iter_models()]
+
+
     def serialise(self, file, **kwargs):
         # TODO: output to pickle?
         pass
@@ -338,7 +349,7 @@ class Community(pd.DataFrame, Constructors):
     #Constructors
 
     @classmethod
-    def from_nest(cls, model, *eggs, index=None, columns=None, **kwargs):
+    def from_nest(cls, model, eggs=None, index=None, columns=None, **kwargs):
         m = open_model(model)
 
         models = {"model" : [hatch(m, egg) for egg in eggs]}
@@ -385,22 +396,54 @@ class Community(pd.DataFrame, Constructors):
 
     @classmethod
     def from_BuildNest(cls, model, BuildNest, columns=None):
-        return cls.from_nest(model, *BuildNest.samples, columns=columns)
+        return cls.from_nest(model, eggs=BuildNest.samples, columns=columns)
 
 
     #-----------------------------------------------
     #Methods
 
-    def iter_models(self):
-        for model in self["model"].values:
+    def iter_models(self, column="model"):
+        for model in self[column].values:
             yield model
 
-    #FIXME
-    def GetLP(self, models="model", func=LP.build, **kwargs):
-        return self[models].map(lambda x : func(x, **kwargs))
 
-    def Solve(self, column):
-        return self[column].map(lambda x : x.Solve())
+    def fetchLP(self, models="model", func=LP.build, stdout=True, **kwargs):
+        def run_LP(model):
+            lp = func(model, **kwargs)
+            if isinstance(lp, dict): 
+                return lp #already solved
+            lp.Solve()
+            return lp.GetPrimSol()
 
-    def GetPrimSol(self, column):
-        return self[column].map(lambda x : x.GetPrimSol())
+        if not stdout:
+            old_output = sys.stdout
+            redirection = io.StringIO()
+            sys.stdout = redirection
+
+        result = self[models].map(run_LP)
+
+        if not stdout:
+            out = redirection.getvalue()
+            sys.stdout = old_output
+
+            lp_output = []
+            LPresult = iter(out.split("\n"))
+            for i in LPresult:
+                if not i:
+                    continue
+                elif i.startswith("biomass"):
+                    text = "\n".join([i, next(LPresult)])
+                    lp_output.append(text)
+                else:
+                    lp_output.append(i)
+            result = pd.concat([result, pd.Series(data=lp_output, index=result.index)], axis=1)
+
+        return result
+
+    
+    def fetch_attr(self, column, attr):
+        return self[column].map(lambda x : x.attr)
+
+    
+    def _debug(self, column):
+        return self[column].map(lambda x : len(x))
