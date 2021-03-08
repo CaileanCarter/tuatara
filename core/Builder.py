@@ -17,9 +17,9 @@ import csv
 import logging
 import mmap
 import re
-import sys
+# import sys
 from collections import namedtuple
-from os import devnull, getcwd, listdir, path
+from os import getcwd, listdir, path
 
 import numpy as np
 import pandas as pd
@@ -65,6 +65,7 @@ class _ToNest:
         self._unidentified  = "###################### REACTIONS NOT FOUND IN MODEL FILES ######################\n"
         self._reactions     = "############################### REACTIONS TO ADD ###############################\n"
         self._conflicts     = "########################### REACTIONS WITH CONFLICTS ###########################\n"
+        self._uncovered     = "############################## GENES NOT COVERED ###############################\n"
         # statements are flanked with a single space, uppercase and centered using .center(80, "#")
 
 
@@ -82,7 +83,8 @@ class _ToNest:
                                     self._conflicts,
                                     self._unidentified,
                                     self._zero_flux,
-                                    self._reactions
+                                    self._reactions,
+                                    self._uncovered
                                     ]))
         self._file.close()
 
@@ -109,6 +111,11 @@ class _ToNest:
                 self._conflicts += f"\n# Conflict found for reaction: {rUID}\n"
                 for order, reaction in enumerate(reactions, start=1):
                     self._conflicts += f"# Conflict {order}\n {reaction}\n"
+
+    
+    def add_uncovered_genes(self, genes: list):
+        for gene in genes:
+            self._uncovered += f'#{gene}\n'
 
 
 class BuildNest:
@@ -142,7 +149,7 @@ class BuildNest:
 
     Methods
     -------
-    No methods
+        database_coverage
 
     """
 
@@ -194,7 +201,7 @@ class BuildNest:
         self._accessory = gpa[~gpa.notna().all(axis=1)]                                              # Remove core genes nothing needs to be done.
 
         log.info("Size of accessory genome (databases included): " + str_len(self._accessory))
-        self._calc_coverage()
+        self.database_coverage()
 
         self._accessory = self._accessory[~self._accessory[self._dbs].isna().all(axis="columns")]      # Get only genes present in a database
         self._hashtable = self._build_reference_table()
@@ -224,21 +231,26 @@ class BuildNest:
                 tnt.add_reactions(reacs_to_add)
                 tnt.add_conflicts(reacs_with_conflicts)
 
+                genes_not_covered = self._accessory[(self._accessory[self._dbs].isna().all(axis="columns")) & self._accessory[egg].notna()].index
+                tnt.add_uncovered_genes(genes_not_covered)
+
                 statement = "\n".join([
                                     "Egg ID: "                                                              + egg,
                                     "Reactions with conflicts: "                                            + str_len(reacs_with_conflicts),
                                     "Number of reactions absent in egg but were not found in model files: " + str_len(notinmodel),
                                     "Number of reactions absent in egg: "                                   + str_len(inmodel),
-                                    "Number of reactions added: "                                           + str_len(reacs_to_add)
+                                    "Number of reactions added: "                                           + str_len(reacs_to_add),
+                                    "Number of genes not covered by databases: "                            + str_len(genes_not_covered)
                                     ])
 
                 self.eggs[egg] = statement
                                             
-        log.info("Build complete. See 'BuildNest.eggs' for data relating to each egg.")
+        log.info("Build complete. See 'BuildNest.eggs' for information relating to each egg.")
 
 
     #---------------------------------------------
-    #internal logging
+    #logging
+
     def _log_inputs(self):
         log.debug("Model: "                     + self._model)
         log.debug("Database organisms: "        + ", ".join(self._dbs))
@@ -250,8 +262,8 @@ class BuildNest:
         log.debug("Drop columns: "              + ", ".join(self._col_drop))
 
 
-    def _calc_coverage(self):
-        "Calculates database coverage of all genes present"
+    def database_coverage(self):
+        """Calculates database coverage of all genes present"""
         notindb = self._accessory[self._accessory[self._dbs].isna().all(axis="columns")].index
         indb = self._accessory[~self._accessory.index.isin(notindb)].index
 
@@ -524,7 +536,7 @@ class BuildNest:
                     mmap.mmap(fspy.fileno(), 0, access=mmap.ACCESS_READ) as search_file:
                 
                 for rUID, reaction in reactions.items():
-                    if search_file.find(bytes(rUID, encoding='utf8')) != -1 and reaction not in in_model_files:
+                    if reaction not in in_model_files and search_file.find(bytes(rUID, encoding='utf8')) != -1:
                         in_model_files.append(reaction)
         
         notin_model_files   = [add_prefix(reaction) for reaction in reactions.values() if reaction not in in_model_files]
