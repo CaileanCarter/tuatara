@@ -1,3 +1,5 @@
+[![LGTM](https://img.shields.io/lgtm/grade/python/github/CaileanCarter/tuna.svg?style=flat-square)](https://lgtm.com/projects/g/CaileanCarter/tuatara)
+
 # tuatara
 
 Make and analyse many metabolic models simultaneously in [ScrumPy](https://mudshark.brookes.ac.uk/ScrumPy).
