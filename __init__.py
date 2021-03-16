@@ -30,7 +30,6 @@ from .nest import (
 
 # TODO: Does a more robust egg storage system need to be included?
 # TODO: Reports for eggs?
-# TODO: CLI via __main__.py - for what functionality?
 # TODO: Add extra functionality to scanner gui?
 # TODO: write API reference
 # TODO: sort out register (is it necessary?)

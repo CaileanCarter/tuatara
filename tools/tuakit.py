@@ -38,8 +38,8 @@ class LP:
         
             Parameters:
                 model (obj) : model
-                fluxdict (dict) : flux dictionary
                 reaction (str) : name of reaction
+                fluxdict (dict) : flux dictionary
                 flux (int) : flux value for reaction
                 block_uptake (bool) : block transporters
                 suffix (str) : block transporters with given suffix ('_tx' for all transporters; '_mm_tx' for media transporters)
@@ -268,6 +268,7 @@ class Model:
 
     @staticmethod
     def merge_models(model_a, model_b):
+        #TODO: add to api reference
         #FIXME: this would edit the original models, make it so entirely new model is made.
         #FIXME: I doubt this script works anymore, is it worth having?
         model_a.md.Reactions.update(model_b.md.Reactions)
@@ -281,6 +282,7 @@ class Model:
 
     @staticmethod
     def check_imbals(m, db, reacs=None):
+        #TODO: add to api reference
         """
         Check for imbalances in reactions.
 
@@ -306,6 +308,7 @@ class Model:
 
     @staticmethod
     def check_biomass_production(model, reactions=None, flux=-1, suffix="_BM_tx", **kwargs):
+        #TODO: add to api reference
         """
         Check model's biomass production by .
 
@@ -342,7 +345,7 @@ class Model:
                 m (obj) : model
                 stdout (bool) : print transporters
                 include (list) : include suffixes to find in reactions
-                only (list) : only showed specified suffixes
+                only (list) : only show specified suffixes
         
             Returns:
                 reactions (dict) : reaction suffix (key) and reactions (values : list)
@@ -389,17 +392,19 @@ class Model:
 
     #get metabolites from list of reactions
     @staticmethod
-    def reac_to_mets(m, reacs): return set((met for met in m.sm.InvolvedWith(reac) for reac in reacs))
+    def reac_to_mets(model, reacs: list): return set((met for met in model.sm.InvolvedWith(reac) for reac in reacs))
 
 
     @staticmethod
     def connects(model):
+        #TODO: add to api reference
         connected = {met : model.sm.Connectedness(met) for met in model.sm.rnames}
         return sorted(connected.items(), key=lambda c:c[1], reverse=True)
 
 
     @staticmethod
     def count_enzsubsets(model):
+        #TODO: add to api reference
 
         subsets_dict = defaultdict(list)
         subsets = model.EnzSubsets()
@@ -511,6 +516,8 @@ class Model:
 
 class DataBases:
 
+    #TODO: add to api reference
+
     def __init__(self): raise TypeError("DataBases object cannot be initialised.")
         
 
@@ -524,7 +531,7 @@ class DataBases:
         """
 
         if common:
-            args = [f"{common}/{directory}" for directory in dirs]
+            args = [path.join(common, directory) for directory in dirs]
         
         log.info("Opening databases, this may take a while...")
         with HidePrints():
