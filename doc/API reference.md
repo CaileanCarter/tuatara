@@ -2,7 +2,7 @@
 
 ## Nest building
 
-All inputs required to build a nest can be given in a YAML or JSON format. They accept the same input parameters as `tuatara.Inputs`. Examples are provided in the documentation folder.
+All inputs required to build a nest can be given in a YAML or JSON format. They accept the same input parameters as `tuatara.Inputs`. Examples are provided in the [doc](https://github.com/CaileanCarter/tuatara/tree/master/doc) folder.
 
 `tuatara.`<b>`read_yaml`(fp)</b>
 <dl>
@@ -164,6 +164,7 @@ Scan ScrumPy file for unwanted items declared in `tuatara.WatchList`. Launches a
 <br>
 
 ### tuatara.<b>WatchList</b>
+
 ---
 
 <i>class</i> `tuatara.`<b>`WatchList`()</b><br>
@@ -233,23 +234,149 @@ Add items to watchlist from a text file or replace existing watchlist.
 
 ---
 
-
 <br>
 
-
 ## Tuakit
+
 ---
-Tuatara offers a number of tools for dealing with metabolic models. <br>
-`tuatara.`<b>`HidePrints`()</b>
+
+Tuatara offers a number of tools for handling metabolic models. 
 
 ### tuatara.<b>LP</b>
+
 ---
+`tuatara.LP.`<b>`build`(model, reaction=None, fluxdict=None, flux=1, block_uptake=False, suffix="_tx", obj="min", solve=True)</b> <br>
+
+Build a linear programme in ScrumPy.
+
+<dl>
+<dt>&emsp;Parameters:</dt>
+<dd><b>&emsp;model</b> : <i>obj</i> &emsp;model</dd>
+<dd><b>&emsp;reaction</b> : <i>str</i> &emsp;name of reaction</dd>
+<dd><b>&emsp;fluxdict</b> : <i>dict</i> &emsp;flux dictionary</dd>
+<dd><b>&emsp;flux</b> : <i>int</i> &emsp;flux value for reaction</dd>
+<dd><b>&emsp;block_uptake</b> : <i>bool</i> &emsp;block transporters</dd>
+<dd><b>&emsp;suffix</b> : <i>str</i> &emsp;block transporters with given suffix</dd>
+<dd><b>&emsp;obj</b> : <i>str</i> &emsp;objective (only "min" supported)</dd>
+<dd><b>&emsp;solve</b> : <i>bool</i> &emsp;solve LP</dd>
+<dt>&emsp;Returns:</dt>
+<dd><b>&emsp;lp</b> : <i>obj</i> &emsp;linear programme of model
+</dl>
+
+Examples:
+```
+>>> import tuatara as tua
+>>> m = ScrumPy.Model("MyModel.spy")
+>>> lp1 = tua.LP.build(m, "ATPSynth")
+optimal
+>>> fluxdict = {"ATPSynth" : 1, "X_RXN" : 3}
+>>> lp2 = tua.LP.build(m, fluxdict=fluxdict, block_uptake=True)
+not feasible
+```
+
+`tuatara.LP.`<b>`prints`(model, lp)</b> <br>
+Print the LP with flux values.
+
+`tuatara.LP.`<b>`find`(lp, text)</b> <br>
+Find reactions in your LP.
+<dl>
+<dt>&emsp;Parameters:</dt>
+<dd><b>&emsp;lp</b> : <i>obj</i> &emsp;LP</dd>
+<dd><b>&emsp;text</b> : <i>str</i> &emsp;search term</dd>
+<dt>&emsp;Returns:</dt>
+<dd><b>&emsp;result</b> : <i>list</i> &emsp;list of results</dd>
+</dl>
+
+`tuatara.LP.`<b>`show`(model, lp)</b> <br>
+View LP in an Editor Window. Ideal for LPs with large contents without slowing down shell.
+
+`tuatara.LP.`<b>`tabulate`(model, LP, output=None, exclude=None, include=None)</b> <br>
+Visualise LP in a table window.
+
+<dl>
+<dt>&emsp;Parameters:</dt>
+<dd><b>&emsp;model</b> : <i>obj</i> &emsp;model</dd>
+<dd><b>&emsp;lp</b> : <i>obj</i> &emsp;LP</dd>
+<dd><b>&emsp;output</b> : <i>str</i> &emsp;(optional) output to a text file as tab seperated</dd>
+<dd><b>&emsp;exclude</b> : <i>list</i> &emsp;exclude given metabolites</dd>
+<dd><b>&emsp;include</b> : <i>list</i> &emsp; include only given metabolites
+</dl>
+
+There is a default list of common metabolites to exclude which can be excluded by using the argument "default" for exclude. This is the same as doing:
+```
+>>> exclude = ["NADP", "NAD", "NADPH", "Pi", "PROTON", "WATER", "ADP", "ATP", "NADH", "PPI"]
+>>> tuatara.LP.tabulate(n, lp, exclude=exclude)
+```
+
+`tuatara.LP.`<b>`plot`(model, lp, exclude=None, include=None)</b><br>
+Plot LP as a network graph.
+
+<dl>
+<dt>&emsp;Parameters:</dt>
+<dd><b>&emsp;model</b> : <i>obj</i> &emsp;model</dd>
+<dd><b>&emsp;lp</b> : <i>obj</i> &emsp;LP</dd>
+<dd><b>&emsp;exclude</b> : <i>list</i> &emsp;exclude given metabolites</dd>
+<dd><b>&emsp;include</b> : <i>list</i> &emsp; include only given metabolites</dd>
+</dl>
+
+There is also a default list of common metabolites as mentioned in `tuatara.LP.tabulate`.<br>
+
 
 ### tuatara.<b>Model</b>
+
 ---
 
+`tuatara.Model.`<b>`find`(model, key, types)</b><br>
+Easily find a metabolic or reaction by a keyword.
+
+<dl>
+<dt>&emsp;Parameters:</dt>
+<dd><b>&emsp;model</b> : <i>obj</i> &emsp;model</dd>
+<dd><b>&emsp;keyword</b> : <i>str</i> &emsp;keyword to search</dd>
+<dd><b>&emsp;types</b> : <i>str|tuple</i> &emsp;'met' or 'reac' for metabolite or reaction, respectively</dd>
+</dl>
+
+`tuatara.Model.`<b>`transporters`(model, stdout=None, include=None, only=None)</b><br>
+Get a dictionary of all transporters present in a model by suffix.
+
+<dl>
+<dt>&emsp;Parameters:</dt>
+<dd><b>&emsp;model</b> : <i>obj</i> &emsp;model</dd>
+<dd><b>&emsp;stdout</b> : <i>bool</i> &emsp;print transporters</dd>
+<dd><b>&emsp;include</b> : <i>list</i> &emsp;include suffixes to find in reactions</dd>
+<dd><b>&emsp;only</b> : <i>list</i> &emsp;only show specified suffixes
+<dt>&emsp;Returns:</dt>
+<dd><b>&emsp;reactions</b> : <i>dict</i> &emsp;reaction suffix (key) and reactions (values : list)</dd>
+</dl>
+
+`tuatara.Model.`<b>`reacs_to_mets`(model, reacs)</b><br>
+Get the metabolites involved in a list of reactions.
+
+<dl>
+<dt>&emsp;Parameters:</dt>
+<dd><b>&emsp;model</b> : <i>obj</i> &emsp;model</dd>
+<dd><b>&emsp;reacs</b> : <i>list</i> &emsp;list of reactions</dd>
+<dt>&emsp;Returns:</dt>
+<dd><b>&emsp;metabolites</b> : <i>set</i> &emsp;metabolites involved in reactions</dd>
+</dl>
+
+`tuatara.Model.`<b>`summary`(model, output=None)</b><br>
+Print a summary of a model.
+
+<dl>
+<dt>&emsp;Parameters:</dt>
+<dd><b>&emsp;model</b> : <i>obj</i> &emsp;model</dd>
+<dd><b>&emsp;output</b> : <i>str</i> &emsp;file path to write to</dd>
+</dl>
+
+
 ### tuatara.<b>DataBases</b>
+
 ---
+
+
+
+
 
 <br>
 
@@ -261,3 +388,6 @@ Hides logging messages. Levels ERROR and above will still be shown.<br>
 
 `tuatara.`<b>`debug`()</b><br>
 Switch logging to debug
+
+`tuatara.`<b>`HidePrints`()</b><br>
+Context manager for hiding print statements.
