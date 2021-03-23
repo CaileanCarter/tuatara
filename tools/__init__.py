@@ -1,5 +1,5 @@
 
-from .tester import WatchList, scan
+from .watchlist import WatchList, scan
 from .tuakit import (
                     LP,
                     Model, 

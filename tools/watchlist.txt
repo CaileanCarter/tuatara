@@ -113,7 +113,6 @@ Diacylglycerides
 Dihydroflavonols
 Dihydroquercetins
 Ditrans-polycis-polyprenols
-Donor-H2
 EIF5A-HYPUSINE
 ENTB-CPLX
 ENZYME-S-SULFANYLCYSTEINE
@@ -152,7 +151,6 @@ Glutaryl-ACP-methyl-esters
 Glycerophosphodiesters
 Glycogens
 Glycols
-HYDROGEN-MOLECULE
 Halide-Anions
 Heparan-NAc-glucosaminide
 Heparan-glucuronate-terminal
@@ -217,7 +215,6 @@ Non-lipoylated-domains
 OH-ACYL-ACP
 OMEGA-ALDEHYDE-FATTY-ACID
 OMEGA-HYDROXY-FATTY-ACID
-OXYGEN-MOLECULE
 Octanoylated-domains
 Odd-Saturated-Fatty-Acyl-CoA
 Oligosaccharide-With-Galactoses

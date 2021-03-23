@@ -107,6 +107,7 @@ class WatchList:
         watchlist = list(set(watchlist))
         watchlist.sort()
         cls.close_watchlist(cls, watchlist)
+        log.info("Watchlist has been tidied.")
 
 
     @classmethod
@@ -166,6 +167,10 @@ class WatchList:
     @classmethod
     def wipe(cls):
         """"Clear the watchlist"""
+        user_input = input("This will remove all contents of the watchlist. This cannot be undone.\nAre you sure? (y/n): ")
+        if user_input != "y":
+            log.info("Watch list has NOT been wiped.")
+            return
         watchlist = []
         cls.close_watchlist(cls, watchlist)
         log.info("Watchlist has been wiped")

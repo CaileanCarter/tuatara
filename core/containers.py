@@ -1,5 +1,9 @@
+"""
+Containers module for tuatara.
 
-# from collections import namedtuple
+"""
+#TODO: write docstring
+
 import sys
 import io
 import logging
@@ -37,8 +41,8 @@ class Constructors(ABC):
 
 def open_model(model):
     try:
-        m = ScrumPy.Model(model)
-    except:
+        m = ScrumPyModel(model)
+    except TypeError:
         if Nest._check_model(model):
             m = model
     finally:
@@ -328,7 +332,6 @@ class Nest(dict, Constructors):
     def to_dict(self): return self.__dict__
 
 
-# TODO: implement community feature -> pandas version of Nest
 class Community(pd.DataFrame, Constructors):
 
 
