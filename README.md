@@ -1,5 +1,5 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/CaileanCarter/tuatara)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/CaileanCarter/tuatara?include_prereleases)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/CaileanCarter/tuatara.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CaileanCarter/tuatara/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/CaileanCarter/tuatara.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CaileanCarter/tuatara/context:python)
 
