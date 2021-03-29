@@ -24,6 +24,16 @@ log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
 
 
+def open_model(model):
+    try:
+        m = ScrumPyModel(model)
+    except TypeError:
+        if Nest._check_model(model):
+            m = model
+    finally:
+        return m
+
+
 class Constructors(ABC):
 
     @abstractclassmethod
@@ -37,16 +47,6 @@ class Constructors(ABC):
     @abstractclassmethod
     def from_BuildNest(self):
         pass
-
-
-def open_model(model):
-    try:
-        m = ScrumPyModel(model)
-    except TypeError:
-        if Nest._check_model(model):
-            m = model
-    finally:
-        return m
 
 
 class Nest(dict, Constructors):
@@ -405,12 +405,19 @@ class Community(pd.DataFrame, Constructors):
     #-----------------------------------------------
     #Methods
 
+    def Hide(self): self.iloc[0]["model"].Hide()
+
+
+    def Show(self): self.iloc[0]["model"].Show()
+
+
     def iter_models(self, column="model"):
         for model in self[column].values:
             yield model
 
 
     def fetchLP(self, models="model", func=LP.build, stdout=True, **kwargs):
+
         def run_LP(model):
             lp = func(model, **kwargs)
             if isinstance(lp, dict): 
@@ -442,10 +449,6 @@ class Community(pd.DataFrame, Constructors):
             result = pd.concat([result, pd.Series(data=lp_output, index=result.index)], axis=1)
 
         return result
-
-    
-    def fetch_attr(self, column, attr):
-        return self[column].map(lambda x : x.attr)
 
     
     def _debug(self, column):
