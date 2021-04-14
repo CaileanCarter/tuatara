@@ -514,6 +514,17 @@ class Model:
             with open(output, 'w') as out: out.write(statement)
 
 
+    @staticmethod
+    def gene_association(model, database, inverse=False):
+        result = SetUtils.intersect(model.sm.cnames, database.dbs["REACTION"].keys())
+        
+        if not inverse:
+            return [r for r in result if database.dbs["REACTION"][r].GetGenes()]
+        else:
+            return [r for r in result if not database.dbs["REACTION"][r].GetGenes()]
+
+
+
 class DataBases:
 
     #TODO: add to api reference
@@ -561,7 +572,7 @@ class DataBases:
 
             try:
                 key = names[index]
-            except:
+            except IndexError:
                 key = index
             finally:
 
@@ -663,13 +674,17 @@ class DataBases:
 
 
     @staticmethod
-    def NoGene(db): return [reaction for reaction in db.dbs["REACTION"].keys() if not db[reaction].GetGenes()]
+    def no_gene_association(db) -> list: 
+        return [reaction for reaction in db.dbs["REACTION"].keys() if not db.dbs["REACTION"][reaction].GetGenes()]
     # list of reactions with no genes
 
     @staticmethod
-    def gene_associated_reactions(db): return SetUtils.complement(db.dbs["REACTION"].keys(), DataBases.NoGene(db))
-        # '''pre:True
-        # post: return list of reaction with gene association'''
+    def gene_association(db) -> list: 
+        return [reaction for reaction in db.dbs["REACTION"].keys() if db.dbs["REACTION"][reaction].GetGenes()]
+
+    @staticmethod
+    def gene_associated_reactions(db) -> set: 
+        return SetUtils.complement(db.dbs["REACTION"].keys(), DataBases.no_gene_association(db))
         
 
     @staticmethod

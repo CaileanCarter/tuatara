@@ -45,8 +45,8 @@ class Table(tk.Frame):
         self.iid = 0
         try:
             self.initialiseUI()
-        except:
-            raise NameError
+        except NameError:
+            pass
         
 
 class Scanner(Table):

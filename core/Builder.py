@@ -11,6 +11,7 @@ Classes
 # TODO: add logging
 # TODO: direct logging to register - is register needed?
 # TODO: conflict reactions should be commented (or left to user to deal with?)
+# TODO: rename the sections for the output files
 
 
 import csv
@@ -213,7 +214,7 @@ class BuildNest:
         self._log_reactions()
 
         if debug:
-            return
+            return self
 
         for egg in self._accessory[self._accessory.columns.difference(self._dbs)].columns:
             with _ToNest(egg) as tnt:
@@ -386,7 +387,7 @@ class BuildNest:
                 for LID in LIDs:
                     gene_name = name_reference[LID]
                     if isinstance(gene_name, float):
-                        pass
+                        continue
                     elif not names:
                         names = gene_name
                     elif gene_name not in names:
@@ -402,7 +403,7 @@ class BuildNest:
     #reactions handling
     def _getDBreacs(self, DBname):
         """
-        Given a database organism, this function gets all the functions from its database and returns a dictionary.
+        Given a database organism, this function gets all the reactions from its database and returns a dictionary.
 
             Parameters:
                 DBname (str) : name of database organism
@@ -424,14 +425,14 @@ class BuildNest:
         for UID in UIDs:
             try:
                 gene = db.dbs['GENE'][UID]['COMMON-NAME'][0]
-            except:
+            except KeyError:
                 gene = False
             
             if gene:
-                try:
-                    reactions = db.dbs['GENE'][UID].GetReactions()
-                except:
-                    reactions = False
+                # try:
+                reactions = db.dbs['GENE'][UID].GetReactions()
+                # except:
+                #     reactions = False
                 
                 if reactions:
                     r = {reac.UID : reac.AsScrumPy() for reac in reactions if "!" not in reac.AsScrumPy()}
@@ -484,7 +485,7 @@ class BuildNest:
 
         try:
             conflict = self._conflicts[gene]
-        except:
+        except KeyError:
             self._conflicts[gene] = {rUID : [reac_a, reac_b]}
             return
 

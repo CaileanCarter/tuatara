@@ -72,13 +72,13 @@ class RegisterManager:
         CLASSMETHOD = False
         try:
             _register = self._register              # get register from instance if called from context manager
-        except:
+        except NameError:
             _register = self._open_register()       # else open register
             CLASSMETHOD = True
 
         try:
             egg_record = _register[egg]
-        except:
+        except IndexError:
             log.info(f"No record of {egg} exists, starting new record.")
             egg_record = {
                 "name" : egg,

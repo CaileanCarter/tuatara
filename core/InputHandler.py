@@ -286,10 +286,13 @@ def read_json(fp):
     )
     try:
         inputs.rename(json_inputs["rename"])
-    except: pass
+    except IndexError: 
+        pass
+    
     try:
         inputs.drop(json_inputs["drop_columns"])
-    except: pass
+    except IndexError: 
+        pass
     
     return inputs
     
