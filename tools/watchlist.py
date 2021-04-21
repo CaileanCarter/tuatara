@@ -130,7 +130,7 @@ class WatchList:
             if line:
                 watchlist.append(line)
         cls.close_watchlist(cls, watchlist)
-        # remove(tmp_path)
+        remove(tmp_path)
         log.info("Changes have been made.")
         log.debug(f"{tmp_path} has been removed.")
 

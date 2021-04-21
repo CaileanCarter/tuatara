@@ -533,7 +533,7 @@ class DataBases:
         
 
     @staticmethod
-    def open_many(*args, common=None, dirs=None, data='data', **kwargs) -> tuple:
+    def open_many(*args, common=None, dirs=None, data='data', **kwargs) -> list:
 
         """
         Given the file path for a database, open that database through ScrumPy.
