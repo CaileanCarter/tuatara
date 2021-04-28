@@ -522,6 +522,17 @@ class Model:
             return [r for r in result if database.dbs["REACTION"][r].GetGenes()]
         else:
             return [r for r in result if not database.dbs["REACTION"][r].GetGenes()]
+        
+    
+    @staticmethod
+    def calculate_gene_association(model, database):
+        result = SetUtils.intersect(model.sm.cnames, database.dbs["REACTION"].keys())
+
+        GeneAssoc = [r for r in result if database.dbs["REACTION"][r].GetGenes()]
+        
+        NoGeneAssoc = [r for r in result if not database.dbs["REACTION"][r].GetGenes()]
+
+        return round((1- len(NoGeneAssoc) / len(GeneAssoc)) * 100, 1)
 
 
 
@@ -542,7 +553,7 @@ class DataBases:
         """
 
         if common:
-            args = [path.join(common, directory) for directory in dirs]
+            args = [path.join(common, directory) + "/" for directory in dirs]
         
         log.info("Opening databases, this may take a while...")
         with HidePrints():
@@ -702,6 +713,12 @@ class DataBases:
                     gen.append(g.UID)
             rv[r] = gen
         return rv
+
+    
+    @staticmethod
+    def reaction_coverage(model, database):
+        result = SetUtils.intersect(model.sm.cnames, database.dbs["REACTION"].keys())
+        return len(model.sm.cnames) - len(result)
 
 
 class ATP:
