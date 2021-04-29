@@ -1,4 +1,5 @@
 import logging
+import re
 from collections import defaultdict, namedtuple
 from operator import itemgetter
 from os import path
@@ -514,28 +515,6 @@ class Model:
             with open(output, 'w') as out: out.write(statement)
 
 
-    @staticmethod
-    def gene_association(model, database, inverse=False):
-        result = SetUtils.intersect(model.sm.cnames, database.dbs["REACTION"].keys())
-        
-        if not inverse:
-            return [r for r in result if database.dbs["REACTION"][r].GetGenes()]
-        else:
-            return [r for r in result if not database.dbs["REACTION"][r].GetGenes()]
-        
-    
-    @staticmethod
-    def calculate_gene_association(model, database):
-        result = SetUtils.intersect(model.sm.cnames, database.dbs["REACTION"].keys())
-
-        GeneAssoc = [r for r in result if database.dbs["REACTION"][r].GetGenes()]
-        
-        NoGeneAssoc = [r for r in result if not database.dbs["REACTION"][r].GetGenes()]
-
-        return round((1- len(NoGeneAssoc) / len(GeneAssoc)) * 100, 1)
-
-
-
 class DataBases:
 
     #TODO: add to api reference
@@ -567,7 +546,7 @@ class DataBases:
 
         master = {}
 
-        database_reactions = [DataBases.gene_associated_reactions(database) if GeneAsso 
+        database_reactions = [GeneAssoc.gene_associated_reactions(database) if GeneAsso 
                                 else database.dbs["REACTION"].keys() 
                                 for database in args]
         
@@ -685,20 +664,6 @@ class DataBases:
 
 
     @staticmethod
-    def no_gene_association(db) -> list: 
-        return [reaction for reaction in db.dbs["REACTION"].keys() if not db.dbs["REACTION"][reaction].GetGenes()]
-    # list of reactions with no genes
-
-    @staticmethod
-    def gene_association(db) -> list: 
-        return [reaction for reaction in db.dbs["REACTION"].keys() if db.dbs["REACTION"][reaction].GetGenes()]
-
-    @staticmethod
-    def gene_associated_reactions(db) -> set: 
-        return SetUtils.complement(db.dbs["REACTION"].keys(), DataBases.no_gene_association(db))
-        
-
-    @staticmethod
     def ReacToGene(db, reactions=None):
         rv = {}
         if not reactions:
@@ -714,11 +679,55 @@ class DataBases:
             rv[r] = gen
         return rv
 
+
+class GeneAssoc:
+
+
+    @staticmethod
+    def no_gene_association(db) -> list: 
+        return [reaction for reaction in db.dbs["REACTION"].keys() if not db.dbs["REACTION"][reaction].GetGenes()]
+    # list of reactions with no genes
+
+    @staticmethod
+    def gene_association(db) -> list: 
+        return [reaction for reaction in db.dbs["REACTION"].keys() if db.dbs["REACTION"][reaction].GetGenes()]
+
+    @staticmethod
+    def gene_associated_reactions(db) -> set: 
+        #TODO: check utility
+        return SetUtils.complement(db.dbs["REACTION"].keys(), GeneAssoc.no_gene_association(db))
     
     @staticmethod
-    def reaction_coverage(model, database):
+    def reactions_without_coverage(model, database):
         result = SetUtils.intersect(model.sm.cnames, database.dbs["REACTION"].keys())
         return len(model.sm.cnames) - len(result)
+
+
+    @staticmethod
+    def model_gene_association(model, database, inverse=False):
+        result = SetUtils.intersect(model.sm.cnames, database.dbs["REACTION"].keys())
+        
+        if not inverse:
+            return [r for r in result if database.dbs["REACTION"][r].GetGenes()]
+        else:
+            return [r for r in result if not database.dbs["REACTION"][r].GetGenes()]
+        
+    
+    @staticmethod
+    def calculate_gene_association(model, database):
+        result = SetUtils.intersect(model.sm.cnames, database.dbs["REACTION"].keys())
+
+        GeneAssoc = [r for r in result if database.dbs["REACTION"][r].GetGenes()]
+        
+        NoGeneAssoc = [r for r in result if not database.dbs["REACTION"][r].GetGenes()]
+
+        return round((1- len(NoGeneAssoc) / len(GeneAssoc)) * 100, 1)
+
+    
+    @staticmethod
+    def find_split_reactions(lst: list):
+        p = re.compile(r'RXN-\(\w+\)$')
+        return [i for i in lst if p.search(i)]
 
 
 class ATP:
