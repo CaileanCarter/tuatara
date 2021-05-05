@@ -355,7 +355,11 @@ class Community(pd.DataFrame, Constructors):
     def from_nest(cls, model, eggs=None, index=None, columns=None, **kwargs):
         m = open_model(model)
 
+        # try:
         models = {"model" : [hatch(m, egg) for egg in eggs]}
+        # except FileNotFoundError:
+        #     models = {"model" : [hatch(m, egg[:-4]) for egg in eggs]} #try removing ".spy"
+
         models["model"].insert(0, m)
         if index and index[0] != "model": #should check are equal length?
             index.insert(0, "model")

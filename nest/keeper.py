@@ -23,7 +23,7 @@ DIR = path.join(
 
 def get_path(egg : str) -> str:
     """Takes egg ID and returns its filepath"""
-    egg_path = path.join(DIR, f"{egg}.spy")
+    egg_path = path.join(DIR, egg if egg.endswith(".spy") else f"{egg}.spy")
     return egg_path
 
 
