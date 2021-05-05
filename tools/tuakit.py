@@ -5,8 +5,10 @@ from operator import itemgetter
 from os import path
 
 import matplotlib.pyplot as plt
+import seaborn as sns
 import networkx as nx
 import numpy as np
+import pandas as pd
 from flashtext import KeywordProcessor
 from ScrumPy.Bioinf import PyoCyc
 
@@ -227,6 +229,28 @@ class LP:
         ego_plot = nx.ego_graph(G, hub)
         nx.draw(ego_plot, with_labels=True, pos=nx.spring_layout(G), edge_color='c')
         plt.show()
+
+
+    @staticmethod
+    def compare(df):
+
+        def get_keys(x): return list(x.keys())
+
+        df["AsList"] = df.apply(get_keys)
+
+        s = set( val for dic in df["AsList"] for val in dic )
+        print(s)
+
+        master = {name : {value : 0 for value in s} for name in df.index}
+        for name, values in df["AsList"].iteritems():
+            for val in values:
+                master[name][val] = 1
+
+        df = pd.DataFrame.from_dict(master)
+        df = df[(df.T != 1).any()]
+        sns.clustermap(df, cmap="mako")
+        plt.show()
+
 
 
 class Model:
