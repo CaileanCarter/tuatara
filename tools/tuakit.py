@@ -232,25 +232,30 @@ class LP:
 
 
     @staticmethod
-    def compare(df):
+    def compare(df, core=True):
+
+        try:
+            df = df.to_frame()
+        except AttributeError:
+            pass
 
         def get_keys(x): return list(x.keys())
 
-        df["AsList"] = df.apply(get_keys)
+        df["AsList"] = df.iloc[:,0].apply(get_keys)
 
-        s = set( val for dic in df["AsList"] for val in dic )
-        print(s)
+        reactions = set( val for dic in df["AsList"] for val in dic )
+        # print(s)
 
-        master = {name : {value : 0 for value in s} for name in df.index}
+        master = {name : {value : 0 for value in reactions} for name in df.index}
         for name, values in df["AsList"].iteritems():
             for val in values:
                 master[name][val] = 1
 
-        df = pd.DataFrame.from_dict(master)
-        df = df[(df.T != 1).any()]
-        sns.clustermap(df, cmap="mako")
+        df_m = pd.DataFrame.from_dict(master)
+        if not core:
+            df_m = df_m[(df_m.T != 1).any()]
+        sns.clustermap(df_m, cmap="mako")
         plt.show()
-
 
 
 class Model:
