@@ -34,7 +34,7 @@ To help with the curation of metabolic models, tuatara comes with tools for rapi
 
 ### Dependencies:
 - [ScrumPy](https://mudshark.brookes.ac.uk/ScrumPy) (3.0-alpha)
-- Python (3.8.2)
+- Python (3.6.9 and higher)
 - pandas (1.1.5)
 - numpy (1.19.5)
 - [flashtext](https://github.com/vi3k6i5/flashtext) (2.7)
