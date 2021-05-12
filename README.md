@@ -41,6 +41,11 @@ To help with the curation of metabolic models, tuatara comes with tools for rapi
 - matplotlib (3.3.4)
 - networkx (2.5)
 
+### Optional:
+- PyYAML (5.4.1)
+- Seaborn 
+
+
 <br>
 
 ---
