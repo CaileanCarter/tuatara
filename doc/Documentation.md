@@ -1,7 +1,7 @@
 # Documentation
 
 ## Table of Contents
-- Tutorial
+- How does it work?
 - Definitions and syntax
 - Tuatara .spy format
 
