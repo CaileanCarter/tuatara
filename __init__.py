@@ -56,7 +56,7 @@ tuatara - a metabolic model modularisation package for ScrumPy
 ==============================================================
 
 Version:            {__version__}
-Last modified:      23/02/2021
+Last modified:      25/06/2021
 Github:             
 Author:             Cailean Carter
 Affilitation:       Quadram Institute, Norwich Research Park
