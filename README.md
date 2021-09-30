@@ -52,7 +52,7 @@ To help with the curation of metabolic models, tuatara comes with tools for rapi
 ### Documentation ![database]
 - [Documentation](https://github.com/CaileanCarter/tuatara/blob/master/doc/Documentation.md)
 - [API reference](https://github.com/CaileanCarter/tuatara/blob/master/doc/API%20reference.md)
-
+- [Get started](https://github.com/CaileanCarter/tuatara/blob/master/doc/Get%20started.md)
 
 <br>
 
