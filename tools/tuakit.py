@@ -5,12 +5,13 @@ from operator import itemgetter
 from os import path
 
 import matplotlib.pyplot as plt
-import seaborn as sns
 import networkx as nx
 import numpy as np
 import pandas as pd
+import seaborn as sns
 from flashtext import KeywordProcessor
 from ScrumPy.Bioinf import PyoCyc
+from ScrumPy.Data import DataSets
 
 from ..core.GUI import Editor, LPTable
 from .utils import HidePrints, SetUtils, split_reaction
@@ -759,6 +760,18 @@ class GeneAssoc:
         return [i for i in lst if p.search(i)]
 
 
+class ScanRes(DataSets.DataSet):
+
+    def __init__(self, *args, **kwargs):
+        DataSets.DataSet.__init__(self, *args, **kwargs)
+
+
+    def changers(self, lim=1e-7):
+        """ pre: True
+        post: returns list of reactions with changing flux value at threshold lim"""
+        return [cname for cname in self.cnames if np.ptp(self.GetCol(cname)) > lim]
+
+
 class ATP:
 
     @staticmethod
@@ -786,26 +799,44 @@ class ATP:
 
 
     @staticmethod
-    def Scan(model, low=0, high=100, n=100, lp=None, O2=5.0, ATPase="ATPSynth"):
-        # FIXME: final sol value goes nowhere
-        Sols = []
-        incr = (float(high)-low) / (n-1)             # scan na points between alo and ahi with incr step
-        for flux in map(lambda x: low+x*incr, range(n)):
-            lp_a = LP.build(model, reaction=ATPase, flux=flux)
-            Sols.append(lp_a)
+    def scan(model: object, low=1.0, high=200, n=100, lp=None, O2=None, ATPase="ATPSynth") -> DataSets.DataSet:
+        """
+        Perform an ATP scan on a Linear Programme.
+
+            Parameters:
+                model (obj) : model
+                low (float) : lowest flux point
+                high (float): highest flux point
+                n (int) : number of points
+                lp (obj) : linear programme object
+                ATPase (str) : ATPase reaction
+                O2 (float) : set upper flux bound for O2_tx
+
+            Returns:
+                rv (ScrumPy.DataSet.DataSet) : result of ATP scan as DataSet object
+        """
+        
+        rv = ScanRes()
+
+        if not lp:   
+            lp = model.GetLP()
+            lp.SetObjective(model.sm.cnames)
 
         if O2:
             lp.SetFluxBounds({'O2_tx': (0.0, O2)})
 
-        SetATP = lambda ATP: lp.SetFluxBounds({ATPase : (ATP, None)})
-        ranges = np.arange(low, high, (high-low)/(n-1))
-        for ATPLim in ranges:
-            SetATP(ATPLim)
-            lp.Solve()
+        step = (high-low)/(n-1)
+        ranges = np.arange(low, high, step)
+
+        for atp in ranges:
+            lp.SetFixedFlux({ATPase: atp})
+            lp.Solve(PrintStatus=False) 
             if lp.IsStatusOptimal():
                 sol = lp.GetPrimSol()
-                sol['ObjVal'] = lp.GetObjVal()
-                sol["ATPLim"] = ATPLim
+                rv.UpdateFromDic(sol)
+    
+        rv.SetPlotX(ATPase)
+        rv.AddToPlot(rv.changers())
 
-        return Sols
+        return rv
     
