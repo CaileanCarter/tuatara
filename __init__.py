@@ -33,7 +33,6 @@ from .nest import (
 # TODO: Add extra functionality to scanner gui?
 # TODO: write API reference
 # TODO: sort out register (is it necessary?)
-# TODO: create script to keep copy in main drive
 # TODO: consider including jellyfish to find matching reactions
 # TODO: implement system where models can interact
 
@@ -56,8 +55,8 @@ tuatara - a metabolic model modularisation package for ScrumPy
 ==============================================================
 
 Version:            {__version__}
-Last modified:      23/02/2021
-Github:             
+Last modified:      07/02/2022
+Github:             https://github.com/CaileanCarter/tuatara
 Author:             Cailean Carter
 Affilitation:       Quadram Institute, Norwich Research Park
 Email:              cailean.carter@quadram.ac.uk
