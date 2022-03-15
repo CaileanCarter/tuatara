@@ -158,6 +158,7 @@ def hatch(model, egg=None, fromspy=False):
     for reaction in reactions:
         try:
             new_model.sm.NewReaction(reaction.name, reaction.StoMat, reaction.direction)
+            new_model.smx.NewReaction(reaction.name, reaction.StoMat, reaction.direction)
         except TypeError:
             continue
     model.Init()
